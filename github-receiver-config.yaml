@@ -1,0 +1,36 @@
+extensions:
+  bearertokenauth/github:
+    token: ${http://localhost:8000/gh_pat.key}
+
+receivers:
+  github:
+    initial_delay: 1s
+    collection_interval: 60s
+    scrapers:
+      scraper:
+        metrics: #Optional
+          vcs.contributor.count:
+            enabled: true
+        github_org: ${http://localhost:8000/gh_org}
+        # search_query: "org:opentelemetry repo:opentelemetry-collector-contrib" # Recommended optional query override, defaults to "{org,user}:<github_org>"
+        concurrency_limit: 50 # Optional: (default: 50)
+        merged_pr_lookback_days: 30 # Optional: (default: 30)
+        auth:
+          authenticator: bearertokenauth/github
+
+exporters:
+  debug:
+    verbosity: detailed
+
+service:
+  extensions: [bearertokenauth/github]
+  pipelines:
+    metrics:
+      receivers: [github]
+      exporters: [debug]
+  telemetry:
+    traces:
+      level: none
+    metrics:
+      level: none
+      readers: []

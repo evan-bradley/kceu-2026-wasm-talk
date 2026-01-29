@@ -1,0 +1,35 @@
+dist:
+  module: github.com/evan-bradley/kceu-2026-wasm-talk/otelwasmcol
+  name: otelwasmcol
+  version: 0.0.1-dev
+  output_path: ./bin/
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.144.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.144.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.144.0
+
+processors:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.144.0
+
+receivers:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubreceiver v0.144.0
+
+connectors:
+  - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.144.0
+
+extensions:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.144.0
+
+providers:
+  - gomod: go.opentelemetry.io/collector/confmap/provider/envprovider v1.50.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/fileprovider v1.50.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.50.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.50.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.50.0
+
+# replaces:
+#   - go.opentelemetry.io/collector/otelcol => ../otelcol
+replaces:
+  - go.opentelemetry.io/collector/otelcol => github.com/evan-bradley/opentelemetry-collector/otelcol v0.0.0-20260129200725-03d8f7d5307e
+  - go.opentelemetry.io/collector/service => github.com/evan-bradley/opentelemetry-collector/service v0.0.0-20260129200725-03d8f7d5307e
