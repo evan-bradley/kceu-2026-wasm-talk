@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "slidev-worker-assets",
+  "name": "kceu-2026-wasm-talk",
   "compatibility_date": "2025-03-14",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
