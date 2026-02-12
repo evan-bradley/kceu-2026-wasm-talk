@@ -28,8 +28,5 @@ providers:
   - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.50.0
   - gomod: go.opentelemetry.io/collector/confmap/provider/yamlprovider v1.50.0
 
-# replaces:
-#   - go.opentelemetry.io/collector/otelcol => ../otelcol
 replaces:
-  - go.opentelemetry.io/collector/otelcol => github.com/evan-bradley/opentelemetry-collector/otelcol v0.0.0-20260129200725-03d8f7d5307e
-  - go.opentelemetry.io/collector/service => github.com/evan-bradley/opentelemetry-collector/service v0.0.0-20260129200725-03d8f7d5307e
+  - go.opentelemetry.io/collector/otelcol => go.opentelemetry.io/collector/otelcol v0.145.1-0.20260212100729-5a059d1d6718
