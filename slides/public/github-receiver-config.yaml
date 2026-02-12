@@ -1,6 +1,6 @@
 extensions:
   bearertokenauth/github:
-    token: ${http://localhost:8000/gh_pat.key}
+    token: ${http://localhost:3030/gh_pat.key}
 
 receivers:
   github:
@@ -11,7 +11,7 @@ receivers:
         metrics: #Optional
           vcs.contributor.count:
             enabled: true
-        github_org: ${http://localhost:8000/gh_org}
+        github_org: ${http://localhost:3030/gh_org}
         # search_query: "org:opentelemetry repo:opentelemetry-collector-contrib" # Recommended optional query override, defaults to "{org,user}:<github_org>"
         concurrency_limit: 50 # Optional: (default: 50)
         merged_pr_lookback_days: 30 # Optional: (default: 30)
