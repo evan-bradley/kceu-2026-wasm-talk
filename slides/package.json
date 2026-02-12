@@ -11,6 +11,7 @@
     "@slidev/cli": "^52.11.5",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
+    "vite": "^7.3.1",
     "vue": "^3.5.27",
     "wrangler": "^4.65.0"
   }
