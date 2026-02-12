@@ -64,7 +64,7 @@ onMounted(async () => {
 
     try {
       const result = await WebAssembly.instantiateStreaming(
-        fetch("/otelwasmcol/bin/main.wasm"),
+        fetch("/otelwasmcol.wasm"),
         go.importObject
       )
       mod = result.module
@@ -82,7 +82,7 @@ async function runWasm() {
 
   console.clear()
   const configUrl = `${window.location.origin}/github-receiver-config.yaml`
-  go.argv = ["main.wasm", `--config=${configUrl}`]
+  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`]
   await go.run(inst)
   inst = await WebAssembly.instantiate(mod, go.importObject)
 }
