@@ -12,6 +12,6 @@
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
     "vue": "^3.5.27",
-    "wrangler": "^4.63.0"
+    "wrangler": "^4.65.0"
   }
 }
