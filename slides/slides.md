@@ -5,13 +5,7 @@ theme: seriph
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply UnoCSS classes to the current slide
+title: Observability Without Borders
 class: text-center
 # https://sli.dev/features/drawing
 drawings:
@@ -21,7 +15,54 @@ transition: slide-left
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 # duration of the presentation
-duration: 35min
+duration: 25min
+---
+
+# Observability Without Borders
+
+---
+
+# What is the Collector?
+
+---
+
+# Write once, run everywhere™
+
+---
+
+# Why WebAssembly?
+
+---
+
+# Where can I run my Collector today?
+
+<div class="platforms">
+  <div class="tier1"><code>linux/amd64</code></div>
+  <div class="tier2"><code>darwin/arm64</code></div>
+  <div class="tier2"><code>linux/arm64</code></div>
+  <div class="tier2"><code>windows/amd64</code></div>
+  <div class="tier3"><code>darwin/amd64</code></div>
+  <div class="tier3 wasm-special"><code>js/wasm</code></div>
+  <div class="tier3"><code>linux/386</code></div>
+  <div class="tier3"><code>linux/arm</code></div>
+  <div class="tier3"><code>linux/ppc64le</code></div>
+  <div class="tier3"><code>linux/riscv64</code></div>
+  <div class="tier3"><code>linux/s390x</code></div>
+  <div class="tier3"><code>windows/386</code></div>
+  <div class="unofficial"><code>aix/ppc64</code></div>
+  <div class="unofficial"><code>plan9/amd64</code></div>
+  
+</div>
+
+---
+
+# Challenges
+
+---
+
+# Limitations
+
+
 ---
 layout: center
 ---

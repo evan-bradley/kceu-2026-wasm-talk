@@ -1,0 +1,79 @@
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.platforms > div {
+  padding: 1rem;
+  text-align: center;
+  border-radius: 0.75rem;
+  border: 2px solid;
+  transition: transform 0.2s;
+}
+
+.platforms > div:hover {
+  transform: translateY(-2px);
+}
+
+.platforms div code {
+  background: transparent;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.platforms .tier1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #5568d3;
+}
+
+.platforms code {
+  color: white;
+}
+
+.platforms .tier2 {
+  background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+  border-color: #6bc9e8;
+}
+
+.platforms .tier3 {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  border-color: #93d4d1;
+}
+
+.platforms .unofficial {
+  background: linear-gradient(135deg, #d7d2cc 0%, #304352 100%);
+  border-color: #8a8a8a;
+}
+
+.platforms .wasm-special {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  border-color: #f6d365;
+  box-shadow: 0 0 20px rgba(246, 211, 101, 0.6), 0 0 40px rgba(253, 160, 133, 0.4);
+  animation: sparkle 8s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.platforms .wasm-special code {
+  font-weight: 600;
+}
+
+.platforms .wasm-special::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(246, 211, 101, 0.6), 0 0 40px rgba(253, 160, 133, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(246, 211, 101, 0.8), 0 0 60px rgba(253, 160, 133, 0.6), 0 0 80px rgba(255, 215, 0, 0.4);
+  }
+}
