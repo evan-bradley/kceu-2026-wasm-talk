@@ -24,6 +24,8 @@ duration: 25min
 
 # What is the Collector?
 
+<img src="/otel-diagram.svg" style="max-height: 100%; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
+
 ---
 
 # Write once, run everywhere™
