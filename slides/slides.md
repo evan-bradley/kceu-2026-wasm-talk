@@ -36,22 +36,33 @@ duration: 25min
 
 # Where can I run my Collector today?
 
+The Collector supports a variety of compilation targets today:
+
 <div class="platforms">
-  <div class="tier1"><code>linux/amd64</code></div>
-  <div class="tier2"><code>darwin/arm64</code></div>
-  <div class="tier2"><code>linux/arm64</code></div>
-  <div class="tier2"><code>windows/amd64</code></div>
-  <div class="tier3"><code>darwin/amd64</code></div>
-  <div class="tier3 wasm-special"><code>js/wasm</code></div>
-  <div class="tier3"><code>linux/386</code></div>
-  <div class="tier3"><code>linux/arm</code></div>
-  <div class="tier3"><code>linux/ppc64le</code></div>
-  <div class="tier3"><code>linux/riscv64</code></div>
-  <div class="tier3"><code>linux/s390x</code></div>
-  <div class="tier3"><code>windows/386</code></div>
-  <div class="unofficial"><code>aix/ppc64</code></div>
-  <div class="unofficial"><code>plan9/amd64</code></div>
-  
+  <div class="tier-group tier1-group">
+    <div class="tier1"><code>linux/amd64</code></div>
+  </div>
+  <div class="tier-group tier2-group">
+    <div class="tier2"><code>darwin/arm64</code></div>
+    <div class="tier2"><code>linux/arm64</code></div>
+    <div class="tier2"><code>windows/amd64</code></div>
+  </div>
+  <div class="tier-group tier3-group">
+    <div class="tier3"><code>darwin/amd64</code></div>
+    <div class="tier3"><code>linux/386</code></div>
+    <div class="tier3 wasm-special"><code>js/wasm</code></div>
+    <div class="tier3"><code>linux/arm</code></div>
+    <div class="tier3"><code>linux/ppc64le</code></div>
+    <div class="tier3"><code>linux/riscv64</code></div>
+    <div class="tier3"><code>linux/s390x</code></div>
+    <div class="tier3"><code>windows/386</code></div>
+  </div>
+  <div class="tier-group unofficial-group">
+    <div class="unofficial"><code>aix/ppc64</code></div>
+    <div class="unofficial"><code>plan9/amd64</code></div>
+    <div class="unofficial"><code>wasip1/wasm</code></div>
+    <div class="unofficial"><code>...</code></div>
+  </div>
 </div>
 
 ---

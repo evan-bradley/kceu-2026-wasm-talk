@@ -1,20 +1,84 @@
 .platforms {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  max-width: 900px;
-  margin: 2rem auto;
+  grid-template-columns: 1fr 3fr;
+  gap: 0.6rem;
+  margin: 1rem 0;
 }
 
-.platforms > div {
-  padding: 1rem;
+.tier-group {
+  position: relative;
+  border: 2px dashed;
+  border-radius: 0.75rem;
+  padding: 0.6rem;
+  padding-top: 1.6rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tier-group::before {
+  position: absolute;
+  top: 0.3rem;
+  left: 0.6rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.tier1-group {
+  border-color: #5568d3;
+  grid-column: 1;
+  grid-template-columns: 1fr;
+}
+
+.tier1-group::before {
+  content: 'Tier 1';
+  color: #a0aaee;
+}
+
+.tier2-group {
+  border-color: #6bc9e8;
+  grid-column: 2;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.tier2-group::before {
+  content: 'Tier 2';
+  color: #6bc9e8;
+}
+
+.tier3-group {
+  border-color: #93d4d1;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.tier3-group::before {
+  content: 'Tier 3';
+  color: #93d4d1;
+}
+
+.unofficial-group {
+  border-color: #8a8a8a;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.unofficial-group::before {
+  content: 'Unofficial';
+  color: #aaaaaa;
+}
+
+.tier-group > div {
+  padding: 0.75rem 0.5rem;
   text-align: center;
   border-radius: 0.75rem;
   border: 2px solid;
   transition: transform 0.2s;
 }
 
-.platforms > div:hover {
+.tier-group > div:hover {
   transform: translateY(-2px);
 }
 
