@@ -17,6 +17,9 @@ build: slides/dist/index.html
 deploy: build
 	cd slides && npx pnpm run deploy
 
+cf-deploy: build
+	cd slides && CF_ACCOUNT_ID=$$CF_ACCOUNT_ID CF_API_TOKEN=$$CF_API_TOKEN CLOUDFLARE_API_TOKEN="" npx pnpm run deploy
+
 .PHONY: serve
 serve: build
 	cd slides && npx pnpm dev
