@@ -15,7 +15,7 @@ slides/dist/index.html: otelwasmcol slides/slides.md slides/style.css slides/vit
 build: slides/dist/index.html
 
 deploy: build
-	cd slides && npx pnpm wrangler login && npx pnpm run deploy
+	cd slides && npx pnpm run deploy
 
 .PHONY: serve
 serve: build
