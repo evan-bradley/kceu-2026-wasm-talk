@@ -4,7 +4,10 @@ otelwasmcol/bin/main.wasm: otelwasmcol/wasm-manifest.yaml
 
 otelwasmcol: otelwasmcol/bin/main.wasm
 
-slides/dist/index.html: otelwasmcol slides/slides.md slides/style.css slides/vite.config.ts slides/package.json
+slides/node_modules: slides/package.json slides/package-lock.json slides/pnpm-lock.yaml
+	cd slides && npx pnpm install
+
+slides/dist/index.html: otelwasmcol slides/slides.md slides/style.css slides/vite.config.ts slides/package.json slides/node_modules
 	cp otelwasmcol/bin/main.wasm slides/public/otelwasmcol.wasm
 	gzip slides/public/otelwasmcol.wasm
 	cd slides && npm run build
