@@ -3,7 +3,5 @@
   "name": "kceu-2026-wasm-talk",
   "compatibility_date": "2025-03-14",
   "compatibility_flags": ["nodejs_compat"],
-  "assets": {
-    "directory": "dist"
-  }
+  "pages_build_output_dir": "dist",
 }
