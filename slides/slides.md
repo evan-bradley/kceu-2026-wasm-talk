@@ -83,17 +83,10 @@ layout: center
 # WebAssembly Demo
 
 <div class="flex flex-col items-center justify-center gap-4">
-  <button
-    @click="runWasm"
-    :disabled="!wasmReady"
-    class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
-  >
-    {{ wasmReady ? 'Run' : 'Loading...' }}
-  </button>
   <pre
     ref="outputEl"
     class="wasm-output"
-  ><code>{{ outputText }}</code></pre>
+  ><code>{{ outputText || 'Loading WebAssembly module...' }}</code></pre>
 </div>
 
 <style>
@@ -116,7 +109,6 @@ layout: center
 <script setup lang="ts">
 import { ref, onMounted, nextTick } from 'vue'
 
-const wasmReady = ref(false)
 const outputText = ref('')
 const outputEl = ref<HTMLPreElement | null>(null)
 let go: any = null
@@ -192,7 +184,7 @@ onMounted(async () => {
       )
       mod = result.module
       inst = result.instance
-      wasmReady.value = true
+      runWasm()
     } catch (err) {
       console.error(err)
     }
