@@ -90,22 +90,66 @@ layout: center
   >
     {{ wasmReady ? 'Run' : 'Loading...' }}
   </button>
+  <pre
+    ref="outputEl"
+    class="wasm-output"
+  ><code>{{ outputText }}</code></pre>
 </div>
 
+<style>
+.wasm-output {
+  width: 90%;
+  max-height: 340px;
+  overflow-y: auto;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+</style>
+
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 
 const wasmReady = ref(false)
+const outputText = ref('')
+const outputEl = ref<HTMLPreElement | null>(null)
 let go: any = null
 let mod: any = null
 let inst: any = null
 
+function appendOutput(text: string) {
+  outputText.value += text
+  nextTick(() => {
+    if (outputEl.value) {
+      outputEl.value.scrollTop = outputEl.value.scrollHeight
+    }
+  })
+}
+
+// The Wasm file is pre-compressed when uploaded to Cloudflare,
+// and as a result must be manually decompressed here.
+async function decompressGzip(response) {
+  if (response.headers.get("server") !== "cloudflare") {
+    return response
+  }
+
+  const compressedBlob = await response.blob();
+  const decompressedStream = compressedBlob.stream().pipeThrough(new DecompressionStream('gzip'));
+  return new Response(decompressedStream, {
+    headers: { 'Content-Type': 'application/wasm' }
+  });
+}
+
 onMounted(async () => {
-  // Load wasm_exec.js
   const script = document.createElement('script')
   script.src = '/wasm_exec.js'
   script.onload = async () => {
-    // Polyfill for browsers that don't support instantiateStreaming
     if (!WebAssembly.instantiateStreaming) {
       WebAssembly.instantiateStreaming = async (resp: any, importObject: any) => {
         const source = await (await resp).arrayBuffer()
@@ -116,9 +160,34 @@ onMounted(async () => {
     // @ts-ignore
     go = new Go()
 
+    // Intercept fs.writeSync to capture wasm output
+    const decoder = new TextDecoder('utf-8')
+    let outputBuf = ''
+    const origWriteSync = globalThis.fs.writeSync
+    globalThis.fs.writeSync = (fd: number, buf: Uint8Array) => {
+      outputBuf += decoder.decode(buf)
+      const nl = outputBuf.lastIndexOf('\n')
+      if (nl !== -1) {
+        appendOutput(outputBuf.substring(0, nl + 1))
+        outputBuf = outputBuf.substring(nl + 1)
+      }
+      return buf.length
+    }
+
+    const origWrite = globalThis.fs.write
+    globalThis.fs.write = (fd: number, buf: Uint8Array, offset: number, length: number, position: any, callback: Function) => {
+      if (offset !== 0 || length !== buf.length || position !== null) {
+        callback(new Error('not implemented'))
+        return
+      }
+      const n = globalThis.fs.writeSync(fd, buf)
+      callback(null, n)
+    }
+
     try {
       const result = await WebAssembly.instantiateStreaming(
-        fetch("/otelwasmcol.wasm"),
+        fetch("/otelwasmcol.wasm.gz")
+        .then(decompressGzip),
         go.importObject
       )
       mod = result.module
@@ -134,9 +203,11 @@ onMounted(async () => {
 async function runWasm() {
   if (!go || !inst || !mod) return
 
-  console.clear()
+  outputText.value = ''
   const configUrl = `${window.location.origin}/github-receiver-config.yaml`
-  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`]
+  const ghReceiver = `${window.location.origin}/gh_org.yaml`
+  const btExtension = `${window.location.origin}/gh_pat.yaml`
+  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`, `--config=${ghReceiver}`, `--config=${btExtension}`]
   await go.run(inst)
   inst = await WebAssembly.instantiate(mod, go.importObject)
 }

@@ -3,3 +3,5 @@ gh_*
 slides/node_modules/
 slides/dist/
 *.wasm
+local
+slides/public/*.wasm.gz
