@@ -10,13 +10,13 @@ slides/node_modules: slides/package.json slides/package-lock.json slides/pnpm-lo
 slides/dist/index.html: otelwasmcol slides/slides.md slides/style.css slides/vite.config.ts slides/package.json slides/node_modules
 	cp otelwasmcol/bin/main.wasm slides/public/otelwasmcol.wasm
 	gzip slides/public/otelwasmcol.wasm
-	cd slides && npm run build
+	cd slides && npx pnpm build
 
 build: slides/dist/index.html
 
 deploy: build
-	cd slides && npm run deploy
+	cd slides && npx pnpm wrangler login && npx pnpm deploy
 
 .PHONY: serve
 serve: build
-	cd slides && npm run dev
+	cd slides && npx pnpm dev
