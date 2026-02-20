@@ -9,6 +9,9 @@
     "deploy": "npx wrangler pages deploy dist --branch=main"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/otlp-transformer": "^0.212.0",
+    "@opentelemetry/sdk-metrics": "^2.5.1",
     "@slidev/cli": "^52.11.5",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",

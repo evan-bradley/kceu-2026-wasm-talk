@@ -144,6 +144,12 @@ layout: center
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { metrics } from '@opentelemetry/api'
+import {
+  MeterProvider,
+  PeriodicExportingMetricReader,
+} from '@opentelemetry/sdk-metrics'
+import { WasmCollectorExporter } from './src/WasmCollectorExporter'
 
 const wasmReady = ref(false)
 const clickCount = ref(0)
@@ -152,39 +158,23 @@ let go: any = null
 let mod: any = null
 let inst: any = null
 
-// Build an OTLP JSON metrics payload with a single click.count delta data point
-function buildClickMetrics(): string {
-  const now = Date.now() * 1_000_000 // nanoseconds
-  return JSON.stringify({
-    resourceMetrics: [{
-      scopeMetrics: [{
-        metrics: [{
-          name: 'click.count',
-          sum: {
-            dataPoints: [{
-              startTimeUnixNano: String(now),
-              timeUnixNano: String(now),
-              asInt: '1'
-            }],
-            aggregationTemporality: 1,
-            isMonotonic: true
-          }
-        }]
-      }]
-    }]
-  })
-}
+// Set up the OTel metrics SDK with our custom exporter
+const exporter = new WasmCollectorExporter()
+const reader = new PeriodicExportingMetricReader({
+  exporter,
+  exportIntervalMillis: 60_000, // long interval; we flush manually on click
+})
+const meterProvider = new MeterProvider({ readers: [reader] })
+metrics.setGlobalMeterProvider(meterProvider)
+const meter = metrics.getMeter('wasm-demo')
+const clickCounter = meter.createCounter('click.count', {
+  description: 'Number of button clicks',
+})
 
-function sendClick() {
+async function sendClick() {
   if (!wasmReady.value) return
-  const payload = buildClickMetrics()
-  const encoder = new TextEncoder()
-  const bytes = encoder.encode(payload)
-  const uint8Array = new Uint8Array(bytes)
-  // Send to the Collector's js receiver via CopyBytesToGo
-  if (globalThis.__otelReceiveCallback) {
-    globalThis.__otelReceiveCallback(uint8Array)
-  }
+  clickCounter.add(1)
+  await reader.forceFlush()
 }
 
 function updateTable(obj: any) {
