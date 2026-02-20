@@ -83,45 +83,89 @@ layout: center
 # WebAssembly Demo
 
 <div class="flex flex-col items-center justify-center gap-4">
-  <pre
-    ref="outputEl"
-    class="wasm-output"
-  ><code>{{ outputText || 'Loading WebAssembly module...' }}</code></pre>
+  <div ref="outputEl" class="wasm-output">
+    <p v-if="tableRows.length === 0" style="color: #888; margin: 0;">Loading WebAssembly module...</p>
+    <table v-else class="otel-table">
+      <thead>
+        <tr><th>Repository</th><th>Contributors</th></tr>
+      </thead>
+      <tbody>
+        <tr v-for="row in tableRows" :key="row.repo">
+          <td>{{ row.repo }}</td>
+          <td class="num">{{ row.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <style>
 .wasm-output {
   width: 90%;
-  max-height: 340px;
+  max-height: 380px;
   overflow-y: auto;
   background: #1e1e1e;
   color: #d4d4d4;
   padding: 12px;
   border-radius: 8px;
-  font-size: 0.75rem;
+  font-size: 0.85rem;
   line-height: 1.4;
   text-align: left;
-  white-space: pre-wrap;
-  word-break: break-all;
+}
+.otel-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.otel-table th {
+  text-align: left;
+  padding: 6px 12px;
+  border-bottom: 2px solid #555;
+  color: #8be9fd;
+  font-weight: 600;
+}
+.otel-table td {
+  padding: 4px 12px;
+  border-bottom: 1px solid #333;
+}
+.otel-table td.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.otel-table tr:hover td {
+  background: #2a2a2a;
 }
 </style>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted } from 'vue'
 
-const outputText = ref('')
-const outputEl = ref<HTMLPreElement | null>(null)
+const tableRows = ref<{repo: string, value: number}[]>([])
+const outputEl = ref<HTMLElement | null>(null)
 let go: any = null
 let mod: any = null
 let inst: any = null
 
-function appendOutput(text: string) {
-  outputText.value += text
-  nextTick(() => {
-    if (outputEl.value) {
-      outputEl.value.scrollTop = outputEl.value.scrollHeight
+function updateTable(obj: any) {
+  // Walk the OTLP JSON structure to find the vcs.contributor.count metric
+  for (const rm of obj?.resourceMetrics ?? []) {
+    for (const sm of rm?.scopeMetrics ?? []) {
+      for (const metric of sm?.metrics ?? []) {
+        if (metric.name !== 'vcs.contributor.count') continue
+        const dataPoints = metric.gauge?.dataPoints ?? []
+        const rows: {repo: string, value: number}[] = []
+        for (const dp of dataPoints) {
+          const repoAttr = (dp.attributes ?? []).find(
+            (a: any) => a.key === 'vcs.repository.name'
+          )
+          const repo = repoAttr?.value?.stringValue ?? 'unknown'
+          const value = Number(dp.asInt ?? dp.asDouble ?? 0)
+          rows.push({ repo, value })
+        }
+        rows.sort((a, b) => b.value - a.value)
+        tableRows.value = rows
+      }
     }
-  })
+  }
 }
 
 // The Wasm file is pre-compressed when uploaded to Cloudflare,
@@ -152,28 +196,17 @@ onMounted(async () => {
     // @ts-ignore
     go = new Go()
 
-    // Intercept fs.writeSync to capture wasm output
+    // Set up a callback for the JS exporter to send telemetry data
+    // from the Go Wasm runtime to JavaScript via js.CopyBytesToJS.
     const decoder = new TextDecoder('utf-8')
-    let outputBuf = ''
-    const origWriteSync = globalThis.fs.writeSync
-    globalThis.fs.writeSync = (fd: number, buf: Uint8Array) => {
-      outputBuf += decoder.decode(buf)
-      const nl = outputBuf.lastIndexOf('\n')
-      if (nl !== -1) {
-        appendOutput(outputBuf.substring(0, nl + 1))
-        outputBuf = outputBuf.substring(nl + 1)
+    globalThis.__otelExportCallback = (uint8Array: Uint8Array) => {
+      const json = decoder.decode(uint8Array)
+      try {
+        const obj = JSON.parse(json)
+        updateTable(obj)
+      } catch (e) {
+        console.error('Failed to parse exported telemetry:', e)
       }
-      return buf.length
-    }
-
-    const origWrite = globalThis.fs.write
-    globalThis.fs.write = (fd: number, buf: Uint8Array, offset: number, length: number, position: any, callback: Function) => {
-      if (offset !== 0 || length !== buf.length || position !== null) {
-        callback(new Error('not implemented'))
-        return
-      }
-      const n = globalThis.fs.writeSync(fd, buf)
-      callback(null, n)
     }
 
     try {
@@ -195,11 +228,11 @@ onMounted(async () => {
 async function runWasm() {
   if (!go || !inst || !mod) return
 
-  outputText.value = ''
+  tableRows.value = []
   const configUrl = `${window.location.origin}/github-receiver-config.yaml`
-  const ghReceiver = `${window.location.origin}/gh_org.yaml`
+  // const ghReceiver = `${window.location.origin}/gh_org.yaml`
   const btExtension = `${window.location.origin}/gh_pat.yaml`
-  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`, `--config=${ghReceiver}`, `--config=${btExtension}`]
+  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`, `--config=${btExtension}`]
   await go.run(inst)
   inst = await WebAssembly.instantiate(mod, go.importObject)
 }
