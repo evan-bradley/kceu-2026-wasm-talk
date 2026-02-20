@@ -83,16 +83,22 @@ layout: center
 # WebAssembly Demo
 
 <div class="flex flex-col items-center justify-center gap-4">
+  <button
+    @click="sendClick"
+    :disabled="!wasmReady"
+    class="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed text-lg"
+  >
+    {{ wasmReady ? '🖱️ Click me!' : 'Loading...' }}
+  </button>
   <div ref="outputEl" class="wasm-output">
-    <p v-if="tableRows.length === 0" style="color: #888; margin: 0;">Loading WebAssembly module...</p>
-    <table v-else class="otel-table">
+    <table class="otel-table">
       <thead>
-        <tr><th>Repository</th><th>Contributors</th></tr>
+        <tr><th>Metric</th><th>Value</th></tr>
       </thead>
       <tbody>
-        <tr v-for="row in tableRows" :key="row.repo">
-          <td>{{ row.repo }}</td>
-          <td class="num">{{ row.value }}</td>
+        <tr>
+          <td>click.count</td>
+          <td class="num">{{ clickCount }}</td>
         </tr>
       </tbody>
     </table>
@@ -139,30 +145,59 @@ layout: center
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-const tableRows = ref<{repo: string, value: number}[]>([])
+const wasmReady = ref(false)
+const clickCount = ref(0)
 const outputEl = ref<HTMLElement | null>(null)
 let go: any = null
 let mod: any = null
 let inst: any = null
 
+// Build an OTLP JSON metrics payload with a single click.count delta data point
+function buildClickMetrics(): string {
+  const now = Date.now() * 1_000_000 // nanoseconds
+  return JSON.stringify({
+    resourceMetrics: [{
+      scopeMetrics: [{
+        metrics: [{
+          name: 'click.count',
+          sum: {
+            dataPoints: [{
+              startTimeUnixNano: String(now),
+              timeUnixNano: String(now),
+              asInt: '1'
+            }],
+            aggregationTemporality: 1,
+            isMonotonic: true
+          }
+        }]
+      }]
+    }]
+  })
+}
+
+function sendClick() {
+  if (!wasmReady.value) return
+  const payload = buildClickMetrics()
+  const encoder = new TextEncoder()
+  const bytes = encoder.encode(payload)
+  const uint8Array = new Uint8Array(bytes)
+  // Send to the Collector's js receiver via CopyBytesToGo
+  if (globalThis.__otelReceiveCallback) {
+    globalThis.__otelReceiveCallback(uint8Array)
+  }
+}
+
 function updateTable(obj: any) {
-  // Walk the OTLP JSON structure to find the vcs.contributor.count metric
+  // Walk the OTLP JSON structure to find click.count and accumulate
   for (const rm of obj?.resourceMetrics ?? []) {
     for (const sm of rm?.scopeMetrics ?? []) {
       for (const metric of sm?.metrics ?? []) {
-        if (metric.name !== 'vcs.contributor.count') continue
-        const dataPoints = metric.gauge?.dataPoints ?? []
-        const rows: {repo: string, value: number}[] = []
+        if (metric.name !== 'click.count') continue
+        const dataPoints = metric.sum?.dataPoints ?? metric.gauge?.dataPoints ?? []
         for (const dp of dataPoints) {
-          const repoAttr = (dp.attributes ?? []).find(
-            (a: any) => a.key === 'vcs.repository.name'
-          )
-          const repo = repoAttr?.value?.stringValue ?? 'unknown'
           const value = Number(dp.asInt ?? dp.asDouble ?? 0)
-          rows.push({ repo, value })
+          clickCount.value += value
         }
-        rows.sort((a, b) => b.value - a.value)
-        tableRows.value = rows
       }
     }
   }
@@ -217,6 +252,7 @@ onMounted(async () => {
       )
       mod = result.module
       inst = result.instance
+      wasmReady.value = true
       runWasm()
     } catch (err) {
       console.error(err)
@@ -228,11 +264,9 @@ onMounted(async () => {
 async function runWasm() {
   if (!go || !inst || !mod) return
 
-  tableRows.value = []
-  const configUrl = `${window.location.origin}/github-receiver-config.yaml`
-  // const ghReceiver = `${window.location.origin}/gh_org.yaml`
-  const btExtension = `${window.location.origin}/gh_pat.yaml`
-  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`, `--config=${btExtension}`]
+  clickCount.value = 0
+  const configUrl = `${window.location.origin}/otelcol-config.yaml`
+  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`]
   await go.run(inst)
   inst = await WebAssembly.instantiate(mod, go.importObject)
 }

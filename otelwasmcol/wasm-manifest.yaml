@@ -12,16 +12,15 @@ exporters:
     path: ../jsexporter
 
 processors:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.146.0
   - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.146.0
 
 receivers:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/receiver/githubreceiver v0.146.0
+  - gomod: github.com/evan-bradley/kceu-2026-wasm-talk/jsreceiver v0.0.0
+    path: ../jsreceiver
 
 connectors:
   - gomod: go.opentelemetry.io/collector/connector/forwardconnector v0.146.1
-
-extensions:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/extension/bearertokenauthextension v0.146.0
 
 providers:
   - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.52.0

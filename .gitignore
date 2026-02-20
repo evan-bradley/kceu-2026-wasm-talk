@@ -1,5 +1,4 @@
 otelwasmcol/bin
-gh_*
 slides/node_modules/
 slides/dist/
 *.wasm

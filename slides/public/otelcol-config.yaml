@@ -1,0 +1,19 @@
+receivers:
+  js:
+
+exporters:
+  js:
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    metrics:
+      receivers: [js]
+      exporters: [js, debug]
+  telemetry:
+    traces:
+      level: none
+    metrics:
+      level: none
+      readers: []
