@@ -30,9 +30,122 @@ duration: 25min
 
 # Write once, run everywhere™
 
+<div class="timeline-wrapper">
+<div class="timeline">
+  <div class="timeline-track"></div>
+  <div class="timeline-items">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1972</div>
+      <div class="tl-desc">C specification prioritizes ease of writing compilers</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">1995</div>
+      <div class="tl-desc">Java promises "write once, run everywhere"</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2007</div>
+      <div class="tl-desc">HTML5 paves the way to replace browser plugins</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2017</div>
+      <div class="tl-desc">WebAssembly MVP declared ready</div>
+    </div>
+    <div class="tl-item highlight">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2026</div>
+      <div class="tl-desc">An upstream OTel Collector runs in a browser</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<style>
+.timeline-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.timeline {
+  position: relative;
+  width: 92%;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+.timeline-track {
+  position: absolute;
+  top: 1.05rem;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #555 0%, #8be9fd 100%);
+  border-radius: 2px;
+}
+.timeline-items {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.tl-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.tl-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #8be9fd;
+  border: 2px solid #1e1e1e;
+  z-index: 1;
+  flex-shrink: 0;
+}
+.tl-year {
+  margin-top: 0.6rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #8be9fd;
+  font-variant-numeric: tabular-nums;
+}
+.tl-desc {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: #ccc;
+  text-align: center;
+  line-height: 1.35;
+  padding: 0 0.3rem;
+}
+.tl-item.highlight .tl-dot {
+  background: #50fa7b;
+  width: 18px;
+  height: 18px;
+  box-shadow: 0 0 8px rgba(80, 250, 123, 0.6);
+  margin-top: -2px;
+}
+.tl-item.highlight .tl-year {
+  color: #50fa7b;
+  font-size: 1.2rem;
+}
+.tl-item.highlight .tl-desc {
+  color: #f8f8f2;
+  font-weight: 600;
+}
+</style>
+
 ---
 
 # Why WebAssembly?
+
+1. Most likely format to run on a user device
+2. Many languages support it as an output target
+3. Performance for some computationally-intensive workloads
 
 ---
 
@@ -66,18 +179,75 @@ The Collector supports a variety of compilation targets today:
     <div class="unofficial"><code>...</code></div>
   </div>
 </div>
+---
+
+# Upstream developments
+
+* `wasm/js` added as a tier-3 support platform in February 2026.
+* 244/271 components currently compile to wasm/js.
 
 ---
 
 # Challenges
 
+* Different operating environment: no equivalent APIs for many syscalls.
+* No networking in WASI.
+
 ---
 
 # Limitations
 
+* Binary size: currently a 10 MiB uncompressed binary size floor.
+* TinyGo stdlib doesn't reimplement enough Go stdlib network packages (e.g. net/http/httputil).
+
 ---
 
-# WebAssembly Demo
+# Creating a Collector Wasm binary
+
+* Using OCB
+* Supported components
+* `GOOS=js GOARCH=wasm go build .`
+* `GOOS=wasip1 GOARCH=wasm go build .`
+* Getting configuration: confmap providers
+
+---
+
+# Observability without borders
+
+* Running in a browser
+* Running in a Wasm runtime
+* Running in a language plugin
+
+---
+
+# Observability without borders: browser
+
+* No FS access
+* Can't open ports
+* Uses:
+  * SDK
+  * thick-client apps; heavy in-browser apps and electron apps
+
+---
+
+# Observability without borders: Wasm runtime
+
+* Limited/no networking currently (Go only supports WASIp1)
+* Can read/write to FS with access
+* Realistically should only be used alongside other Wasm applications
+
+---
+
+# Looking ahead
+
+* Go WASIp3 support still under active discussion.
+* TinyGo compatibility opens up the possibility of smaller binaries and WASIp2.
+* WASI OTel (talk happening at WasmCon).
+* Contributions from YOU in the audience!
+
+---
+
+# WebAssembly demo
 
 <div class="flex flex-col items-center justify-center gap-4">
   <div ref="outputEl" class="wasm-output">
@@ -286,7 +456,7 @@ async function runWasm() {
 
 ---
 
-# WebAssembly Demo (2)
+# WebAssembly demo (2)
 
 <div class="collector-logs-container">
   <div class="collector-logs-header">Collector logs</div>
