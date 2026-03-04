@@ -141,3 +141,42 @@
     box-shadow: 0 0 30px rgba(246, 211, 101, 0.8), 0 0 60px rgba(253, 160, 133, 0.6), 0 0 80px rgba(255, 215, 0, 0.4);
   }
 }
+
+/* Global slide centering and list sizing */
+.slidev-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.slidev-layout > h1:first-child + * {
+  margin-top: auto;
+}
+
+.slidev-layout > :last-child {
+  margin-bottom: auto;
+}
+
+.slidev-layout ol,
+.slidev-layout ul {
+  font-size: 1.4rem;
+  line-height: 2;
+}
+
+.slidev-layout ol li + li,
+.slidev-layout ul li + li {
+  margin-top: 0.5rem;
+}
+
+/* Icon + text column layout */
+.icon-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem 2rem;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.icon-grid .icon {
+  font-size: 3rem;
+  color: #8be9fd;
+}

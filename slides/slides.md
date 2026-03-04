@@ -143,9 +143,14 @@ duration: 25min
 
 # Why WebAssembly?
 
-1. Most likely format to run on a user device
-2. Many languages support it as an output target
-3. Performance for some computationally-intensive workloads
+<div class="icon-grid">
+  <carbon-devices class="icon" />
+  <span>Most likely format to run on a user device</span>
+  <carbon-code class="icon" />
+  <span>Many languages support it as an output target</span>
+  <carbon-flash class="icon" />
+  <span>Performance for computationally-intensive workloads</span>
+</div>
 
 ---
 
@@ -183,67 +188,111 @@ The Collector supports a variety of compilation targets today:
 
 # Upstream developments
 
-* `wasm/js` added as a tier-3 support platform in February 2026.
-* 244/271 components currently compile to wasm/js.
+<div class="icon-grid">
+  <carbon-add-alt class="icon" />
+  <span><code>wasm/js</code> added as a tier-3 support platform in February 2026.</span>
+  <carbon-cut class="icon" />
+  <span>Allow stripping down binary to remove unneeded functionality in the browser.</span>
+  <carbon-chart-bar class="icon" />
+  <span>244/271 components currently compile to wasm/js.</span>
+</div>
 
 ---
 
 # Challenges
 
-* Different operating environment: no equivalent APIs for many syscalls.
-* No networking in WASI.
+<div class="icon-grid">
+  <carbon-warning-alt class="icon" />
+  <span>Different operating environment: no equivalent APIs for many syscalls.</span>
+  <carbon-wifi-off class="icon" />
+  <span>No networking in WASI.</span>
+  <carbon-locked class="icon" />
+  <span>Go only supports WASIp1; we need the WebAssembly Component Model for networking and filesystem access.</span>
+</div>
 
 ---
 
 # Limitations
 
-* Binary size: currently a 10 MiB uncompressed binary size floor.
-* TinyGo stdlib doesn't reimplement enough Go stdlib network packages (e.g. net/http/httputil).
+<div class="icon-grid">
+  <carbon-scale class="icon" />
+  <span>Binary size: currently a 10 MiB uncompressed binary size floor.</span>
+  <carbon-misuse class="icon" />
+  <span>TinyGo stdlib doesn't reimplement enough Go stdlib network packages (e.g. net/http/httputil).</span>
+</div>
 
 ---
 
 # Creating a Collector Wasm binary
 
-* Using OCB
-* Supported components
-* `GOOS=js GOARCH=wasm go build .`
-* `GOOS=wasip1 GOARCH=wasm go build .`
-* Getting configuration: confmap providers
+<div class="icon-grid">
+  <carbon-tool-box class="icon" />
+  <span>Using OCB</span>
+  <carbon-list class="icon" />
+  <span>Supported components</span>
+  <carbon-terminal class="icon" />
+  <span><code>GOOS=js GOARCH=wasm go build .</code></span>
+  <carbon-terminal class="icon" />
+  <span><code>GOOS=wasip1 GOARCH=wasm go build .</code></span>
+  <carbon-settings class="icon" />
+  <span>Getting configuration: confmap providers</span>
+</div>
 
 ---
 
 # Observability without borders
 
-* Running in a browser
-* Running in a Wasm runtime
-* Running in a language plugin
+<div class="icon-grid">
+  <carbon-application-web class="icon" />
+  <span>Running in a browser</span>
+  <carbon-container-software class="icon" />
+  <span>Running in a Wasm runtime</span>
+  <carbon-plug class="icon" />
+  <span>Running in a language plugin</span>
+</div>
 
 ---
 
 # Observability without borders: browser
 
-* No FS access
-* Can't open ports
-* Uses:
-  * SDK
-  * thick-client apps; heavy in-browser apps and electron apps
+<div class="icon-grid">
+  <carbon-folder-off class="icon" />
+  <span>No FS access</span>
+  <carbon-close-outline class="icon" />
+  <span>Can't open ports</span>
+  <carbon-application class="icon" />
+  <span>Uses: SDK, thick-client apps, heavy in-browser apps and electron apps</span>
+</div>
 
 ---
 
 # Observability without borders: Wasm runtime
 
-* Limited/no networking currently (Go only supports WASIp1)
-* Can read/write to FS with access
-* Realistically should only be used alongside other Wasm applications
+<div class="icon-grid">
+  <carbon-wifi-off class="icon" />
+  <span>Limited/no networking currently (Go only supports WASIp1)</span>
+  <carbon-folder class="icon" />
+  <span>Can read/write to FS with access</span>
+  <carbon-partnership class="icon" />
+  <span>Realistically should only be used alongside other Wasm applications</span>
+</div>
 
 ---
 
 # Looking ahead
 
-* Go WASIp3 support still under active discussion.
-* TinyGo compatibility opens up the possibility of smaller binaries and WASIp2.
-* WASI OTel (talk happening at WasmCon).
-* Contributions from YOU in the audience!
+<div class="icon-grid">
+  <carbon-in-progress class="icon" />
+  <span>Go WASIp3 support still under active discussion.</span>
+  <carbon-flow class="icon" />
+  <span>Concurrency support in the WebAssembly Component Model.</span>
+  <carbon-package class="icon" />
+  <span>TinyGo compatibility opens up the possibility of smaller binaries and WASIp2.</span>
+  <carbon-microphone class="icon" />
+  <span>WASI OTel (talk happening at WasmCon).</span>
+  <carbon-group class="icon" />
+  <span>Contributions from YOU in the audience!</span>
+</div>
 
 ---
 
