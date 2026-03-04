@@ -30,6 +30,8 @@ duration: 25min
 
 # Write once, run everywhere™
 
+<!-- TODO: Fix how this looks on light themes (can't see the code)-->
+
 <div class="timeline-wrapper">
 <div class="timeline">
   <div class="timeline-track"></div>
@@ -141,6 +143,12 @@ duration: 25min
 
 ---
 
+# WASM and WASI
+
+<!-- TODO: Add two column layout with WASM and WASI comparison -->
+
+---
+
 # Why WebAssembly?
 
 <div class="icon-grid">
@@ -152,11 +160,21 @@ duration: 25min
   <span>Performance for computationally-intensive workloads</span>
 </div>
 
+<!-- TODO: Add some other examples of WebAssembly usage on the wild https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
+
+---
+
+# WebAssembly in the Collector
+
+<!-- TODO: Slide about WebAssembly on the Collector/Collector in Webassembly-->
+
 ---
 
 # Where can I run my Collector today?
 
 The Collector supports a variety of compilation targets today:
+
+<!-- TODO: Fix how this looks on light themes (can't see the code)-->
 
 <div class="platforms">
   <div class="tier-group tier1-group">
@@ -190,12 +208,18 @@ The Collector supports a variety of compilation targets today:
 
 <div class="icon-grid">
   <carbon-add-alt class="icon" />
-  <span><code>js/wasm</code> added as a Tier-3 platform (February 2026)</span>
+  <span><code>js/wasm</code> added as a Tier-3 platform (Feb 2026)</span>
   <carbon-cut class="icon" />
-  <span>Allow stripping down binary to remove unneeded functionality in the browser.</span>
+  <span>Allow stripping down telemetry provider to remove unneeded functionality in the browser. (Feb 2026)</span>
   <carbon-chart-bar class="icon" />
   <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code></span>
 </div>
+
+---
+
+# WASI previews
+
+<!-- TODO: Four column/boxes layout explaining WASIp1, WASIp2, WASIp3. -->
 
 ---
 
@@ -210,6 +234,11 @@ The Collector supports a variety of compilation targets today:
   <span>Go only supports WASIp1; we need the WebAssembly Component Model for networking and filesystem access.</span>
 </div>
 
+<!-- TODO: Mention concurrency requirements -->
+
+<!-- TODO: Mention Collector runtime components -->
+
+
 ---
 
 # Limitations
@@ -220,6 +249,8 @@ The Collector supports a variety of compilation targets today:
   <carbon-misuse class="icon" />
   <span>TinyGo stdlib doesn't reimplement enough Go stdlib network packages (e.g. net/http/httputil).</span>
 </div>
+
+<!-- TODO: Mention gsa output; link to Datadog blogpost -->
 
 ---
 
