@@ -147,7 +147,7 @@ duration: 25min
   <carbon-devices class="icon" />
   <span>Most likely format to run on a user device</span>
   <carbon-code class="icon" />
-  <span>Many languages support it as an output target</span>
+  <span>Compile from Go, Rust, C++ and many other languages</span>
   <carbon-flash class="icon" />
   <span>Performance for computationally-intensive workloads</span>
 </div>
@@ -190,11 +190,11 @@ The Collector supports a variety of compilation targets today:
 
 <div class="icon-grid">
   <carbon-add-alt class="icon" />
-  <span><code>wasm/js</code> added as a tier-3 support platform in February 2026.</span>
+  <span><code>js/wasm</code> added as a Tier-3 platform (February 2026)</span>
   <carbon-cut class="icon" />
   <span>Allow stripping down binary to remove unneeded functionality in the browser.</span>
   <carbon-chart-bar class="icon" />
-  <span>244/271 components currently compile to wasm/js.</span>
+  <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code></span>
 </div>
 
 ---
@@ -216,7 +216,7 @@ The Collector supports a variety of compilation targets today:
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
-  <span>Binary size: currently a 10 MiB uncompressed binary size floor.</span>
+  <span>A Collector has at least a 10 MiB uncompressed binary size.</span>
   <carbon-misuse class="icon" />
   <span>TinyGo stdlib doesn't reimplement enough Go stdlib network packages (e.g. net/http/httputil).</span>
 </div>
@@ -229,13 +229,13 @@ The Collector supports a variety of compilation targets today:
   <carbon-tool-box class="icon" />
   <span>Using OCB</span>
   <carbon-list class="icon" />
-  <span>Supported components</span>
+  <span>Check if your component is supported</span>
   <carbon-terminal class="icon" />
   <span><code>GOOS=js GOARCH=wasm go build .</code></span>
   <carbon-terminal class="icon" />
   <span><code>GOOS=wasip1 GOARCH=wasm go build .</code></span>
   <carbon-settings class="icon" />
-  <span>Getting configuration: confmap providers</span>
+  <span>Load configuration via confmap providers (HTTP or inline YAML)</span>
 </div>
 
 ---
@@ -272,9 +272,9 @@ The Collector supports a variety of compilation targets today:
   <carbon-wifi-off class="icon" />
   <span>Limited/no networking currently (Go only supports WASIp1)</span>
   <carbon-folder class="icon" />
-  <span>Can read/write to FS with access</span>
+  <span>Filesystem access available if the host grants it</span>
   <carbon-partnership class="icon" />
-  <span>Realistically should only be used alongside other Wasm applications</span>
+  <span>Realistically should only be used alongside other WASM applications</span>
 </div>
 
 ---
