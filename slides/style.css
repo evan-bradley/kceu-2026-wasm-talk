@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
 .platforms {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -142,10 +144,153 @@
   }
 }
 
+/* Intro slide */
+.slidev-layout.intro h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 5.7rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transform: perspective(300px) rotateY(-5deg);
+  transform-origin: center center;
+}
+
+.intro-subtitle {
+  font-size: 1.6rem;
+  font-weight: 400;
+  opacity: 0.7;
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+}
+
+.intro-meta {
+  margin-top: 2rem;
+}
+
+.intro-speakers {
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.intro-org {
+  opacity: 0.5;
+  font-weight: 400;
+}
+
+.intro-conference {
+  font-size: 0.95rem;
+  opacity: 0.4;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+/* Timeline */
+.timeline-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.timeline {
+  position: relative;
+  width: 92%;
+  margin: 0 auto;
+  padding-top: 0.5rem;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 1.05rem;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #555 0%, var(--slidev-theme-primary) 100%);
+  border-radius: 2px;
+}
+
+.timeline-items {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.tl-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.tl-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--slidev-theme-primary);
+  border: 2px solid #1e1e1e;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+.tl-year {
+  margin-top: 0.6rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--slidev-theme-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.tl-desc {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: #ccc;
+  text-align: center;
+  line-height: 1.35;
+  padding: 0 0.3rem;
+}
+
+.tl-item.highlight .tl-dot {
+  background: #50fa7b;
+  width: 18px;
+  height: 18px;
+  box-shadow: 0 0 8px rgba(80, 250, 123, 0.6);
+  margin-top: -2px;
+}
+
+.tl-item.highlight .tl-year {
+  color: #50fa7b;
+  font-size: 1.2rem;
+}
+
+.tl-item.highlight .tl-desc {
+  color: #f8f8f2;
+  font-weight: 600;
+}
+
+html:not(.dark) .tl-dot {
+  border-color: #f0f0f0;
+}
+
+html:not(.dark) .tl-desc {
+  color: #555;
+}
+
+html:not(.dark) .tl-item.highlight .tl-desc {
+  color: #1a1a1a;
+}
+
 /* Global slide centering and list sizing */
 .slidev-layout {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow: hidden;
 }
 
 .slidev-layout > h1:first-child + * {
@@ -178,5 +323,53 @@
 
 .icon-grid .icon {
   font-size: 3rem;
-  color: #8be9fd;
+  color: var(--slidev-theme-primary);
 }
+
+/* Light theme: platforms code readability */
+html:not(.dark) .platforms code {
+  color: #1a1a1a;
+}
+
+/* Shared info box styles */
+.info-box {
+  border: 1px solid var(--slidev-theme-primary);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--slidev-theme-primary) 8%, transparent) 0%,
+    transparent 100%
+  );
+}
+
+.info-box h3 {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--slidev-theme-primary) 30%, transparent) 0%,
+    color-mix(in srgb, var(--slidev-theme-primary) 15%, transparent) 100%
+  );
+  border-bottom: 1px solid var(--slidev-theme-primary);
+  color: var(--slidev-theme-primary);
+  padding: 0.5rem 1rem;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: normal;
+  text-transform: none;
+  opacity: 1;
+}
+
+.info-box p {
+  padding: 0.8rem 1rem;
+  margin: 0;
+}
+
+/* Grid layouts using info boxes */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+

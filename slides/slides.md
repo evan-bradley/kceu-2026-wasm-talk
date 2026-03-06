@@ -1,36 +1,31 @@
 ---
-# try also 'default' to start simple
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
+theme: apple-basic
 background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
 title: Observability Without Borders
 class: text-center
-# https://sli.dev/features/drawing
-drawings:
-  persist: false
-# slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
-# duration of the presentation
-duration: 25min
+layout: intro
 ---
 
 # Observability Without Borders
+
+<p class="intro-subtitle">The OpenTelemetry Collector in a WebAssembly World</p>
+
+<div class="intro-meta">
+  <p class="intro-speakers">Pablo Baeyens <span class="intro-org">(Datadog)</span> · Evan Bradley <span class="intro-org">(Dynatrace)</span></p>
+  <p class="intro-conference">Observability Day Europe 2026</p>
+</div>
 
 ---
 
 # What is the Collector?
 
-<img src="/otel-diagram.svg" style="max-height: 100%; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
+<img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
 
 ---
 
 # Write once, run everywhere™
-
-<!-- TODO: Fix how this looks on light themes (can't see the code)-->
 
 <div class="timeline-wrapper">
 <div class="timeline">
@@ -65,87 +60,21 @@ duration: 25min
 </div>
 </div>
 
-<style>
-.timeline-wrapper {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-.timeline {
-  position: relative;
-  width: 92%;
-  margin: 0 auto;
-  padding-top: 0.5rem;
-}
-.timeline-track {
-  position: absolute;
-  top: 1.05rem;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #555 0%, #8be9fd 100%);
-  border-radius: 2px;
-}
-.timeline-items {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-}
-.tl-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  min-width: 0;
-}
-.tl-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #8be9fd;
-  border: 2px solid #1e1e1e;
-  z-index: 1;
-  flex-shrink: 0;
-}
-.tl-year {
-  margin-top: 0.6rem;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #8be9fd;
-  font-variant-numeric: tabular-nums;
-}
-.tl-desc {
-  margin-top: 0.35rem;
-  font-size: 0.78rem;
-  color: #ccc;
-  text-align: center;
-  line-height: 1.35;
-  padding: 0 0.3rem;
-}
-.tl-item.highlight .tl-dot {
-  background: #50fa7b;
-  width: 18px;
-  height: 18px;
-  box-shadow: 0 0 8px rgba(80, 250, 123, 0.6);
-  margin-top: -2px;
-}
-.tl-item.highlight .tl-year {
-  color: #50fa7b;
-  font-size: 1.2rem;
-}
-.tl-item.highlight .tl-desc {
-  color: #f8f8f2;
-  font-weight: 600;
-}
-</style>
 
 ---
 
 # WASM and WASI
 
-<!-- TODO: Add two column layout with WASM and WASI comparison -->
+<div class="comparison-grid">
+  <div class="info-box">
+    <h3>WebAssembly (Wasm)</h3>
+    <p>TODO: Add WASM description</p>
+  </div>
+  <div class="info-box">
+    <h3>WASI</h3>
+    <p>TODO: Add WASI description</p>
+  </div>
+</div>
 
 ---
 
@@ -160,21 +89,33 @@ duration: 25min
   <span>Performance for computationally-intensive workloads</span>
 </div>
 
-<!-- TODO: Add some other examples of WebAssembly usage on the wild https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
+<div class="icon-grid">
+  <carbon-idea class="icon" />
+  <span>TODO: Add WebAssembly usage example</span>
+  <carbon-idea class="icon" />
+  <span>TODO: Add WebAssembly usage example</span>
+</div>
 
 ---
 
 # WebAssembly in the Collector
 
-<!-- TODO: Slide about WebAssembly on the Collector/Collector in Webassembly-->
+<div class="comparison-grid">
+  <div class="info-box">
+    <h3>WebAssembly in the Collector</h3>
+    <p>TODO: description</p>
+  </div>
+  <div class="info-box">
+    <h3>Collector in WebAssembly</h3>
+    <p>TODO: description</p>
+  </div>
+</div>
 
 ---
 
 # Where can I run my Collector today?
 
 The Collector supports a variety of compilation targets today:
-
-<!-- TODO: Fix how this looks on light themes (can't see the code)-->
 
 <div class="platforms">
   <div class="tier-group tier1-group">
@@ -219,7 +160,33 @@ The Collector supports a variety of compilation targets today:
 
 # WASI previews
 
-<!-- TODO: Four column/boxes layout explaining WASIp1, WASIp2, WASIp3. -->
+<div class="timeline-wrapper">
+<div class="timeline">
+  <div class="timeline-track"></div>
+  <div class="timeline-items">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">TODO</div>
+      <div class="tl-desc">WASIp1</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">TODO</div>
+      <div class="tl-desc">WASIp2</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">TODO</div>
+      <div class="tl-desc">WASIp3</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">TODO</div>
+      <div class="tl-desc">Component Model</div>
+    </div>
+  </div>
+</div>
+</div>
 
 ---
 
@@ -234,9 +201,12 @@ The Collector supports a variety of compilation targets today:
   <span>Go only supports WASIp1; we need the WebAssembly Component Model for networking and filesystem access.</span>
 </div>
 
-<!-- TODO: Mention concurrency requirements -->
-
-<!-- TODO: Mention Collector runtime components -->
+<div class="icon-grid">
+  <carbon-time class="icon" />
+  <span>TODO: Mention concurrency requirements</span>
+  <carbon-settings class="icon" />
+  <span>TODO: Mention Collector runtime components</span>
+</div>
 
 
 ---
@@ -250,7 +220,10 @@ The Collector supports a variety of compilation targets today:
   <span>TinyGo stdlib doesn't reimplement enough Go stdlib network packages (e.g. net/http/httputil).</span>
 </div>
 
-<!-- TODO: Mention gsa output; link to Datadog blogpost -->
+<div class="icon-grid">
+  <carbon-chart-treemap class="icon" />
+  <span>TODO: Mention gsa output; link to Datadog blogpost</span>
+</div>
 
 ---
 
