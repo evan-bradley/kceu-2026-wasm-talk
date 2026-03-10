@@ -211,22 +211,34 @@ The Collector supports a variety of compilation targets today:
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year">~2020</div>
-      <div class="tl-desc">WASIp1</div>
+      <div class="tl-desc">WASIp1
+      <ul>
+      <li>Single API</li>
+      <li>Limited Go support</li>
+      </ul>
+      </div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year">2024</div>
       <div class="tl-desc">WASIp2
       <ul>
-      <li>one</li>
-      <li>two</li>
+      <li>Component model</li>
+      <li>HTTP support</li>
+      <li>Only TinyGo support</li>
       </ul>
       </div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
       <div class="tl-year"><i>EOY 2026</i></div>
-      <div class="tl-desc">WASIp3</div>
+      <div class="tl-desc">WASIp3
+      <ul>
+      <li>Async I/O</li>
+      <li>Concurrency support</li>
+      <li>Planned Go support</li>
+      </ul>
+      </div>
     </div>
   </div>
 </div>
