@@ -333,43 +333,179 @@ html:not(.dark) .platforms code {
 
 /* Shared info box styles */
 .info-box {
-  border: 1px solid var(--slidev-theme-primary);
+  --box-color: #6366f1;
+  border: 1px solid var(--box-color);
   border-radius: 0.75rem;
   overflow: hidden;
   background: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--slidev-theme-primary) 8%, transparent) 0%,
-    transparent 100%
+    color-mix(in srgb, var(--box-color) 15%, transparent) 0%,
+    color-mix(in srgb, var(--box-color) 5%, transparent) 100%
   );
 }
+
+.info-box:nth-child(2) { --box-color: #8b5cf6; }
+.info-box:nth-child(3) { --box-color: #06b6d4; }
+.info-box:nth-child(4) { --box-color: #f59e0b; }
 
 .info-box h3 {
   background: linear-gradient(
     135deg,
-    color-mix(in srgb, var(--slidev-theme-primary) 30%, transparent) 0%,
-    color-mix(in srgb, var(--slidev-theme-primary) 15%, transparent) 100%
+    color-mix(in srgb, var(--box-color) 50%, transparent) 0%,
+    color-mix(in srgb, var(--box-color) 30%, transparent) 100%
   );
-  border-bottom: 1px solid var(--slidev-theme-primary);
-  color: var(--slidev-theme-primary);
-  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--box-color);
+  color: white;
+  padding: 0.4rem 0.8rem;
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: normal;
   text-transform: none;
   opacity: 1;
 }
 
-.info-box p {
-  padding: 0.8rem 1rem;
+.info-box p,
+.info-box ul {
+  padding: 0.6rem 1.2rem;
   margin: 0;
+  font-size: 1.3rem;
+  line-height: 2;
+}
+
+.info-box ul {
+  list-style: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.info-box li {
+  margin-left: 0;
+  padding-left: 0;
+  line-height: 2;
+  border-bottom: 1px dashed color-mix(in srgb, var(--box-color) 30%, transparent);
+  padding: 0.3rem 0;
+}
+
+.info-box li:last-child {
+  border-bottom: none;
+}
+
+.info-box li + li {
+  margin-top: 0;
 }
 
 /* Grid layouts using info boxes */
 .comparison-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  flex: 1;
+  width: 100%;
+  padding-top: 1.2rem;
+}
+
+.comparison-grid .info-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+
+/* Architecture box diagram slides */
+.arch-slide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 2rem;
-  margin-top: 1rem;
+  flex: 1;
+  align-items: center;
+  width: 100%;
+}
+
+.arch-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.arch-box-root {
+  width: 90%;
+  min-height: 14rem;
+}
+
+.arch-block {
+  position: relative;
+  border-radius: 0.75rem;
+  border: 2px solid;
+  padding: 2.5rem 1.5rem 1.5rem;
+  width: 100%;
+}
+
+.arch-label-left,
+.arch-label-right {
+  position: absolute;
+  top: 0.5rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.arch-label-left {
+  left: 0.8rem;
+  font-size: 1rem;
+}
+
+.arch-label-right {
+  right: 0.8rem;
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+.arch-native {
+  color: #ef4444;
+}
+
+.arch-wasm {
+  color: #22c55e;
+}
+
+.collector-block {
+  background: rgba(248, 162, 162, 0.2);
+  border-color: #f8a2a2;
+}
+
+.runtime-block {
+  background: rgba(147, 197, 253, 0.2);
+  border-color: #93c5fd;
+}
+
+.plugin-block {
+  background: rgba(134, 239, 172, 0.2);
+  border-color: #86efac;
+  padding: 2rem 2.5rem 1.5rem;
+}
+
+html:not(.dark) .collector-block {
+  background: rgba(248, 162, 162, 0.35);
+}
+
+html:not(.dark) .runtime-block {
+  background: rgba(147, 197, 253, 0.35);
+}
+
+html:not(.dark) .plugin-block {
+  background: rgba(134, 239, 172, 0.35);
+}
+
+.arch-details ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  font-size: 1.4rem;
+  line-height: 2;
+}
+
+.arch-details li + li {
+  margin-top: 0.5rem;
 }
 

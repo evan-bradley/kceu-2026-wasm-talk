@@ -60,22 +60,6 @@ layout: intro
 </div>
 </div>
 
-
----
-
-# WASM and WASI
-
-<div class="comparison-grid">
-  <div class="info-box">
-    <h3>WebAssembly (Wasm)</h3>
-    <p>TODO: Add WASM description</p>
-  </div>
-  <div class="info-box">
-    <h3>WASI</h3>
-    <p>TODO: Add WASI description</p>
-  </div>
-</div>
-
 ---
 
 # Why WebAssembly?
@@ -89,25 +73,58 @@ layout: intro
   <span>Performance for computationally-intensive workloads</span>
 </div>
 
-<div class="icon-grid">
-  <carbon-idea class="icon" />
-  <span>TODO: Add WebAssembly usage example</span>
-  <carbon-idea class="icon" />
-  <span>TODO: Add WebAssembly usage example</span>
+---
+transition: fade
+---
+
+# WASM in the Collector
+
+<div class="arch-slide">
+  <div class="arch-diagram">
+    <div class="arch-box-root arch-block collector-block">
+      <span class="arch-label-left">Collector</span>
+      <span class="arch-label-right arch-native">Native</span>
+      <div class="arch-block runtime-block">
+        <span class="arch-label-left">WASM runtime</span>
+        <span class="arch-label-right arch-native">Native (Go library)</span>
+        <div class="arch-block plugin-block">
+          <span class="arch-label-left">Plugin</span>
+          <span class="arch-label-right arch-wasm">WASM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="arch-details">
+    <ul>
+      <li>Runtime plugins</li>
+      <li><code>wasmprocessor</code></li>
+      <li>OTTL custom functions</li>
+      <li><code>otelwasm</code> project</li>
+    </ul>
+  </div>
 </div>
 
 ---
 
-# WebAssembly in the Collector
+# Collector in WASM
 
-<div class="comparison-grid">
-  <div class="info-box">
-    <h3>WebAssembly in the Collector</h3>
-    <p>TODO: description</p>
+<div class="arch-slide">
+  <div class="arch-diagram">
+    <div class="arch-box-root arch-block runtime-block">
+      <span class="arch-label-left">WASM runtime</span>
+      <span class="arch-label-right arch-native">Native</span>
+      <div class="arch-block collector-block">
+        <span class="arch-label-left">Collector</span>
+        <span class="arch-label-right arch-wasm">WASM</span>
+      </div>
+    </div>
   </div>
-  <div class="info-box">
-    <h3>Collector in WebAssembly</h3>
-    <p>TODO: description</p>
+  <div class="arch-details">
+    <ul>
+      <li><code>ottl.run</code></li>
+      <li>Filtering, sampling and transforming in the browser</li>
+      <li>Run it on your WASM runtime for sandboxing</li>
+    </ul>
   </div>
 </div>
 
@@ -118,15 +135,15 @@ layout: intro
 The Collector supports a variety of compilation targets today:
 
 <div class="platforms">
-  <div class="tier-group tier1-group">
+  <div v-click="1" class="tier-group tier1-group">
     <div class="tier1"><code>linux/amd64</code></div>
   </div>
-  <div class="tier-group tier2-group">
+  <div v-click="2" class="tier-group tier2-group">
     <div class="tier2"><code>darwin/arm64</code></div>
     <div class="tier2"><code>linux/arm64</code></div>
     <div class="tier2"><code>windows/amd64</code></div>
   </div>
-  <div class="tier-group tier3-group">
+  <div v-click="3" class="tier-group tier3-group">
     <div class="tier3"><code>darwin/amd64</code></div>
     <div class="tier3"><code>linux/386</code></div>
     <div class="tier3 wasm-special"><code>js/wasm</code></div>
@@ -136,7 +153,7 @@ The Collector supports a variety of compilation targets today:
     <div class="tier3"><code>linux/s390x</code></div>
     <div class="tier3"><code>windows/386</code></div>
   </div>
-  <div class="tier-group unofficial-group">
+  <div v-click="4" class="tier-group unofficial-group">
     <div class="unofficial"><code>aix/ppc64</code></div>
     <div class="unofficial"><code>plan9/amd64</code></div>
     <div class="unofficial"><code>wasip1/wasm</code></div>
@@ -145,7 +162,7 @@ The Collector supports a variety of compilation targets today:
 </div>
 ---
 
-# Upstream developments
+# Collector in WASM: Upstream developments
 
 <div class="icon-grid">
   <carbon-add-alt class="icon" />
@@ -158,6 +175,33 @@ The Collector supports a variety of compilation targets today:
 
 ---
 
+# WASM and WASI
+
+<div class="comparison-grid">
+  <div class="info-box">
+    <h3 class="opacity-100">WebAssembly (Wasm)</h3>
+    <ul>
+      <li v-click="1">Binary format targeted for browsers</li>
+      <li v-click="2">Can only see what the host allows</li>
+      <li v-click="3">Stable (3.0) specification</li>
+      <li v-click="4">Widely supported</li>
+    </ul>
+  </div>
+  <div class="info-box">
+    <h3 class="opacity-100">WASI</h3>
+    <ul>
+      <li v-click="1">WASM interfaces for OS interaction</li>
+      <li v-click="2">Standardized but controlled access</li>
+      <li v-click="3">Unstable (WASIp2) specification</li>
+      <li v-click="4">Less widely supported</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TODO: Add examples of WebAssembly usage -->
+
+---
+
 # WASI previews
 
 <div class="timeline-wrapper">
@@ -166,23 +210,23 @@ The Collector supports a variety of compilation targets today:
   <div class="timeline-items">
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-year">TODO</div>
+      <div class="tl-year">~2020</div>
       <div class="tl-desc">WASIp1</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-year">TODO</div>
-      <div class="tl-desc">WASIp2</div>
+      <div class="tl-year">2024</div>
+      <div class="tl-desc">WASIp2
+      <ul>
+      <li>one</li>
+      <li>two</li>
+      </ul>
+      </div>
     </div>
     <div class="tl-item">
       <div class="tl-dot"></div>
-      <div class="tl-year">TODO</div>
+      <div class="tl-year"><i>EOY 2026</i></div>
       <div class="tl-desc">WASIp3</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">TODO</div>
-      <div class="tl-desc">Component Model</div>
     </div>
   </div>
 </div>
@@ -211,7 +255,7 @@ The Collector supports a variety of compilation targets today:
 
 ---
 
-# Limitations
+# Collector in WASM: Limitations
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
@@ -227,7 +271,7 @@ The Collector supports a variety of compilation targets today:
 
 ---
 
-# Creating a Collector Wasm binary
+# Collector in WASM: Creating a Wasm binary
 
 <div class="icon-grid">
   <carbon-tool-box class="icon" />
