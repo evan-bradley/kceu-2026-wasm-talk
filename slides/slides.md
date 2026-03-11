@@ -74,6 +74,33 @@ layout: intro
 </div>
 
 ---
+
+# WASM and WASI
+
+<div class="comparison-grid">
+  <div class="info-box">
+    <h3 class="opacity-100">WebAssembly (Wasm)</h3>
+    <ul>
+      <li v-click="1">Binary format targeted for browsers</li>
+      <li v-click="2">Can only see what the host allows</li>
+      <li v-click="3">Stable (3.0) specification</li>
+      <li v-click="4">Widely supported</li>
+    </ul>
+  </div>
+  <div class="info-box">
+    <h3 class="opacity-100">WASI</h3>
+    <ul>
+      <li v-click="1">WASM interfaces for OS interaction</li>
+      <li v-click="2">Standardized but controlled access</li>
+      <li v-click="3">Unstable (WASIp2) specification</li>
+      <li v-click="4">Less widely supported</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TODO: Add examples of WebAssembly usage -->
+
+---
 transition: fade
 ---
 
@@ -172,33 +199,6 @@ The Collector supports a variety of compilation targets today:
   <carbon-chart-bar class="icon" />
   <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code></span>
 </div>
-
----
-
-# WASM and WASI
-
-<div class="comparison-grid">
-  <div class="info-box">
-    <h3 class="opacity-100">WebAssembly (Wasm)</h3>
-    <ul>
-      <li v-click="1">Binary format targeted for browsers</li>
-      <li v-click="2">Can only see what the host allows</li>
-      <li v-click="3">Stable (3.0) specification</li>
-      <li v-click="4">Widely supported</li>
-    </ul>
-  </div>
-  <div class="info-box">
-    <h3 class="opacity-100">WASI</h3>
-    <ul>
-      <li v-click="1">WASM interfaces for OS interaction</li>
-      <li v-click="2">Standardized but controlled access</li>
-      <li v-click="3">Unstable (WASIp2) specification</li>
-      <li v-click="4">Less widely supported</li>
-    </ul>
-  </div>
-</div>
-
-<!-- TODO: Add examples of WebAssembly usage -->
 
 ---
 
