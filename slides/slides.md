@@ -2,7 +2,7 @@
 theme: apple-basic
 background: https://cover.sli.dev
 title: Observability Without Borders
-class: text-center
+class: text-center topic-both
 transition: slide-left
 mdc: true
 layout: intro
@@ -35,11 +35,15 @@ layout: intro
 </div>
 
 ---
+class: topic-otel
+---
 
 # What is the Collector?
 
 <img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
 
+---
+class: topic-wasm
 ---
 
 # Write once, run everywhere™
@@ -78,6 +82,8 @@ layout: intro
 </div>
 
 ---
+class: topic-wasm
+---
 
 # Why WebAssembly?
 
@@ -90,6 +96,8 @@ layout: intro
   <span>Performance for computationally-intensive workloads</span>
 </div>
 
+---
+class: topic-wasm
 ---
 
 # WASM and WASI
@@ -119,6 +127,7 @@ layout: intro
 
 ---
 transition: fade
+class: topic-both
 ---
 
 # WASM in the Collector
@@ -149,6 +158,8 @@ transition: fade
 </div>
 
 ---
+class: topic-both
+---
 
 # Collector in WASM
 
@@ -172,6 +183,8 @@ transition: fade
   </div>
 </div>
 
+---
+class: topic-otel
 ---
 
 # Where can I run my Collector today?
@@ -205,6 +218,8 @@ The Collector supports a variety of compilation targets today:
   </div>
 </div>
 ---
+class: topic-both
+---
 
 # Collector in WASM: Upstream developments
 
@@ -217,6 +232,8 @@ The Collector supports a variety of compilation targets today:
   <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code></span>
 </div>
 
+---
+class: topic-wasm
 ---
 
 # WASI previews
@@ -262,6 +279,8 @@ The Collector supports a variety of compilation targets today:
 </div>
 
 ---
+class: topic-both
+---
 
 # Challenges
 
@@ -283,6 +302,8 @@ The Collector supports a variety of compilation targets today:
 
 
 ---
+class: topic-both
+---
 
 # Collector in WASM: Limitations
 
@@ -298,6 +319,8 @@ The Collector supports a variety of compilation targets today:
   <span>TODO: Mention gsa output; link to Datadog blogpost</span>
 </div>
 
+---
+class: topic-both
 ---
 
 # Collector in WASM: Creating a Wasm binary
@@ -316,6 +339,8 @@ The Collector supports a variety of compilation targets today:
 </div>
 
 ---
+class: topic-both
+---
 
 # Observability without borders
 
@@ -328,6 +353,8 @@ The Collector supports a variety of compilation targets today:
   <span>Running in a language plugin</span>
 </div>
 
+---
+class: topic-both
 ---
 
 # Observability without borders: browser
@@ -342,6 +369,8 @@ The Collector supports a variety of compilation targets today:
 </div>
 
 ---
+class: topic-both
+---
 
 # Observability without borders: Wasm runtime
 
@@ -354,6 +383,8 @@ The Collector supports a variety of compilation targets today:
   <span>Realistically should only be used alongside other WASM applications</span>
 </div>
 
+---
+class: topic-both
 ---
 
 # Looking ahead
@@ -371,6 +402,8 @@ The Collector supports a variety of compilation targets today:
   <span>Contributions from YOU in the audience!</span>
 </div>
 
+---
+class: topic-both
 ---
 
 # WebAssembly demo
@@ -580,6 +613,8 @@ async function runWasm() {
 }
 </script>
 
+---
+class: topic-both
 ---
 
 # WebAssembly demo (2)

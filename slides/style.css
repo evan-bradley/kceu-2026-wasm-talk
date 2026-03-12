@@ -1,5 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
 
+/* Topic-based slide backgrounds */
+:root {
+  --bg-wasm: #1a1028;
+  --bg-otel: #521912;
+}
+
+.topic-wasm {
+  background: linear-gradient(315deg, var(--bg-wasm) 0%, transparent 60%);
+}
+
+.topic-otel {
+  background: linear-gradient(135deg, var(--bg-otel) 0%, transparent 60%);
+}
+
+.topic-both {
+  background:
+    linear-gradient(135deg, var(--bg-otel) 0%, transparent 60%),
+    linear-gradient(315deg, var(--bg-wasm) 0%, transparent 60%);
+}
+
+html:not(.dark) .topic-wasm {
+  background: linear-gradient(315deg, rgba(101, 79, 240, 0.08) 0%, transparent 60%);
+}
+
+html:not(.dark) .topic-otel {
+  background: linear-gradient(135deg, rgba(245, 168, 0, 0.1) 0%, transparent 60%);
+}
+
+html:not(.dark) .topic-both {
+  background:
+    linear-gradient(135deg, rgba(245, 168, 0, 0.1) 0%, transparent 60%),
+    linear-gradient(315deg, rgba(101, 79, 240, 0.08) 0%, transparent 60%);
+}
+
 .platforms {
   display: grid;
   grid-template-columns: 1fr 3fr;
