@@ -19,6 +19,23 @@ layout: intro
 
 ---
 
+# About us
+
+<div class="speakers-grid">
+  <div class="speaker">
+    <img src="/pablo.jpeg" class="speaker-pic" />
+    <div class="speaker-name">Pablo Baeyens</div>
+    <div class="speaker-org">Datadog</div>
+  </div>
+  <div class="speaker">
+    <img src="/evan.jpg" class="speaker-pic" />
+    <div class="speaker-name">Evan Bradley</div>
+    <div class="speaker-org">Dynatrace</div>
+  </div>
+</div>
+
+---
+
 # What is the Collector?
 
 <img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
