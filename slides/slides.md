@@ -154,9 +154,9 @@ class: topic-both
   <div class="arch-details">
     <ul>
       <li>Runtime plugins</li>
-      <li><a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/11772"><code>wasmprocessor</code></a></li>
+      <li><a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/11772">wasmprocessor</a></li>
       <li>OTTL custom functions</li>
-      <li><a href="https://github.com/otelwasm/otelwasm"><code>otelwasm</code> project</a></li>
+      <li><a href="https://github.com/otelwasm/otelwasm">otelwasm project</a></li>
     </ul>
   </div>
 </div>
