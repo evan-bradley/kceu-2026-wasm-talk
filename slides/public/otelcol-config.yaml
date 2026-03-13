@@ -4,7 +4,6 @@ receivers:
 exporters:
   js:
   debug:
-    verbosity: detailed
 
 service:
   pipelines:
