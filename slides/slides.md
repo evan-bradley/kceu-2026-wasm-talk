@@ -52,38 +52,13 @@ class: topic-wasm
 
 # Write once, run everywhere™
 
-<div class="timeline-wrapper">
-<div class="timeline">
-  <div class="timeline-track"></div>
-  <div class="timeline-items">
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">1972</div>
-      <div class="tl-desc">C specification prioritizes ease of writing compilers</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">1995</div>
-      <div class="tl-desc">Java promises "write once, run everywhere"</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2007</div>
-      <div class="tl-desc">HTML5 paves the way to replace browser plugins</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2017</div>
-      <div class="tl-desc">WebAssembly MVP declared ready</div>
-    </div>
-    <div class="tl-item highlight">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2026</div>
-      <div class="tl-desc">An upstream OTel Collector runs in a browser</div>
-    </div>
-  </div>
-</div>
-</div>
+<Timeline :items="[
+  { year: '1972', desc: 'C specification prioritizes ease of writing compilers' },
+  { year: '1995', desc: 'Java promises &quot;write once, run everywhere&quot;' },
+  { year: '2007', desc: 'HTML5 paves the way to replace browser plugins' },
+  { year: '2017', desc: 'WebAssembly MVP declared ready' },
+  { year: '2026', desc: 'An upstream OTel Collector runs in a browser', highlight: true },
+]" />
 
 ---
 class: topic-wasm
@@ -242,45 +217,11 @@ class: topic-wasm
 
 # WASI previews
 
-<div class="timeline-wrapper">
-<div class="timeline">
-  <div class="timeline-track"></div>
-  <div class="timeline-items">
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">~2020</div>
-      <div class="tl-desc">WASIp1
-      <ul>
-      <li>Single API</li>
-      <li>Limited Go support</li>
-      </ul>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year">2024</div>
-      <div class="tl-desc">WASIp2
-      <ul>
-      <li>Component model</li>
-      <li>HTTP support</li>
-      <li>Only TinyGo support</li>
-      </ul>
-      </div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-year"><i>EOY 2026</i></div>
-      <div class="tl-desc">WASIp3
-      <ul>
-      <li>Async I/O</li>
-      <li>Concurrency support</li>
-      <li>Planned Go support</li>
-      </ul>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
+<Timeline :items="[
+  { year: '~2020', desc: '<b>WASIp1</b><hr/><ul><li>Single API</li><li>Limited Go support</li></ul>' },
+  { year: '2024', desc: '<b>WASIp2</b><hr/><ul><li>Component model</li><li>HTTP support</li><li>Only TinyGo support</li></ul>' },
+  { year: '<i>EOY 2026</i>', desc: '<b>WASIp3</b><hr/><ul><li>Async I/O</li><li>Concurrency support</li><li>Planned Go support</li></ul>' },
+]" />
 
 ---
 class: topic-both
