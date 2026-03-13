@@ -588,3 +588,17 @@ html:not(.dark) .plugin-block {
 .slidev-layout h1.qa-title {
   font-size: 10em;
 }
+
+/* KubeCon EU logo on title slide */
+.kceu-logo {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  height: 15%;
+  pointer-events: none;
+}
+
+html:not(.dark) .kceu-logo {
+  filter: invert(1);
+}
+

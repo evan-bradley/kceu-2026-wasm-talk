@@ -17,8 +17,12 @@
     "@slidev/theme-apple-basic": "^0.25.1",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
+    "qrcode": "^1.5.4",
     "vite": "^7.3.1",
     "vue": "^3.5.27",
     "wrangler": "^4.67.0"
+  },
+  "devDependencies": {
+    "@types/qrcode": "^1.5.6"
   }
 }

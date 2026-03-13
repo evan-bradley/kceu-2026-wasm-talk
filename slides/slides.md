@@ -17,6 +17,10 @@ layout: intro
   <p class="intro-conference">Observability Day Europe 2026</p>
 </div>
 
+<QrArrow />
+
+<img src="/kceu26.svg" class="kceu-logo" />
+
 ---
 
 # About us
@@ -150,9 +154,9 @@ class: topic-both
   <div class="arch-details">
     <ul>
       <li>Runtime plugins</li>
-      <li><code>wasmprocessor</code></li>
+      <li><a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/11772"><code>wasmprocessor</code></a></li>
       <li>OTTL custom functions</li>
-      <li><code>otelwasm</code> project</li>
+      <li><a href="https://github.com/otelwasm/otelwasm"><code>otelwasm</code> project</a></li>
     </ul>
   </div>
 </div>
@@ -176,7 +180,7 @@ class: topic-both
   </div>
   <div class="arch-details">
     <ul>
-      <li><code>ottl.run</code></li>
+      <li><a href="https://ottl.run/">ottl.run</a></li>
       <li>Filtering, sampling and transforming in the browser</li>
       <li>Run it on your WASM runtime for sandboxing</li>
     </ul>
@@ -689,3 +693,7 @@ class: topic-both
 ---
 
 <h1 class="qa-title">Q&A</h1>
+
+<QrArrow />
+
+<img src="/kceu26.svg" class="kceu-logo" />
