@@ -104,7 +104,7 @@ class: topic-wasm
 class: topic-wasm
 ---
 
-# WASM and WASI
+# Wasm and WASI
 
 <div class="comparison-grid">
   <div class="info-box">
@@ -119,7 +119,7 @@ class: topic-wasm
   <div class="info-box">
     <h3 class="opacity-100">WASI</h3>
     <ul>
-      <li v-click="1">WASM interfaces for OS interaction</li>
+      <li v-click="1">Wasm interfaces for OS interaction</li>
       <li v-click="2">Standardized but controlled access</li>
       <li v-click="3">Unstable (WASIp2) specification</li>
       <li v-click="4">Less widely supported</li>
@@ -134,7 +134,7 @@ transition: fade
 class: topic-both
 ---
 
-# WASM in the Collector
+# Wasm in the Collector
 
 <div class="arch-slide">
   <div class="arch-diagram">
@@ -142,11 +142,11 @@ class: topic-both
       <span class="arch-label-left">Collector</span>
       <span class="arch-label-right arch-native">Native</span>
       <div class="arch-block runtime-block">
-        <span class="arch-label-left">WASM runtime</span>
+        <span class="arch-label-left">Wasm runtime</span>
         <span class="arch-label-right arch-native">Native (Go library)</span>
         <div class="arch-block plugin-block">
           <span class="arch-label-left">Plugin</span>
-          <span class="arch-label-right arch-wasm">WASM</span>
+          <span class="arch-label-right arch-wasm">Wasm</span>
         </div>
       </div>
     </div>
@@ -165,16 +165,16 @@ class: topic-both
 class: topic-both
 ---
 
-# Collector in WASM
+# Collector in Wasm
 
 <div class="arch-slide">
   <div class="arch-diagram">
     <div class="arch-box-root arch-block runtime-block">
-      <span class="arch-label-left">WASM runtime</span>
+      <span class="arch-label-left">Wasm runtime</span>
       <span class="arch-label-right arch-native">Native</span>
       <div class="arch-block collector-block">
         <span class="arch-label-left">Collector</span>
-        <span class="arch-label-right arch-wasm">WASM</span>
+        <span class="arch-label-right arch-wasm">Wasm</span>
       </div>
     </div>
   </div>
@@ -182,7 +182,7 @@ class: topic-both
     <ul>
       <li><a href="https://ottl.run/">ottl.run</a></li>
       <li>Filtering, sampling and transforming in the browser</li>
-      <li>Run it on your WASM runtime for sandboxing</li>
+      <li>Run it on your Wasm runtime for sandboxing</li>
     </ul>
   </div>
 </div>
@@ -225,7 +225,7 @@ The Collector supports a variety of compilation targets today:
 class: topic-both
 ---
 
-# Collector in WASM: Upstream developments
+# Collector in Wasm: Upstream developments
 
 <div class="icon-grid">
   <carbon-add-alt class="icon" />
@@ -309,7 +309,7 @@ class: topic-both
 class: topic-both
 ---
 
-# Collector in WASM: Limitations
+# Collector in Wasm: Limitations
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
@@ -327,7 +327,7 @@ class: topic-both
 class: topic-both
 ---
 
-# Collector in WASM: Creating a Wasm binary
+# Collector in Wasm: Creating a Wasm binary
 
 <div class="icon-grid">
   <carbon-tool-box class="icon" />
@@ -384,7 +384,7 @@ class: topic-both
   <carbon-folder class="icon" />
   <span>Filesystem access available if the host grants it</span>
   <carbon-partnership class="icon" />
-  <span>Realistically should only be used alongside other WASM applications</span>
+  <span>Realistically should only be used alongside other Wasm applications</span>
 </div>
 
 ---
