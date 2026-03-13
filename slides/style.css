@@ -187,7 +187,7 @@ html:not(.dark) .topic-both {
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1.1;
-  transform: perspective(300px) rotateY(-5deg);
+  transform: skewY(-7deg);
   transform-origin: center center;
 }
 
