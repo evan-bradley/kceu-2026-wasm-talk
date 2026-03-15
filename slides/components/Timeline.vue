@@ -90,21 +90,41 @@ defineProps<{
 }
 
 .tl-desc {
-  margin-top: 0.35rem;
-  font-size: 0.78rem;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
   color: #ccc;
+  text-align: left;
+  line-height: 1.4;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  width: 90%;
+}
+
+.tl-card-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.4rem 0.7rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-align: center;
-  line-height: 1.35;
-  padding: 0 0.3rem;
+  color: #f8f8f2;
 }
 
 .tl-desc ul {
-  margin: 0.2rem 0 0 0 !important;
-  padding-left: 1.2em;
-  font-size: 0.78rem !important;
-  line-height: 1.4 !important;
+  margin: 0.35rem 0 0.45rem 0 !important;
+  padding-left: 1.4em;
+  padding-right: 0.5rem;
+  font-size: 0.82rem !important;
+  line-height: 1.5 !important;
   text-align: left;
   list-style: disc;
+}
+
+.tl-desc ul li + li {
+  margin-top: 0.15rem;
 }
 
 .tl-item.highlight .tl-dot {
@@ -131,6 +151,14 @@ html:not(.dark) .tl-dot {
 
 html:not(.dark) .tl-desc {
   color: #555;
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html:not(.dark) .tl-card-title {
+  background: rgba(0, 0, 0, 0.06);
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
 }
 
 html:not(.dark) .tl-item.highlight .tl-desc {

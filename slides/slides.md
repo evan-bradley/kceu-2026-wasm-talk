@@ -47,6 +47,21 @@ class: topic-otel
 <img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
 
 ---
+class: topic-both
+---
+
+# Takeaways
+
+<div class="icon-grid">
+  <carbon-checkmark-outline class="icon" />
+  <span>Wasm is ready today for carefully-selected workloads</span>
+  <carbon-checkmark class="icon" />
+  <span>The Collector already largely supports compilation to Wasm</span>
+  <carbon-idea class="icon" />
+  <span>Upstream support means it's ready for your ideas</span>
+</div>
+
+---
 class: topic-wasm
 ---
 
@@ -102,7 +117,34 @@ class: topic-wasm
   </div>
 </div>
 
-<!-- TODO: Add examples of WebAssembly usage -->
+---
+class: topic-wasm
+---
+
+# Wasm in production today
+
+<div class="icon-grid">
+  <carbon-pen-fountain class="icon" />
+  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> — Wasm cut load times by 3× for all document sizes</span>
+  <carbon-image class="icon" />
+  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> — Acrobat, Photoshop, and Lightroom run in the browser and leverage Wasm</span>
+  <carbon-logo-google class="icon" />
+  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> — Earth, Sheets, Photos and Meet, use Wasm for cross-platform code sharing</span>
+</div>
+
+<!-- Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
+
+---
+class: topic-wasm
+---
+
+# WASI previews
+
+<Timeline :items="[
+  { year: '~2020', desc: '<div class=tl-card-title>WASIp1</div><ul><li>Single API</li><li>Limited Go support</li></ul>' },
+  { year: '2024', desc: '<div class=tl-card-title>WASIp2</div><ul><li>Component model</li><li>HTTP support</li><li>Only TinyGo support</li></ul>' },
+  { year: '<i>EOY 2026</i>', desc: '<div class=tl-card-title>WASIp3</div><ul><li>Async I/O</li><li>Concurrency support</li><li>Planned Go support</li></ul>' },
+]" />
 
 ---
 transition: fade
@@ -196,6 +238,7 @@ The Collector supports a variety of compilation targets today:
     <div class="unofficial"><code>...</code></div>
   </div>
 </div>
+
 ---
 class: topic-both
 ---
@@ -210,18 +253,6 @@ class: topic-both
   <carbon-chart-bar class="icon" />
   <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code></span>
 </div>
-
----
-class: topic-wasm
----
-
-# WASI previews
-
-<Timeline :items="[
-  { year: '~2020', desc: '<b>WASIp1</b><hr/><ul><li>Single API</li><li>Limited Go support</li></ul>' },
-  { year: '2024', desc: '<b>WASIp2</b><hr/><ul><li>Component model</li><li>HTTP support</li><li>Only TinyGo support</li></ul>' },
-  { year: '<i>EOY 2026</i>', desc: '<b>WASIp3</b><hr/><ul><li>Async I/O</li><li>Concurrency support</li><li>Planned Go support</li></ul>' },
-]" />
 
 ---
 class: topic-both
@@ -287,6 +318,32 @@ class: topic-both
 class: topic-both
 ---
 
+# Collector in Wasm: OCB manifest
+
+```yaml{all|1-2,6-7|1,3-4,9-11|13-15|17-18}
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.146.1
+  - gomod: github.com/evan-bradley/kceu-2026-wasm-talk/jsexporter v0.0.0
+    path: ../jsexporter
+
+processors:
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.146.0
+
+receivers:
+  - gomod: github.com/evan-bradley/kceu-2026-wasm-talk/jsreceiver v0.0.0
+    path: ../jsreceiver
+
+providers:
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.52.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.52.0
+
+conf_resolver:
+  default_uri_scheme: http
+```
+
+---
+
+
 # Observability without borders
 
 <div class="icon-grid">
@@ -295,7 +352,7 @@ class: topic-both
   <carbon-container-software class="icon" />
   <span>Running in a Wasm runtime</span>
   <carbon-plug class="icon" />
-  <span>Running in a language plugin</span>
+  <span>Running as a language plugin</span>
 </div>
 
 ---
@@ -332,6 +389,21 @@ class: topic-both
 class: topic-both
 ---
 
+# Observability without borders: language plugin
+
+<div class="icon-grid">
+  <carbon-plug class="icon" />
+  <span>Embed the Collector in a Go, Rust, or C/C++ application via Wasm</span>
+  <carbon-api class="icon" />
+  <span>In-process telemetry pipeline without a sidecar</span>
+  <carbon-security class="icon" />
+  <span>Sandboxed execution with controlled host access</span>
+</div>
+
+---
+class: topic-both
+---
+
 # Looking ahead
 
 <div class="icon-grid">
@@ -349,6 +421,53 @@ class: topic-both
 
 ---
 class: topic-both
+---
+
+# Demo
+
+<div class="icon-grid">
+  <carbon-assembly-reference class="icon" />
+  <span>We compiled a basic Collector that communicates with the OTel JS SDK</span>
+  <carbon-mobile class="icon" />
+  <span>It runs on any modern browser, so try it on your phone!</span>
+  <QrArrow />
+</div>
+
+---
+
+# Demo
+
+<div class="arch-slide">
+  <div class="arch-diagram">
+    <div class="arch-box-root arch-block browser-block">
+      <span class="arch-label-left">Browser</span>
+      <div class="demo-grid">
+        <div class="demo-node demo-node-ui demo-cell-button">👆 Button</div>
+        <div class="demo-vert-arrow demo-cell-vert-arrow"></div>
+        <div class="arch-block sdk-block demo-node demo-node-component demo-cell-sdk">
+          <div class="demo-node-title">OTel JS SDK</div>
+        </div>
+        <div class="demo-pipe-arrow demo-cell-arrow-sdk">
+          <div class="demo-pipe-label">OTLP metrics</div>
+        </div>
+        <div class="demo-collector-wrapper arch-block wasm-col-block demo-cell-collector">
+          <span class="arch-label-left">Collector</span>
+          <span class="arch-label-right arch-wasm">Wasm</span>
+          <div class="demo-collector-inner">
+            <div class="demo-subcomp">JS Receiver</div>
+            <div class="demo-inner-arrow"></div>
+            <div class="demo-subcomp">JS Exporter</div>
+          </div>
+        </div>
+        <div class="demo-pipe-arrow demo-pipe-arrow-left demo-cell-arrow-chart">
+          <div class="demo-pipe-label">OTLP metrics</div>
+        </div>
+        <div class="demo-node demo-node-ui demo-cell-chart">📊 Chart</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 ---
 
 <WasmDemo />

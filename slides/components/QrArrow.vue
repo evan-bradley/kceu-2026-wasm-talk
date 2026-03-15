@@ -1,23 +1,37 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import QRCode from 'qrcode'
+import { useNav } from '@slidev/client'
+
+const props = defineProps<{
+  slide?: string
+}>()
+
+const { currentPage } = useNav()
 
 const qrLight = ref('')
 const qrDark = ref('')
 
-const url = 'https://kceu-2026-wasm-talk.pages.dev/'
+const baseUrl = 'https://kceu-2026-wasm-talk.pages.dev/'
+const url = computed(() => {
+  const page = props.slide ?? String(currentPage.value)
+  return `${baseUrl}${page}`
+})
 const opts = { width: 240, margin: 1 }
 
-onMounted(async () => {
-  qrLight.value = await QRCode.toDataURL(url, {
+async function generateQR() {
+  qrLight.value = await QRCode.toDataURL(url.value, {
     ...opts,
     color: { dark: '#000000', light: '#00000000' },
   })
-  qrDark.value = await QRCode.toDataURL(url, {
+  qrDark.value = await QRCode.toDataURL(url.value, {
     ...opts,
     color: { dark: '#e0e0e0', light: '#00000000' },
   })
-})
+}
+
+onMounted(generateQR)
+watch(url, generateQR)
 </script>
 
 <template>

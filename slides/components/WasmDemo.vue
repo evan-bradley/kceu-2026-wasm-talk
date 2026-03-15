@@ -227,7 +227,7 @@ async function runWasm() {
 <template>
   <div class="demo-layout">
     <div class="demo-header">
-      <h1>WebAssembly demo</h1>
+      <h1>Demo</h1>
       <button
         @click="sendClick"
         :disabled="!wasmReady"
