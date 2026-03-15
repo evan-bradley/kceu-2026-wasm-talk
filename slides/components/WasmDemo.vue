@@ -20,6 +20,7 @@ import {
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Filler, Tooltip, Legend)
 
+const clickMetricName = 'click.rate'
 const wasmReady = ref(false)
 const totalClicks = ref(0)
 const chartLabels = reactive<string[]>([])
@@ -34,7 +35,7 @@ const chartData = computed(() => ({
   labels: [...chartLabels],
   datasets: [
     {
-      label: 'click.count',
+      label: clickMetricName,
       data: [...chartValues],
       borderColor: '#8be9fd',
       backgroundColor: 'rgba(139, 233, 253, 0.15)',
@@ -59,7 +60,7 @@ const chartOptions = {
       grid: { color: '#333' },
     },
     y: {
-      title: { display: true, text: 'Clicks', color: '#ccc', font: { size: 11 } },
+      title: { display: true, text: 'Clicks/s', color: '#ccc', font: { size: 11 } },
       ticks: { color: '#aaa', font: { size: 10 }, stepSize: 1 },
       grid: { color: '#333' },
       beginAtZero: true,
@@ -117,16 +118,16 @@ function addChartPoint(value: number) {
 }
 
 function updateTable(obj: any) {
-  // Walk the OTLP JSON structure to find click.count and accumulate
+  // Walk the OTLP JSON structure to find click.rate and use the value directly
   for (const rm of obj?.resourceMetrics ?? []) {
     for (const sm of rm?.scopeMetrics ?? []) {
       for (const metric of sm?.metrics ?? []) {
-        if (metric.name !== 'click.count') continue
+        if (metric.name !== clickMetricName) continue
         const dataPoints = metric.sum?.dataPoints ?? metric.gauge?.dataPoints ?? []
         for (const dp of dataPoints) {
           const value = Number(dp.asInt ?? dp.asDouble ?? 0)
           totalClicks.value += value
-          addChartPoint(totalClicks.value)
+          addChartPoint(value)
         }
       }
     }
