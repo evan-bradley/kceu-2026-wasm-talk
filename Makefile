@@ -23,3 +23,9 @@ cf-deploy: build
 .PHONY: serve
 serve: build
 	cd slides && npx pnpm dev
+
+otelwasmcol/bin/minimal.wasm: otelwasmcol/minimal-manifest.yaml
+	cd otelwasmcol && go tool go.opentelemetry.io/collector/cmd/builder --skip-compilation --config=minimal-manifest.yaml
+	cd otelwasmcol/bin && CGO_ENABLED=0 GOOS=js GOARCH=wasm go build -ldflags '-s -w' -trimpath -o minimal.wasm
+
+minimal: otelwasmcol/bin/minimal.wasm

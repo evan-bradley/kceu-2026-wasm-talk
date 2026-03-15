@@ -271,9 +271,11 @@ class: topic-both
 
 <div class="icon-grid">
   <carbon-time class="icon" />
-  <span>TODO: Mention concurrency requirements</span>
+  <!-- Source: https://go.dev/blog/wasmexport#limitations -->
+  <span>There are currently limits to concurrency in Go's Wasm implementation</span>
   <carbon-settings class="icon" />
-  <span>TODO: Mention Collector runtime components</span>
+  <!-- Source: https://webassembly.org/features/ -->
+  <span>Wasm GC is now supported by multiple runtimes, but has no Go support</span>
 </div>
 
 
@@ -285,15 +287,37 @@ class: topic-both
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
-  <span>A Collector has at least a 10 MiB uncompressed binary size.</span>
+  <span>A Collector Wasm binary has at least a 38 MiB uncompressed binary size.</span>
   <carbon-misuse class="icon" />
   <span>TinyGo stdlib doesn't reimplement enough Go stdlib network packages (e.g. net/http/httputil).</span>
 </div>
 
+---
+
+# Collector in Wasm: Limitations
+
 <div class="icon-grid">
-  <carbon-chart-treemap class="icon" />
-  <span>TODO: Mention gsa output; link to Datadog blogpost</span>
+  <carbon-circle-packing class="icon" />
+  <span>~45%: Go runtime and other necessary data</span>
+  <carbon-circle-packing class="icon" />
+  <span>~39%: Third-party libraries</span>
+  <carbon-circle-packing class="icon" />
+  <span>~16%: Go stdlib</span>
+  <carbon-circle-packing class="icon" />
+  <span>Datadog has a <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">blog post</a> on analyzing Go binary sizes.</span>
 </div>
+
+---
+
+# Collector in Wasm: Limitations
+
+<img src="/gsa.png" class="h-100 mx-auto" />
+
+<!--
+  Ref:
+  https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#data-section
+  https://blog.tangrs.id.au/2022/02/15/notes-on-go-binary-metadata/
+-->
 
 ---
 class: topic-both
