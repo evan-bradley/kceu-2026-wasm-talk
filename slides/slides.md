@@ -443,15 +443,15 @@ class: topic-both
     <div class="arch-box-root arch-block browser-block">
       <span class="arch-label-left">Browser</span>
       <div class="demo-grid">
-        <div class="demo-node demo-node-ui demo-cell-button">👆 Button</div>
-        <div class="demo-vert-arrow demo-cell-vert-arrow"></div>
-        <div class="arch-block sdk-block demo-node demo-node-component demo-cell-sdk">
-          <div class="demo-node-title">OTel JS SDK</div>
+        <div class="demo-sdk-group arch-block demo-node-ui">
+          <div class="demo-node demo-node-ui">👆 Button</div>
+          <div class="demo-vert-arrow"></div>
+          <div class="demo-node demo-node-ui">OTel JS SDK</div>
         </div>
-        <div class="demo-pipe-arrow demo-cell-arrow-sdk">
+        <div class="demo-pipe-arrow">
           <div class="demo-pipe-label">OTLP metrics</div>
         </div>
-        <div class="demo-collector-wrapper arch-block wasm-col-block demo-cell-collector">
+        <div class="demo-collector-wrapper arch-block wasm-col-block">
           <span class="arch-label-left">Collector</span>
           <span class="arch-label-right arch-wasm">Wasm</span>
           <div class="demo-collector-inner">
@@ -460,10 +460,10 @@ class: topic-both
             <div class="demo-subcomp">JS Exporter</div>
           </div>
         </div>
-        <div class="demo-pipe-arrow demo-pipe-arrow-left demo-cell-arrow-chart">
+        <div class="demo-pipe-arrow">
           <div class="demo-pipe-label">OTLP metrics</div>
         </div>
-        <div class="demo-node demo-node-ui demo-cell-chart">📊 Chart</div>
+        <div class="demo-node demo-node-ui">📊 Chart</div>
       </div>
     </div>
   </div>
