@@ -87,6 +87,9 @@ defineProps<{
   font-size: 1.1rem;
   color: var(--slidev-theme-primary);
   font-variant-numeric: tabular-nums;
+  height: 1.8rem;
+  display: flex;
+  align-items: center;
 }
 
 .tl-desc {
@@ -95,20 +98,21 @@ defineProps<{
   color: #ccc;
   text-align: left;
   line-height: 1.4;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 0.6rem;
+  background: linear-gradient(135deg, rgba(54, 56, 85, 0.5), rgba(26, 28, 44, 0.45));
+  border: 1.5px solid rgba(141, 141, 255, 0.2);
   border-radius: 0.5rem;
   overflow: hidden;
   width: 90%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .tl-card-title {
   font-weight: 700;
   font-size: 0.95rem;
   padding: 0.4rem 0.7rem;
-  background: rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(93, 93, 255, 0.25), rgba(141, 141, 255, 0.1));
+  border-bottom: 1.5px solid rgba(141, 141, 255, 0.15);
   text-align: center;
   color: #f8f8f2;
 }
@@ -151,13 +155,14 @@ html:not(.dark) .tl-dot {
 
 html:not(.dark) .tl-desc {
   color: #555;
-  background: rgba(0, 0, 0, 0.03);
-  border-color: rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(240, 240, 255, 0.8), rgba(230, 230, 250, 0.6));
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 html:not(.dark) .tl-card-title {
-  background: rgba(0, 0, 0, 0.06);
-  border-bottom-color: rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.06));
+  border-bottom-color: rgba(99, 102, 241, 0.12);
   color: #1a1a1a;
 }
 

@@ -272,7 +272,7 @@ async function runWasm() {
 }
 .demo-button {
   padding: 12px 24px;
-  background: #3b82f6;
+  background: #5D5DFF;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -281,7 +281,7 @@ async function runWasm() {
   flex-shrink: 0;
 }
 .demo-button:hover {
-  background: #2563eb;
+  background: #4a4aed;
 }
 .demo-button:disabled {
   background: #9ca3af;
@@ -290,8 +290,9 @@ async function runWasm() {
 .chart-container {
   width: 90%;
   height: 200px;
-  background: #1e1e1e;
-  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(54, 56, 85, 0.5), rgba(26, 28, 44, 0.45));
+  border: 1.5px solid rgba(141, 141, 255, 0.15);
+  border-radius: 0.75rem;
   padding: 12px;
 }
 .collector-logs-container {
@@ -299,22 +300,22 @@ async function runWasm() {
   margin: 0 auto;
 }
 .collector-logs-header {
-  background: #2d2d2d;
+  background: linear-gradient(135deg, rgba(93, 93, 255, 0.2), rgba(141, 141, 255, 0.1));
   color: #50fa7b;
   padding: 6px 14px;
   font-size: 0.8rem;
   font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
-  border-radius: 8px 8px 0 0;
-  border-bottom: 1px solid #444;
+  border-radius: 0.75rem 0.75rem 0 0;
+  border-bottom: 1px solid rgba(141, 141, 255, 0.15);
 }
 .collector-logs {
   width: 100%;
   max-height: 200px;
   overflow-y: auto;
-  background: #1e1e1e;
+  background: linear-gradient(135deg, rgba(54, 56, 85, 0.5), rgba(26, 28, 44, 0.45));
   color: #d4d4d4;
   padding: 10px 14px;
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 0.75rem 0.75rem;
   font-family: 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
   font-size: 0.65rem;
   line-height: 1.5;

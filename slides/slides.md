@@ -6,6 +6,9 @@ class: text-center topic-both
 transition: slide-left
 mdc: true
 layout: intro
+fonts:
+  sans: 'Inter'
+  mono: 'Fira Code'
 ---
 
 # Observability Without Borders
