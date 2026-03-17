@@ -22,6 +22,8 @@ layout: intro
 <img src="/kceu26.svg" class="kceu-logo" />
 
 ---
+class: topic-both
+---
 
 # About us
 
@@ -50,7 +52,7 @@ class: topic-otel
 class: topic-both
 ---
 
-# Takeaways
+# What we will cover
 
 <div class="icon-grid">
   <carbon-checkmark-outline class="icon" />
@@ -95,6 +97,8 @@ class: topic-wasm
 ---
 
 # Wasm and WASI
+
+WASI extends provides standardized interfaces for filesystem, networking...
 
 <div class="comparison-grid">
   <div class="info-box">
@@ -151,7 +155,7 @@ transition: fade
 class: topic-both
 ---
 
-# Wasm in the Collector
+# Wasm plugins inside the Collector
 
 <div class="arch-slide">
   <div class="arch-diagram">
@@ -182,7 +186,7 @@ class: topic-both
 class: topic-both
 ---
 
-# Collector in Wasm
+# Collector running in a WASM runtime
 
 <div class="arch-slide">
   <div class="arch-diagram">
@@ -293,6 +297,8 @@ class: topic-both
 </div>
 
 ---
+class: topic-both
+---
 
 # Collector in Wasm: Limitations
 
@@ -307,6 +313,8 @@ class: topic-both
   <span>Datadog has a <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">blog post</a> on analyzing Go binary sizes.</span>
 </div>
 
+---
+class: topic-both
 ---
 
 # Collector in Wasm: Limitations
@@ -367,7 +375,8 @@ conf_resolver:
 ```
 
 ---
-
+class: topic-both
+---
 
 # Observability without borders
 
@@ -459,6 +468,8 @@ class: topic-both
 </div>
 
 ---
+class: topic-both
+---
 
 # Demo
 
@@ -493,6 +504,8 @@ class: topic-both
   </div>
 </div>
 
+---
+class: topic-both
 ---
 
 <WasmDemo />
