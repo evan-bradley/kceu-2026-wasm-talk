@@ -43,6 +43,8 @@ class: topic-both
   </div>
 </div>
 
+<!-- Mention that we are both maintainers in the Collector SIG -->
+
 ---
 class: topic-otel
 ---
@@ -50,6 +52,10 @@ class: topic-otel
 # What is the Collector?
 
 <img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
+
+<!-- Show of hands.
+
+After that, mention pitch succintly: the Collector allows you to build telemetry pipelines to receiver, process and export your telemetry from any source to any backend.-->
 
 ---
 class: topic-both
@@ -150,7 +156,7 @@ class: topic-wasm
 <Timeline :items="[
   { year: '~2020', desc: '<div class=tl-card-title>WASIp1</div><ul><li>Single API</li><li>Limited Go support</li></ul>' },
   { year: '2024', desc: '<div class=tl-card-title>WASIp2</div><ul><li>Component model</li><li>HTTP support</li><li>Only TinyGo support</li></ul>' },
-  { year: '<i>EOY 2026</i>', desc: '<div class=tl-card-title>WASIp3</div><ul><li>Async I/O</li><li>Concurrency support</li><li>Planned Go support</li></ul>' },
+  { year: '<i>2026?</i>', desc: '<div class=tl-card-title>WASIp3</div><ul><li>Async I/O</li><li>Concurrency support</li><li>Planned Go support</li></ul>' },
 ]" />
 
 ---
@@ -193,11 +199,13 @@ class: topic-both
 
 <div class="icon-grid">
   <carbon-api class="icon" />
-  <span>Dynamically load components at runtime distributed via OCI</span>
+  <span>Dynamically load components distributed as OCI artifacts</span>
+  <carbon-settings class="icon" />
+  <span>Don't be constrained by your vendor distro</span>
   <carbon-security class="icon" />
   <span>Sandboxed execution with controlled access to networking or filesystem</span>
   <carbon-plug class="icon" />
-  <span>Write your Collector components in any WASM-compatible language</span>
+  <span>Write your Collector components in any* language</span>
 </div>
 
 
