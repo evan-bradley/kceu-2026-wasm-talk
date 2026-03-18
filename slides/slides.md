@@ -65,12 +65,27 @@ class: topic-both
 
 <div class="icon-grid">
   <carbon-checkmark-outline class="icon" />
-  <span>WASM is ready today for carefully-selected workloads</span>
+  <span>WASM is ready today for use in production</span>
   <carbon-checkmark class="icon" />
   <span>The Collector already largely supports compilation to WASM</span>
   <carbon-idea class="icon" />
   <span>Upstream support means it's ready for your ideas</span>
 </div>
+
+<!-- 
+
+Some key points to keep in mind as we go through the presentation:
+
+1. Wasm was introduced around 9 years ago now, and has wide browser and server-side support.
+   There's still a lot that needs to be done, but it has been used in production and can
+   live up to its promises if you're deliberate with where you use it.
+2. With just a few tweaks to make things work, the Collector already has some basic
+   compatibility with WebAssembly. We'll be covering more about what does and doesn't
+   work today.
+3. We've added limited official support for WebAssembly, but as its an advanced use case,
+   haven't done any significant development. We'd love your ideas and contributions!
+
+ -->
 
 ---
 class: topic-wasm
@@ -86,6 +101,16 @@ class: topic-wasm
   { year: '2026', desc: 'An upstream OTel Collector runs in a browser', highlight: true },
 ]" />
 
+<!-- 
+
+Writing a program a single time and being able to run it on any machine has long been a
+goal. Starting in 1972 ... [slide content]
+
+This list is by no means exhaustive, there are multiple items we had to leave out.
+But hopefully this offers a bit of context behind the goals of WebAssembly.
+
+ -->
+
 ---
 class: topic-wasm
 ---
@@ -100,6 +125,26 @@ class: topic-wasm
   <carbon-flash class="icon" />
   <span>Performance for computationally-intensive workloads</span>
 </div>
+
+<!-- 
+
+WebAssembly has wide support, both in terms of runtime implementations
+and in programming language support. All major browsers have supported
+WebAssembly for years now, and if you want to run some software on
+a device with a browser, chances are it will work. There are also
+server-side WebAssembly runtimes that can run wherever you might think.
+One of the more compelling use-cases is probably in edge functions
+that run close to users.
+
+A number of languages can compile to WebAssembly, meaning if you can
+operate within some of it's constraints, you should be able to easy
+port existing code or work in your favorite language.
+
+WebAssembly is performant, meaning it's useful as a target for
+computationally-intensive workloads. Many companies have used it
+in their thick client web apps with success as we'll discuss later.
+
+ -->
 
 ---
 class: topic-wasm
@@ -130,6 +175,15 @@ WASI extends provides standardized interfaces for filesystem, networking...
   </div>
 </div>
 
+<!-- 
+
+  As we mentioned, WebAssembly can also be run server-side and not just in the browser.
+  This means its possible to do certain things (e.g. filesystem access) that aren't
+  possible in the browser, which is where The WebAssembly System Interface, or WASI,
+  comes in.
+
+ -->
+
 ---
 class: topic-wasm
 ---
@@ -144,6 +198,20 @@ class: topic-wasm
   <carbon-logo-google class="icon" />
   <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> — Earth, Sheets, Photos and Meet, use WASM for cross-platform code sharing</span>
 </div>
+
+
+<!-- 
+
+  WebAssembly has already been in use for large thick-client apps for a long time now.
+
+  1. Figma is written in C++, and switched their C++ to JavaScript compilation target
+     from asm.js to WebAssembly and saw a significant gain in document loading speed.
+  2. Adobe also has long-standing software written for desktops and has leveraged
+     WebAssembly to support running some of their suite in the browser.
+  3. Google applications that require heavy processing also offload heavy computations
+     to WebAssembly modules to keep their applications performant.
+
+ -->
 
 <!-- Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
 
@@ -327,25 +395,6 @@ class: topic-both
 class: topic-both
 ---
 
-# Collector running in WASM: Creating a WASM binary
-
-<div class="icon-grid">
-  <carbon-tool-box class="icon" />
-  <span>Using OCB</span>
-  <carbon-list class="icon" />
-  <span>Check if your component is supported</span>
-  <carbon-terminal class="icon" />
-  <span><code>GOOS=js GOARCH=wasm go build .</code></span>
-  <carbon-terminal class="icon" />
-  <span><code>GOOS=wasip1 GOARCH=wasm go build .</code></span>
-  <carbon-settings class="icon" />
-  <span>Load configuration via confmap providers (HTTP or inline YAML)</span>
-</div>
-
----
-class: topic-both
----
-
 # Collector running in WASM: OCB manifest
 
 ```yaml{all|1-2,6-8|1,3-4,10-12|14-16|18-19}
@@ -369,6 +418,45 @@ providers:
 conf_resolver:
   default_uri_scheme: http
 ```
+
+<!-- 
+
+  Here's the build manifest used by the OpenTelemetry Collector Builder, which we call OCB.
+  This is a slightly cut-down version of the manifest we use to build the Collector you'll
+  see later in the slides.
+
+  1. First: as you can see, many of the upstream components you know and love are supported.
+  2. However, when running the Collector in Wasm, there's a good chance you may want or need
+     custom components. We have these two components to communicate data to and from the
+     JavaScript runtime the Collector is running alongside.
+  3. It's also worth noting that you'll need to pay close attention with how to configure
+     your Collectors. Since in the browser there is no filesystem access, we cut out those
+     providers and only use two that get config using an HTTP request. You could write a
+     custom one too, if you had another way you wanted to grab the config.
+  4. One important note if you use this, our environment variable substitution syntax
+     inside Collector configs is customizable, but defaults to reading environment
+     variables. You will want to change this for Collectors running in the browser.
+
+ -->
+
+---
+class: topic-both
+---
+
+# Collector running in WASM: Creating a WASM binary
+
+<div class="icon-grid">
+  <carbon-terminal class="icon" />
+  <span><code>GOOS=js GOARCH=wasm go build .</code></span>
+  <carbon-terminal class="icon" />
+  <span><code>GOOS=wasip1 GOARCH=wasm go build .</code></span>
+</div>
+
+<!-- 
+Cross-architecture compilation with Go is a breeze, so simply specify
+the GOOS environment variable for your desired Wasm target and a GOARCH
+of `wasm` to compile to a wasm binary.
+ -->
 
 ---
 class: topic-both
