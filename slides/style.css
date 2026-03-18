@@ -23,17 +23,15 @@ html:root {
 }
 
 html:not(.dark) .topic-wasm {
-  background: linear-gradient(315deg, rgba(101, 79, 240, 0.08) 0%, transparent 60%);
+  background: white;
 }
 
 html:not(.dark) .topic-otel {
-  background: linear-gradient(135deg, rgba(245, 168, 0, 0.1) 0%, transparent 60%);
+  background: white;
 }
 
 html:not(.dark) .topic-both {
-  background:
-    linear-gradient(135deg, rgba(245, 168, 0, 0.1) 0%, transparent 60%),
-    linear-gradient(315deg, rgba(101, 79, 240, 0.08) 0%, transparent 60%);
+  background: white;
 }
 
 .platforms {
@@ -740,5 +738,21 @@ html:not(.dark) .demo-inner-arrow::after {
 
 html:not(.dark) .kceu-logo {
   filter: invert(1);
+}
+
+/* Light theme: demo slide */
+html:not(.dark) .collector-logs-header {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.08));
+  color: #1a1a1a;
+  border-bottom-color: rgba(99, 102, 241, 0.15);
+}
+
+html:not(.dark) .collector-logs {
+  background: #1e1e2e;
+}
+
+html:not(.dark) .chart-container {
+  background: #1e1e2e;
+  border-color: rgba(99, 102, 241, 0.2);
 }
 

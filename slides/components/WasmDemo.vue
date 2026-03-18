@@ -329,4 +329,18 @@ async function runWasm() {
   color: #666;
   font-style: italic;
 }
+
+/* Light theme overrides */
+:global(html:not(.dark) .collector-logs-header) {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.08));
+  color: #1a1a1a;
+  border-bottom-color: rgba(99, 102, 241, 0.15);
+}
+:global(html:not(.dark) .collector-logs) {
+  background: #1e1e2e;
+}
+:global(html:not(.dark) .chart-container) {
+  background: #1e1e2e;
+  border-color: rgba(99, 102, 241, 0.2);
+}
 </style>
