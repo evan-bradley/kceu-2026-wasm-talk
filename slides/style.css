@@ -4,6 +4,10 @@
   --bg-otel: #521912;
 }
 
+html:root {
+  --slidev-theme-primary: hsl(243 35% 58% / 1);
+}
+
 .topic-wasm {
   background: linear-gradient(315deg, var(--bg-wasm) 0%, transparent 60%);
 }
