@@ -24,7 +24,15 @@ fonts:
 
 <img src="/kceu26.svg" class="kceu-logo" />
 
-<!-- PABLO -->
+<!-- PABLO 
+
+Welcome to Observability Without Borders.
+
+If you want to follow along, this presentation is available as a webpage on the QR code on the bottom left corner which will appear later and at the end as well.
+
+We have added some links to interesting tidbits throughout the slides that you can click to learn more.
+
+-->
 
 ---
 
@@ -43,7 +51,9 @@ fonts:
   </div>
 </div>
 
-<!-- PABLO: Mention that we are both maintainers in the Collector SIG -->
+<!-- PABLO: 
+I am Pablo and this is Evan, we are both maintainers in the Collector SIG.
+-->
 
 ---
 
@@ -51,9 +61,9 @@ fonts:
 
 <img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
 
-<!-- PABLO: Show of hands.
+<!-- PABLO: As most of you know OpenTelemetry is the open standard for telemetry.
 
-After that, mention pitch succintly: the Collector allows you to build telemetry pipelines to receiver, process and export your telemetry from any source to any backend.-->
+The Collector is a tool offered by OpenTelemetry that allows you to build telemetry pipelines to receive, process and export your telemetry from any source to any backend.-->
 
 ---
 
@@ -72,11 +82,11 @@ After that, mention pitch succintly: the Collector allows you to build telemetry
 
 PABLO: 
 
-Some key points to keep in mind as we go through the presentation:
+Here are some key points to keep in mind as we go through the presentation:
 
 1. Wasm was introduced around 9 years ago now, and has wide browser and server-side support.
    There's still a lot that needs to be done, but it has been used in production and can
-   live up to its promises if you're deliberate with where you use it.
+   live up to its promises if you're deliberate with where you use it and are willing to use non-standard extensions.
 2. With just a few tweaks to make things work, the Collector already has some basic
    compatibility with WebAssembly. We'll be covering more about what does and doesn't
    work today.
@@ -180,6 +190,9 @@ WASI extends provides standardized interfaces for filesystem, networking...
   possible in the browser, which is where The WebAssembly System Interface, or WASI,
   comes in.
 
+  It provides a standard way of providing resources to Wasm applications, but unlike Wasm itself,
+  it is unstable and less widely supported.
+
  -->
 
 ---
@@ -188,7 +201,7 @@ WASI extends provides standardized interfaces for filesystem, networking...
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
-  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> use it for plugins.</span>
+  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> all use it for plugins.</span>
   <carbon-pen-fountain class="icon" />
   <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> - Wasm cut load times by 3x for all document sizes.</span>
   <carbon-image class="icon" />
@@ -204,11 +217,12 @@ WASI extends provides standardized interfaces for filesystem, networking...
 
   WebAssembly has already been in use for large thick-client apps for a long time now.
 
-  1. Figma is written in C++, and switched their C++ to JavaScript compilation target
+  1. Some other cloud-native projects like Envoy, Istio and Kubernetes use it in a limited way to provide filters and plugins.
+  2. Figma is written in C++, and switched their C++ to JavaScript compilation target
      from asm.js to WebAssembly and saw a significant gain in document loading speed.
-  2. Adobe also has long-standing software written for desktops and has leveraged
+  3. Adobe also has long-standing software written for desktops and has leveraged
      WebAssembly to support running some of their suite in the browser.
-  3. Google applications that require heavy processing also offload heavy computations
+  4. Google applications that require heavy processing also offload heavy computations
      to WebAssembly modules to keep their applications performant.
 
  Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
@@ -219,11 +233,18 @@ WASI extends provides standardized interfaces for filesystem, networking...
 
 <Timeline :items="[
   { year: '~2020', desc: '<div class=tl-card-title>WASIp1</div><ul><li>Single API.</li><li>Limited Go support.</li></ul>' },
-  { year: '2024', desc: '<div class=tl-card-title>WASIp2</div><ul><li>Component model.</li><li>HTTP support.</li><li>Only TinyGo support.</li></ul>' },
+  { year: '2024', desc: '<div class=tl-card-title>WASIp2</div><ul><li>Component model.</li><li>Full HTTP support.</li><li>Only TinyGo support.</li></ul>' },
   { year: '<i>2026?</i>', desc: '<div class=tl-card-title>WASIp3</div><ul><li>Async I/O.</li><li>Concurrency support.</li><li>Planned Go support.</li></ul>' },
 ]" />
 
-<!-- PABLO -->
+<!-- PABLO 
+
+WASI is unstable and has released so far two previews and a release candidate for a third preview.
+
+Go supports WASIp1 but does not natively support WASIp2. There is planned WASIp3 support in Go.
+WASIp3 unblocks key features needed for using it for I/O and network-heavy applications.
+
+-->
 
 ---
 transition: fade
@@ -256,7 +277,14 @@ transition: fade
   </div>
 </div>
 
-<!-- PABLO -->
+<!-- PABLO
+
+There are two main things you may think about when combining Wasm and the Collector.
+
+The first one is to run plugins inside the Collector. There have been prior proposals to 
+do this including the wasmprocessor or OTTL custom functions, although there is no official upstream support for this so far.
+
+ -->
 
 ---
 
@@ -273,13 +301,61 @@ transition: fade
   <span>Write your Collector components in any* language.</span>
 </div>
 
-<!-- PABLO -->
+<!-- PABLO 
+
+There is no support for Wasm plugins today in the upstream Collector.
+General support for using Wasm for plugins could look like this in the future: 
+
+1. You could dynamically load components that you can pull from a registry, distributed as OCI artifacts on any distro.
+2. You could control on a fine-grained way what your component has access to, allowing you to confidently access a greater array of components.
+3. You would be able to write your Collector components on any language you want with a single Component Model.
+-->
 
 ---
 
-# TODO slide goes here
+# Wasm plugins inside the Collector: Reality today
 
-<!-- PABLO -->
+<div class="arch-slide">
+<div class="arch-details">
+
+* <a href="https://github.com/otelwasm/otelwasm">otelwasm</a> has Wasm components.
+* It relies on the <a href="https://github.com/WasmEdge/WasmEdge">WasmEdge</a> to provide HTTP support.
+* No support for true parallelism.
+
+</div>
+<div>
+
+```go
+type Stack struct {
+	CurrentTraces     ptrace.Traces
+	CurrentMetrics    pmetric.Metrics
+	CurrentLogs       plog.Logs
+	ResultTraces      ptrace.Traces
+	ResultMetrics     pmetric.Metrics
+	ResultLogs        plog.Logs
+	StatusReason      string
+	RequestedShutdown atomic.Bool
+
+	OnResultMetricsChange func(pmetric.Metrics)
+	OnResultLogsChange    func(plog.Logs)
+	OnResultTracesChange  func(ptrace.Traces)
+
+	PluginConfigJSON []byte
+}
+```
+
+</div>
+</div>
+
+<!-- PABLO 
+
+The most interesting project out there combining the Collector and Wasm today is the otelwasm project.
+
+It uses a thin wrapper to pass pdata data to components, and relies on unofficial extensions from WasmEdge, a CNCF Sandbox project, to provide full HTTP support.
+
+We think it is very interesting, and, at the same time it shows that it is challenging to provide Wasm plugin support today that meets upstream's standards of performance and correctness. We look forward to see how WASIp3 developments allow otelwasm to evolve.
+
+-->
 
 ---
 
@@ -299,13 +375,21 @@ transition: fade
   <div class="arch-details">
     <ul>
       <li>Filtering, sampling and transforming in the browser.</li>
-      <li>Run it on your Wasm runtime for sandboxing.</li>
+      <li>Run it on a Wasm runtime for sandboxing.</li>
       <li>Run only some parts: <a href="https://ottl.run/">ottl.run</a>.</li>
     </ul>
   </div>
 </div>
 
-<!-- PABLO -->
+<!-- PABLO 
+
+An alternative way to combine both is to run a whole Collector on Wasm runtime.
+
+This could be on the browser, where you could leverage its processing capabilities, on your preferred Wasm runtime.
+
+A small example of this can be seen today on the ottl.run website, which uses WebAssembly to run a small part of the Collector.
+
+-->
 
 ---
 
@@ -340,7 +424,20 @@ The Collector supports a variety of compilation targets today:
   </div>
 </div>
 
-<!-- PABLO -->
+<!-- PABLO 
+
+What is the level of support for this upstream today?
+
+Collector compilation targets are organized by tiers depending on the level of support we provide for them. 
+
+Linux on amd64 belongs to our highest tier, <click>
+followed by macOS, Windows and arm architectures <click>,
+with a long tail of more niche architectures and since recently js/wasm <click>
+
+This means any Collector release is 'guaranteed to build' on js/wasm, corresponding to browser Wasm runtimes.
+
+There are some platforms that are not officially supported but that some people are using today, like Plan9 or AIX (that will change very soon). WASIp1 is one of these not officially supported platforms, although there are projects like otelwasm that use it today.
+-->
 
 ---
 
@@ -355,7 +452,13 @@ The Collector supports a variety of compilation targets today:
   <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code>.</span>
 </div>
 
-<!-- PABLO -->
+<!-- PABLO 
+
+In particular, in preparation for this talk we focused on the js/wasm support, 
+as well as building upon a feature for custom telemetry providers to be able to strip down Wasm binaries.
+
+We can also happily report that about 90% of Collector components already compile to js/wasm.
+-->
 
 
 ---
