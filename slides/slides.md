@@ -450,9 +450,9 @@ conf_resolver:
 
 <div class="icon-grid">
   <carbon-terminal class="icon" />
-  <span><code>GOOS=js GOARCH=wasm go build .</code></span>
+  <span><code>GOOS=js GOARCH=wasm ocb --config manifest.yaml</code></span>
   <carbon-terminal class="icon" />
-  <span><code>GOOS=wasip1 GOARCH=wasm go build .</code></span>
+  <span><code>GOOS=wasip1 GOARCH=wasm ocb --config manifest.yaml</code></span>
 </div>
 
 <!-- 
@@ -765,10 +765,16 @@ to want to use the Collector for local processing.
 
 # Observability without borders: language plugin
 
-* Many languages have in-process Wasm runtimes.
-* Can call a Collector pipeline just like a function.
-* Can be used for non-JS OTel SDK processing.
-* Note: likely has performance implications.
+<div class="icon-grid">
+  <carbon-code class="icon" />
+  <span>Many languages have in-process Wasm runtimes.</span>
+  <carbon-function class="icon" />
+  <span>Can call a Collector pipeline just like a function.</span>
+  <carbon-plug class="icon" />
+  <span>Can be used for non-JS OTel SDK processing.</span>
+  <carbon-warning-alt class="icon" />
+  <span>Likely has performance implications.</span>
+</div>
 
 <!-- 
 
