@@ -61,11 +61,11 @@ After that, mention pitch succintly: the Collector allows you to build telemetry
 
 <div class="icon-grid">
   <carbon-checkmark-outline class="icon" />
-  <span>Wasm is ready today for use in production</span>
+  <span>Wasm is ready today for use in production.</span>
   <carbon-checkmark class="icon" />
-  <span>The Collector already largely supports compilation to Wasm</span>
+  <span>The Collector already largely supports compilation to Wasm.</span>
   <carbon-idea class="icon" />
-  <span>Upstream support means it's ready for your ideas</span>
+  <span>Upstream support means it's ready for your ideas.</span>
 </div>
 
 <!-- 
@@ -115,11 +115,11 @@ But hopefully this offers a bit of context behind the goals of WebAssembly.
 
 <div class="icon-grid">
   <carbon-devices class="icon" />
-  <span>Expands devices the Collector can run on, including user devices</span>
+  <span>Expands devices the Collector can run on, including user devices.</span>
   <carbon-code class="icon" />
-  <span>Compile from Go, Rust, C++ and many other languages</span>
+  <span>Compile from Go, Rust, C++ and many other languages.</span>
   <carbon-flash class="icon" />
-  <span>Performance for computationally-intensive workloads</span>
+  <span>Performance for computationally-intensive workloads.</span>
 </div>
 
 <!-- 
@@ -154,19 +154,19 @@ WASI extends provides standardized interfaces for filesystem, networking...
   <div class="info-box">
     <h3 class="opacity-100">WebAssembly (Wasm)</h3>
     <ul>
-      <li v-click="1">Binary format targeted for browsers</li>
-      <li v-click="2">Can only see what the host allows</li>
-      <li v-click="3">Stable (3.0) specification</li>
-      <li v-click="4">Widely supported</li>
+      <li v-click="1">Binary format targeted for browsers.</li>
+      <li v-click="2">Can only see what the host allows.</li>
+      <li v-click="3">Stable (3.0) specification.</li>
+      <li v-click="4">Widely supported.</li>
     </ul>
   </div>
   <div class="info-box">
     <h3 class="opacity-100">WASI</h3>
     <ul>
-      <li v-click="1">Wasm interfaces for OS interaction</li>
-      <li v-click="2">Standardized but controlled access</li>
-      <li v-click="3">Unstable (WASIp2) specification</li>
-      <li v-click="4">Less widely supported</li>
+      <li v-click="1">Wasm interfaces for OS interaction.</li>
+      <li v-click="2">Standardized but controlled access.</li>
+      <li v-click="3">Unstable (WASIp2) specification.</li>
+      <li v-click="4">Less widely supported.</li>
     </ul>
   </div>
 </div>
@@ -188,13 +188,13 @@ WASI extends provides standardized interfaces for filesystem, networking...
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
-  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> use it for plugins</span>
+  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> use it for plugins.</span>
   <carbon-pen-fountain class="icon" />
-  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> - Wasm cut load times by 3x for all document sizes</span>
+  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> - Wasm cut load times by 3x for all document sizes.</span>
   <carbon-image class="icon" />
-  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> - Acrobat, Photoshop, and Lightroom run in the browser</span>
+  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> - Acrobat, Photoshop, and Lightroom run in the browser.</span>
   <carbon-logo-google class="icon" />
-  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> - Used for cross-platform code sharing</span>
+  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> - Used for cross-platform code sharing.</span>
 </div>
 
 
@@ -218,9 +218,9 @@ WASI extends provides standardized interfaces for filesystem, networking...
 # WASI previews
 
 <Timeline :items="[
-  { year: '~2020', desc: '<div class=tl-card-title>WASIp1</div><ul><li>Single API</li><li>Limited Go support</li></ul>' },
-  { year: '2024', desc: '<div class=tl-card-title>WASIp2</div><ul><li>Component model</li><li>HTTP support</li><li>Only TinyGo support</li></ul>' },
-  { year: '<i>2026?</i>', desc: '<div class=tl-card-title>WASIp3</div><ul><li>Async I/O</li><li>Concurrency support</li><li>Planned Go support</li></ul>' },
+  { year: '~2020', desc: '<div class=tl-card-title>WASIp1</div><ul><li>Single API.</li><li>Limited Go support.</li></ul>' },
+  { year: '2024', desc: '<div class=tl-card-title>WASIp2</div><ul><li>Component model.</li><li>HTTP support.</li><li>Only TinyGo support.</li></ul>' },
+  { year: '<i>2026?</i>', desc: '<div class=tl-card-title>WASIp3</div><ul><li>Async I/O.</li><li>Concurrency support.</li><li>Planned Go support.</li></ul>' },
 ]" />
 
 <!-- PABLO -->
@@ -248,10 +248,10 @@ transition: fade
   </div>
   <div class="arch-details">
     <ul>
-      <li>Runtime plugins</li>
-      <li><a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/11772">wasmprocessor</a></li>
-      <li>OTTL custom functions</li>
-      <li><a href="https://github.com/otelwasm/otelwasm">otelwasm project</a></li>
+      <li>Runtime plugins.</li>
+      <li><a href="https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/11772">wasmprocessor</a>.</li>
+      <li>OTTL custom functions.</li>
+      <li><a href="https://github.com/otelwasm/otelwasm">otelwasm project</a>.</li>
     </ul>
   </div>
 </div>
@@ -264,13 +264,13 @@ transition: fade
 
 <div class="icon-grid">
   <carbon-api class="icon" />
-  <span>Dynamically load components distributed as OCI artifacts</span>
+  <span>Dynamically load components distributed as OCI artifacts.</span>
   <carbon-settings class="icon" />
-  <span>Don't be constrained by your vendor distro</span>
+  <span>Don't be constrained by your vendor distro.</span>
   <carbon-security class="icon" />
-  <span>Sandboxed execution with controlled access to networking or filesystem</span>
+  <span>Sandboxed execution with controlled access to networking or filesystem.</span>
   <carbon-plug class="icon" />
-  <span>Write your Collector components in any* language</span>
+  <span>Write your Collector components in any* language.</span>
 </div>
 
 <!-- PABLO -->
@@ -298,9 +298,9 @@ transition: fade
   </div>
   <div class="arch-details">
     <ul>
-      <li>Filtering, sampling and transforming in the browser</li>
-      <li>Run it on your Wasm runtime for sandboxing</li>
-      <li>Run only some parts: <a href="https://ottl.run/">ottl.run</a></li>
+      <li>Filtering, sampling and transforming in the browser.</li>
+      <li>Run it on your Wasm runtime for sandboxing.</li>
+      <li>Run only some parts: <a href="https://ottl.run/">ottl.run</a>.</li>
     </ul>
   </div>
 </div>
@@ -348,11 +348,11 @@ The Collector supports a variety of compilation targets today:
 
 <div class="icon-grid">
   <carbon-add-alt class="icon" />
-  <span><code>js/wasm</code> added as a <a href="https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/platform-support.md#tier-3---community-support">Tier-3 platform</a> (Feb 2026)</span>
+  <span><code>js/wasm</code> added as a <a href="https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/platform-support.md#tier-3---community-support">Tier-3 platform</a> (Feb 2026).</span>
   <carbon-cut class="icon" />
   <span>Custom telemetry provider to strip down binary. (Feb 2026)</span>
   <carbon-chart-bar class="icon" />
-  <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code></span>
+  <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code>.</span>
 </div>
 
 <!-- PABLO -->
@@ -366,15 +366,15 @@ The Collector supports a variety of compilation targets today:
   <carbon-scale class="icon" />
   <span>A Collector Wasm binary is ≥ 38 MiB uncompressed:
   <ul>
-  <li>~45%: Go runtime and other necessary data</li>
-  <li>~39%: Third-party libraries</li>
-  <li>~16%: Go stdlib</li>
+  <li>~45%: Go runtime and other necessary data.</li>
+  <li>~39%: Third-party libraries.</li>
+  <li>~16%: Go stdlib.</li>
   </ul>
   </span>
 
    <carbon-settings class="icon" />
   <!-- Source: https://webassembly.org/features/ -->
-  <span>Limited Go support: no network, parallelism, components or Wasm GC</span>
+  <span>Limited Go support: no network, parallelism, components or Wasm GC.</span>
   <carbon-misuse class="icon" />
   <span>Limited TinyGo support: lack of complete stdlib.</span>
 </div>
@@ -697,11 +697,11 @@ transition: slide-left
 
 <div class="icon-grid">
   <carbon-application-web class="icon" />
-  <span>Running in a browser</span>
+  <span>Running in a browser.</span>
   <carbon-plug class="icon" />
-  <span>Running as a language plugin</span>
+  <span>Running as a language plugin.</span>
   <carbon-container-software class="icon" />
-  <span>Running in Wasm runtimes</span>
+  <span>Running in Wasm runtimes.</span>
 </div>
 
 <!-- 
@@ -736,11 +736,11 @@ Let's cover some of the trade-offs that each of these options provides.
 
 <div class="icon-grid">
   <carbon-folder-off class="icon" />
-  <span>No FS access</span>
+  <span>No FS access.</span>
   <carbon-close-outline class="icon" />
-  <span>Can't open ports</span>
+  <span>Can't open ports.</span>
   <carbon-application class="icon" />
-  <span>Uses: SDK processing supplement, Electron/thick-client apps</span>
+  <span>Uses: SDK processing supplement, Electron/thick-client apps.</span>
 </div>
 
 <!-- 
@@ -766,7 +766,7 @@ to want to use the Collector for local processing.
 # Observability without borders: language plugin
 
 * Many languages have in-process Wasm runtimes.
-* Can call a Collector pipeline just like a function
+* Can call a Collector pipeline just like a function.
 * Can be used for non-JS OTel SDK processing.
 * Note: likely has performance implications.
 
@@ -797,11 +797,11 @@ implications that will need to be carefully considered with this model.
 
 <div class="icon-grid">
   <carbon-wifi-off class="icon" />
-  <span>Limited/no networking currently (Go only supports WASIp1)</span>
+  <span>Limited/no networking currently (Go only supports WASIp1).</span>
   <carbon-folder class="icon" />
-  <span>Filesystem access is available if the host grants it</span>
+  <span>Filesystem access is available if the host grants it.</span>
   <carbon-edge-node-alt class="icon" />
-  <span>For use alongside other Wasm applications or in edge functions</span>
+  <span>For use alongside other Wasm applications or in edge functions.</span>
 </div>
 
 <!-- 
@@ -888,7 +888,7 @@ or where there needs to be active developments to take this further.
 
 <div class="icon-grid">
   <carbon-assembly-reference class="icon" />
-  <span>We compiled a basic Collector that communicates with the OTel JS SDK</span>
+  <span>We compiled a basic Collector that communicates with the OTel JS SDK.</span>
   <carbon-mobile class="icon" />
   <span>It runs on any modern browser, so try it on your phone!</span>
   <QrArrow />
