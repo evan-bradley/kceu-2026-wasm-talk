@@ -2,7 +2,7 @@
 theme: apple-basic
 background: https://cover.sli.dev
 title: Observability Without Borders
-class: text-center topic-both
+class: text-center
 transition: slide-left
 mdc: true
 layout: intro
@@ -25,8 +25,6 @@ fonts:
 <img src="/kceu26.svg" class="kceu-logo" />
 
 ---
-class: topic-both
----
 
 # About us
 
@@ -46,8 +44,6 @@ class: topic-both
 <!-- Mention that we are both maintainers in the Collector SIG -->
 
 ---
-class: topic-otel
----
 
 # What is the Collector?
 
@@ -57,8 +53,6 @@ class: topic-otel
 
 After that, mention pitch succintly: the Collector allows you to build telemetry pipelines to receiver, process and export your telemetry from any source to any backend.-->
 
----
-class: topic-both
 ---
 
 # What we will cover
@@ -88,8 +82,6 @@ Some key points to keep in mind as we go through the presentation:
  -->
 
 ---
-class: topic-wasm
----
 
 # Write once, run everywhere™
 
@@ -111,8 +103,6 @@ But hopefully this offers a bit of context behind the goals of WebAssembly.
 
  -->
 
----
-class: topic-wasm
 ---
 
 # Why WebAssembly?
@@ -146,8 +136,6 @@ in their thick client web apps with success as we'll discuss later.
 
  -->
 
----
-class: topic-wasm
 ---
 
 # WASM and WASI
@@ -185,8 +173,6 @@ WASI extends provides standardized interfaces for filesystem, networking...
  -->
 
 ---
-class: topic-wasm
----
 
 # WASM in production today
 
@@ -216,8 +202,6 @@ class: topic-wasm
 <!-- Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
 
 ---
-class: topic-wasm
----
 
 # WASI previews
 
@@ -229,7 +213,6 @@ class: topic-wasm
 
 ---
 transition: fade
-class: topic-both
 ---
 
 # WASM plugins inside the Collector
@@ -260,8 +243,6 @@ class: topic-both
 </div>
 
 ---
-class: topic-both
----
 
 # WASM plugins inside the Collector: the vision
 
@@ -277,8 +258,6 @@ class: topic-both
 </div>
 
 
----
-class: topic-both
 ---
 
 # Collector running in WASM
@@ -303,8 +282,6 @@ class: topic-both
   </div>
 </div>
 
----
-class: topic-otel
 ---
 
 # Where can I run my Collector today?
@@ -339,8 +316,6 @@ The Collector supports a variety of compilation targets today:
 </div>
 
 ---
-class: topic-both
----
 
 # Collector running in WASM: Upstream developments
 
@@ -354,8 +329,6 @@ class: topic-both
 </div>
 
 
----
-class: topic-both
 ---
 
 # Collector running in WASM: Limitations
@@ -378,8 +351,6 @@ class: topic-both
 </div>
 
 ---
-class: topic-both
----
 
 # Collector running in WASM: <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">gsa</a> analysis
 
@@ -391,8 +362,6 @@ class: topic-both
   https://blog.tangrs.id.au/2022/02/15/notes-on-go-binary-metadata/
 -->
 
----
-class: topic-both
 ---
 
 # Collector running in WASM: OCB manifest
@@ -440,8 +409,6 @@ conf_resolver:
  -->
 
 ---
-class: topic-both
----
 
 # Collector running in WASM: Creating a WASM binary
 
@@ -459,8 +426,6 @@ of `wasm` to compile to a wasm binary.
  -->
 
 ---
-class: topic-both
----
 
 # Observability without borders
 
@@ -473,8 +438,6 @@ class: topic-both
   <span>Running as a language plugin</span>
 </div>
 
----
-class: topic-both
 ---
 
 # Observability without borders: browser
@@ -489,8 +452,6 @@ class: topic-both
 </div>
 
 ---
-class: topic-both
----
 
 # Observability without borders: WASM runtime
 
@@ -503,8 +464,6 @@ class: topic-both
   <span>Realistically should only be used alongside other WASM applications</span>
 </div>
 
----
-class: topic-both
 ---
 
 # Looking ahead
@@ -523,8 +482,6 @@ class: topic-both
 </div>
 
 ---
-class: topic-both
----
 
 # Demo
 
@@ -536,8 +493,6 @@ class: topic-both
   <QrArrow />
 </div>
 
----
-class: topic-both
 ---
 
 # Demo
@@ -574,14 +529,11 @@ class: topic-both
 </div>
 
 ---
-class: topic-both
----
 
 <WasmDemo />
 
 ---
 layout: center
-class: topic-both
 ---
 
 <h1 class="qa-title">Q&A</h1>

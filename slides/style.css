@@ -1,37 +1,5 @@
-/* Topic-based slide backgrounds */
-:root {
-  --bg-wasm: #1a1028;
-  --bg-otel: #521912;
-}
-
 html:root {
   --slidev-theme-primary: hsl(244, 25%, 47%);
-}
-
-.topic-wasm {
-  background: linear-gradient(315deg, var(--bg-wasm) 0%, transparent 60%);
-}
-
-.topic-otel {
-  background: linear-gradient(135deg, var(--bg-otel) 0%, transparent 60%);
-}
-
-.topic-both {
-  background:
-    linear-gradient(135deg, var(--bg-otel) 0%, transparent 60%),
-    linear-gradient(315deg, var(--bg-wasm) 0%, transparent 60%);
-}
-
-html:not(.dark) .topic-wasm {
-  background: white;
-}
-
-html:not(.dark) .topic-otel {
-  background: white;
-}
-
-html:not(.dark) .topic-both {
-  background: white;
 }
 
 .platforms {
