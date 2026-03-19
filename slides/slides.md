@@ -360,44 +360,6 @@ The Collector supports a variety of compilation targets today:
 
 ---
 
-# Collector running in Wasm: Limitations
-
-<div class="icon-grid">
-  <carbon-scale class="icon" />
-  <span>A Collector Wasm binary is ≥ 38 MiB uncompressed:
-  <ul>
-  <li>~45%: Go runtime and other necessary data.</li>
-  <li>~39%: Third-party libraries.</li>
-  <li>~16%: Go stdlib.</li>
-  </ul>
-  </span>
-
-   <carbon-settings class="icon" />
-  <!-- Source: https://webassembly.org/features/ -->
-  <span>Limited Go support: no network, parallelism, components or Wasm GC.</span>
-  <carbon-misuse class="icon" />
-  <span>Limited TinyGo support: lack of complete stdlib.</span>
-</div>
-
-<!-- EVAN -->
-
-
----
-
-# Collector running in Wasm: <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">gsa</a> analysis
-
-<img src="/gsa.png" class="h-100 mx-auto" />
-
-<!--
-  EVAN
-
-  Ref:
-  https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#data-section
-  https://blog.tangrs.id.au/2022/02/15/notes-on-go-binary-metadata/
--->
-
----
-
 # Collector running in Wasm: OCB manifest
 
 ```yaml{all|1-2,6-8|1,3-4,10-12|14-16|18-19}
@@ -462,6 +424,80 @@ Cross-architecture compilation with Go is a breeze, so simply specify
 the GOOS environment variable for your desired Wasm target and a GOARCH
 of `wasm` to compile to a wasm binary.
  -->
+
+---
+
+# Collector running in Wasm: <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">gsa</a> analysis
+
+<img src="/gsa.png" class="h-100 mx-auto" />
+
+<!--
+  EVAN
+
+  Since we're talking about running in constrainted environments,
+  we used the Go size analyzer tool to examine the binary and
+  see if we could understand what's consuming space in the binary.
+
+  We found it's mostly due to the Go runtime, which is the large
+  pink box in the lower right.
+
+  Next you have dependencies: all the Collector dependencies and
+  its transitive dependencies. These are the dark purple and the
+  light green in the upper left.
+
+  Finally, the Go standard library modules are shown on the right,
+  which consume a meaningful amount of space, but not as much
+  as the other two.
+
+  Ref:
+  
+  https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#data-section
+  
+  https://blog.tangrs.id.au/2022/02/15/notes-on-go-binary-metadata/
+-->
+
+---
+
+# Collector running in Wasm: Limitations
+
+<div class="icon-grid">
+  <carbon-scale class="icon" />
+  <span>A Collector Wasm binary is ≥ 38 MiB uncompressed:
+  <ul>
+  <li>~45%: Go runtime and other necessary data.</li>
+  <li>~39%: Third-party libraries.</li>
+  <li>~16%: Go stdlib.</li>
+  </ul>
+  </span>
+  <carbon-misuse class="icon" />
+  <span>Limited TinyGo support: lack of complete stdlib.</span>
+  <carbon-settings class="icon" />
+  <!-- Source: https://webassembly.org/features/ -->
+  <span>Limited Go support: no network (in WASI), parallelism, components or Wasm GC.</span>
+</div>
+
+<!-- 
+
+EVAN
+
+Overall, binaries come out to 38 MiB uncompressed at a minimum.
+
+The one in this demo is 66 MiB uncompressed. Compression helps: gzip reduces
+the size to 13 MiB.
+
+Most of this is in the Go runtime, and the rest of it either in standard library modules
+or in dependencies.
+
+TinyGo can help reduce binary sizes: it's an alternative compiler compliant with
+the Go language spec targeting restricted platforms like Wasm. However, its
+implementation of the Go standard library isn't complete enough to compile
+the Collector.
+
+Likewise, Go doesn't support all Wasm features, so some things need to happen
+on the Go side before the Collector is able to benefit from them.
+
+
+-->
 
 ---
 
