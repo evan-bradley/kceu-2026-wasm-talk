@@ -427,6 +427,225 @@ of `wasm` to compile to a wasm binary.
 
 ---
 
+# Computing on the edge
+
+<div class="edge-continuum">
+  <div class="edge-track-label">Far edge</div>
+  <div class="edge-track-label">Core</div>
+  <div class="edge-track">
+    <div class="edge-stage far-edge">
+      <carbon-mobile class="stage-icon" />
+      <div class="stage-title">User Device</div>
+      <div class="stage-subtitle">Browser, mobile app, desktop app</div>
+    </div>
+    <div class="edge-arrow" aria-hidden="true"></div>
+    <div class="edge-stage platform-edge">
+      <carbon-edge-node class="stage-icon" />
+      <div class="stage-title">Edge Platform</div>
+      <div class="stage-subtitle">Edge function</div>
+    </div>
+    <div class="edge-arrow" aria-hidden="true"></div>
+    <div class="edge-stage gateway-edge">
+      <carbon-router class="stage-icon" />
+      <div class="stage-title">Middleware / Gateway</div>
+      <div class="stage-subtitle">Gateway, message broker, regional hub</div>
+    </div>
+    <div class="edge-arrow" aria-hidden="true"></div>
+    <div class="edge-stage core-edge">
+      <carbon-data-center class="stage-icon" />
+      <div class="stage-title">Core Infrastructure</div>
+      <div class="stage-subtitle">Central services, control plane, storage</div>
+    </div>
+  </div>
+</div>
+
+---
+transition: fade
+---
+
+# Computing on the edge
+
+<div class="edge-fanin">
+  <div class="edge-track-label">Far edge</div>
+  <div class="edge-track-label">Core</div>
+  <div class="edge-fanin-grid">
+    <div class="fanin-col devices">
+      <div class="edge-stage far-edge row-1 fan-arrow arrow-down-strong">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Browser app</div>
+      </div>
+      <div class="edge-stage far-edge row-2 fan-arrow arrow-down-soft">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Mobile app</div>
+      </div>
+      <div class="edge-stage far-edge row-3 fan-arrow arrow-up-soft">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Desktop app</div>
+      </div>
+      <div class="edge-stage far-edge row-4 fan-arrow arrow-up-strong">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">IoT device</div>
+      </div>
+    </div>
+    <div class="fanin-col platforms">
+      <div class="edge-stage platform-edge row-p1 fan-arrow arrow-down-soft">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+      <div class="edge-stage platform-edge row-p2 fan-arrow arrow-flat">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+      <div class="edge-stage platform-edge row-p3 fan-arrow arrow-up-soft">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+    </div>
+    <div class="fanin-col gateways">
+      <div class="edge-stage gateway-edge row-2 fan-arrow arrow-down-soft">
+        <carbon-router class="stage-icon" />
+        <div class="stage-title">Gateway</div>
+      </div>
+      <div class="edge-stage gateway-edge row-3 fan-arrow arrow-up-soft">
+        <carbon-router class="stage-icon" />
+        <div class="stage-title">Middlware</div>
+      </div>
+    </div>
+    <div class="fanin-col core">
+      <div class="edge-stage core-edge row-core">
+        <carbon-data-center class="stage-icon" />
+        <div class="stage-title">Core Infrastructure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+transition: fade
+---
+
+# Computing on the edge
+
+<div class="edge-fanin">
+  <div class="edge-track-label">Far edge</div>
+  <div class="edge-track-label">Core</div>
+  <div class="edge-fanin-grid">
+    <div class="fanin-col devices fanin-dimmed">
+      <div class="edge-stage far-edge row-1 fan-arrow arrow-down-strong">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Browser app</div>
+      </div>
+      <div class="edge-stage far-edge row-2 fan-arrow arrow-down-soft">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Mobile app</div>
+      </div>
+      <div class="edge-stage far-edge row-3 fan-arrow arrow-up-soft">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Desktop app</div>
+      </div>
+      <div class="edge-stage far-edge row-4 fan-arrow arrow-up-strong">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">IoT device</div>
+      </div>
+    </div>
+    <div class="fanin-col platforms fanin-dimmed">
+      <div class="edge-stage platform-edge row-p1 fan-arrow arrow-down-soft">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+      <div class="edge-stage platform-edge row-p2 fan-arrow arrow-flat">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+      <div class="edge-stage platform-edge row-p3 fan-arrow arrow-up-soft">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+    </div>
+    <div class="fanin-col gateways">
+      <div class="edge-stage gateway-edge row-2 fan-arrow arrow-down-soft">
+        <carbon-router class="stage-icon" />
+        <div class="stage-title">Gateway</div>
+      </div>
+      <div class="edge-stage gateway-edge row-3 fan-arrow arrow-up-soft">
+        <carbon-router class="stage-icon" />
+        <div class="stage-title">Middlware</div>
+      </div>
+    </div>
+    <div class="fanin-col core">
+      <div class="edge-stage core-edge row-core">
+        <carbon-data-center class="stage-icon" />
+        <div class="stage-title">Core Infrastructure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+transition: slide-left
+---
+
+# Computing on the edge
+
+<div class="edge-fanin">
+  <div class="edge-track-label">Far edge</div>
+  <div class="edge-track-label">Core</div>
+  <div class="edge-fanin-grid">
+    <div class="fanin-col devices">
+      <div class="edge-stage far-edge row-1 fan-arrow arrow-down-strong">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Browser app</div>
+      </div>
+      <div class="edge-stage far-edge row-2 fan-arrow arrow-down-soft">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Mobile app</div>
+      </div>
+      <div class="edge-stage far-edge row-3 fan-arrow arrow-up-soft">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">Desktop app</div>
+      </div>
+      <div class="edge-stage far-edge row-4 fan-arrow arrow-up-strong">
+        <carbon-mobile class="stage-icon" />
+        <div class="stage-title">IoT device</div>
+      </div>
+    </div>
+    <div class="fanin-col platforms">
+      <div class="edge-stage platform-edge row-p1 fan-arrow arrow-down-soft">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+      <div class="edge-stage platform-edge row-p2 fan-arrow arrow-flat">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+      <div class="edge-stage platform-edge row-p3 fan-arrow arrow-up-soft">
+        <carbon-edge-node class="stage-icon" />
+        <div class="stage-title">Edge function</div>
+      </div>
+    </div>
+    <div class="fanin-col gateways">
+      <div class="edge-stage gateway-edge row-2 fan-arrow arrow-down-soft">
+        <carbon-router class="stage-icon" />
+        <div class="stage-title">Gateway</div>
+      </div>
+      <div class="edge-stage gateway-edge row-3 fan-arrow arrow-up-soft">
+        <carbon-router class="stage-icon" />
+        <div class="stage-title">Middlware</div>
+      </div>
+    </div>
+    <div class="fanin-col core">
+      <div class="edge-stage core-edge row-core">
+        <carbon-data-center class="stage-icon" />
+        <div class="stage-title">Core Infrastructure</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+---
+transition: slide-left
+---
+
 # Observability without borders
 
 <div class="icon-grid">
