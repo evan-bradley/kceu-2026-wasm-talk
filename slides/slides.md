@@ -474,7 +474,7 @@ of `wasm` to compile to a wasm binary.
   <carbon-flow class="icon" />
   <span>Concurrency support in the Component Model and WASI 1.0.</span>
   <carbon-package class="icon" />
-  <span>TinyGo compatibility opens up the possibility of smaller binaries and WASIp2.</span>
+  <span>Wider TinyGo stdlib support could allow for smaller binaries.</span>
   <carbon-microphone class="icon" />
   <span>WASI OTel (talk happening at WASMCon).</span>
   <carbon-group class="icon" />
