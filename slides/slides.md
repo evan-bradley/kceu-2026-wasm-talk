@@ -59,9 +59,9 @@ After that, mention pitch succintly: the Collector allows you to build telemetry
 
 <div class="icon-grid">
   <carbon-checkmark-outline class="icon" />
-  <span>WASM is ready today for use in production</span>
+  <span>Wasm is ready today for use in production</span>
   <carbon-checkmark class="icon" />
-  <span>The Collector already largely supports compilation to WASM</span>
+  <span>The Collector already largely supports compilation to Wasm</span>
   <carbon-idea class="icon" />
   <span>Upstream support means it's ready for your ideas</span>
 </div>
@@ -138,13 +138,13 @@ in their thick client web apps with success as we'll discuss later.
 
 ---
 
-# WASM and WASI
+# Wasm and WASI
 
 WASI extends provides standardized interfaces for filesystem, networking...
 
 <div class="comparison-grid">
   <div class="info-box">
-    <h3 class="opacity-100">WebAssembly (WASM)</h3>
+    <h3 class="opacity-100">WebAssembly (Wasm)</h3>
     <ul>
       <li v-click="1">Binary format targeted for browsers</li>
       <li v-click="2">Can only see what the host allows</li>
@@ -155,7 +155,7 @@ WASI extends provides standardized interfaces for filesystem, networking...
   <div class="info-box">
     <h3 class="opacity-100">WASI</h3>
     <ul>
-      <li v-click="1">WASM interfaces for OS interaction</li>
+      <li v-click="1">Wasm interfaces for OS interaction</li>
       <li v-click="2">Standardized but controlled access</li>
       <li v-click="3">Unstable (WASIp2) specification</li>
       <li v-click="4">Less widely supported</li>
@@ -174,15 +174,15 @@ WASI extends provides standardized interfaces for filesystem, networking...
 
 ---
 
-# WASM in production today
+# Wasm in production today
 
 <div class="icon-grid">
   <carbon-pen-fountain class="icon" />
-  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> — WASM cut load times by 3× for all document sizes</span>
+  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> — Wasm cut load times by 3× for all document sizes</span>
   <carbon-image class="icon" />
-  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> — Acrobat, Photoshop, and Lightroom run in the browser and leverage WASM</span>
+  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> — Acrobat, Photoshop, and Lightroom run in the browser and leverage Wasm</span>
   <carbon-logo-google class="icon" />
-  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> — Earth, Sheets, Photos and Meet, use WASM for cross-platform code sharing</span>
+  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> — Earth, Sheets, Photos and Meet, use Wasm for cross-platform code sharing</span>
 </div>
 
 
@@ -215,7 +215,7 @@ WASI extends provides standardized interfaces for filesystem, networking...
 transition: fade
 ---
 
-# WASM plugins inside the Collector
+# Wasm plugins inside the Collector
 
 <div class="arch-slide">
   <div class="arch-diagram">
@@ -223,11 +223,11 @@ transition: fade
       <span class="arch-label-left">Collector</span>
       <span class="arch-label-right arch-native">Native</span>
       <div class="arch-block runtime-block">
-        <span class="arch-label-left">WASM runtime</span>
+        <span class="arch-label-left">Wasm runtime</span>
         <span class="arch-label-right arch-native">Native (Go library)</span>
         <div class="arch-block plugin-block">
           <span class="arch-label-left">Plugin</span>
-          <span class="arch-label-right arch-wasm">WASM</span>
+          <span class="arch-label-right arch-wasm">Wasm</span>
         </div>
       </div>
     </div>
@@ -244,7 +244,7 @@ transition: fade
 
 ---
 
-# WASM plugins inside the Collector: the vision
+# Wasm plugins inside the Collector: the vision
 
 <div class="icon-grid">
   <carbon-api class="icon" />
@@ -260,16 +260,16 @@ transition: fade
 
 ---
 
-# Collector running in WASM
+# Collector running in Wasm
 
 <div class="arch-slide">
   <div class="arch-diagram">
     <div class="arch-box-root arch-block runtime-block">
-      <span class="arch-label-left">WASM runtime</span>
+      <span class="arch-label-left">Wasm runtime</span>
       <span class="arch-label-right arch-native">Native</span>
       <div class="arch-block collector-block">
         <span class="arch-label-left">Collector</span>
-        <span class="arch-label-right arch-wasm">WASM</span>
+        <span class="arch-label-right arch-wasm">Wasm</span>
       </div>
     </div>
   </div>
@@ -277,7 +277,7 @@ transition: fade
     <ul>
       <li><a href="https://ottl.run/">ottl.run</a></li>
       <li>Filtering, sampling and transforming in the browser</li>
-      <li>Run it on your WASM runtime for sandboxing</li>
+      <li>Run it on your Wasm runtime for sandboxing</li>
     </ul>
   </div>
 </div>
@@ -317,7 +317,7 @@ The Collector supports a variety of compilation targets today:
 
 ---
 
-# Collector running in WASM: Upstream developments
+# Collector running in Wasm: Upstream developments
 
 <div class="icon-grid">
   <carbon-add-alt class="icon" />
@@ -331,11 +331,11 @@ The Collector supports a variety of compilation targets today:
 
 ---
 
-# Collector running in WASM: Limitations
+# Collector running in Wasm: Limitations
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
-  <span>A Collector WASM binary is ≥ 38 MiB uncompressed:
+  <span>A Collector Wasm binary is ≥ 38 MiB uncompressed:
   <ul>
   <li>~45%: Go runtime and other necessary data</li>
   <li>~39%: Third-party libraries</li>
@@ -345,14 +345,14 @@ The Collector supports a variety of compilation targets today:
 
    <carbon-settings class="icon" />
   <!-- Source: https://webassembly.org/features/ -->
-  <span>Limited Go support: no network, parallelism, components or WASM GC</span>
+  <span>Limited Go support: no network, parallelism, components or Wasm GC</span>
   <carbon-misuse class="icon" />
   <span>Limited TinyGo support: lack of complete stdlib.</span>
 </div>
 
 ---
 
-# Collector running in WASM: <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">gsa</a> analysis
+# Collector running in Wasm: <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">gsa</a> analysis
 
 <img src="/gsa.png" class="h-100 mx-auto" />
 
@@ -364,7 +364,7 @@ The Collector supports a variety of compilation targets today:
 
 ---
 
-# Collector running in WASM: OCB manifest
+# Collector running in Wasm: OCB manifest
 
 ```yaml{all|1-2,6-8|1,3-4,10-12|14-16|18-19}
 exporters:
@@ -410,7 +410,7 @@ conf_resolver:
 
 ---
 
-# Collector running in WASM: Creating a WASM binary
+# Collector running in Wasm: Creating a Wasm binary
 
 <div class="icon-grid">
   <carbon-terminal class="icon" />
@@ -654,7 +654,7 @@ transition: slide-left
   <carbon-plug class="icon" />
   <span>Running as a language plugin</span>
   <carbon-container-software class="icon" />
-  <span>Running in WASM runtimes</span>
+  <span>Running in Wasm runtimes</span>
 </div>
 
 <!-- 
@@ -746,7 +746,7 @@ implications that will need to be carefully considered with this model.
 
 ---
 
-# Observability without borders: WASM runtime
+# Observability without borders: Wasm runtime
 
 <div class="icon-grid">
   <carbon-wifi-off class="icon" />
@@ -754,7 +754,7 @@ implications that will need to be carefully considered with this model.
   <carbon-folder class="icon" />
   <span>Filesystem access is available if the host grants it</span>
   <carbon-edge-node-alt class="icon" />
-  <span>For use alongside other WASM applications or in edge functions</span>
+  <span>For use alongside other Wasm applications or in edge functions</span>
 </div>
 
 <!-- 
@@ -823,7 +823,7 @@ love to get your ideas and contributions for what comes next!
   <carbon-package class="icon" />
   <span>Wider TinyGo stdlib support could allow for smaller binaries.</span>
   <carbon-microphone class="icon" />
-  <span>WASI OTel (talk happening at WASMCon).</span>
+  <span>WASI OTel (talk happening at WasmCon).</span>
   <carbon-group class="icon" />
   <span>Contributions from YOU in the audience!</span>
 </div>
@@ -873,7 +873,7 @@ with Wasm, we created a small demo that runs right inside these slides.
         </div>
         <div class="demo-collector-wrapper arch-block wasm-col-block">
           <span class="arch-label-left">Collector</span>
-          <span class="arch-label-right arch-wasm">WASM</span>
+          <span class="arch-label-right arch-wasm">Wasm</span>
           <div class="demo-collector-inner">
             <div class="demo-subcomp">JS Receiver</div>
             <div class="demo-inner-arrow"></div>
