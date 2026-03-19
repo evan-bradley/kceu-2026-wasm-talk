@@ -462,18 +462,14 @@ of `wasm` to compile to a wasm binary.
 
 <div class="icon-grid">
   <carbon-scale class="icon" />
-  <span>A Collector Wasm binary is ≥ 38 MiB uncompressed:
-  <ul>
-  <li>~45%: Go runtime and other necessary data.</li>
-  <li>~39%: Third-party libraries.</li>
-  <li>~16%: Go stdlib.</li>
-  </ul>
-  </span>
+  <span>Binaries are ≥ 38 MiB: 45% runtime and 55% dependencies</span>
+  <carbon-archive class="icon" />
+  <span>Our demo Wasm Collector is 66 MiB, but <b>13 MiB</b> compressed</span>
   <carbon-misuse class="icon" />
   <span>Limited TinyGo support: lack of complete stdlib.</span>
   <carbon-settings class="icon" />
   <!-- Source: https://webassembly.org/features/ -->
-  <span>Limited Go support: no network (in WASI), parallelism, components or Wasm GC.</span>
+  <span>Limited Go support: no network (in WASI), parallelism, components, or Wasm GC.</span>
 </div>
 
 <!-- 
