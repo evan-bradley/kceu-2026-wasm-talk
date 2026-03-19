@@ -432,11 +432,37 @@ of `wasm` to compile to a wasm binary.
 <div class="icon-grid">
   <carbon-application-web class="icon" />
   <span>Running in a browser</span>
-  <carbon-container-software class="icon" />
-  <span>Running in WASM</span>
   <carbon-plug class="icon" />
   <span>Running as a language plugin</span>
+  <carbon-container-software class="icon" />
+  <span>Running in WASM runtimes</span>
 </div>
+
+<!-- 
+
+We've covered how the Collector and Wasm can work together, but
+where can you use this?
+
+1. The option we've found works the best out of the box right now,
+   and probably the most unexpected one, is running it in the browser.
+   This has the most restrictions, but allows you to run Collectors
+   on a user's machine.
+2. There are also a number of server-side Wasm runtimes available
+   that boast low startup times and effective sandboxing without
+   container technology like Docker. These can allow you to run
+   apps in unusual places like edge functions (e.g. Cloudflare workers)
+3. You can also use the Collecotr in-process in one of your applications
+   using a Wasm runtime built for that language.
+
+
+The point of all of this is that you can leverage Wasm to run your
+Collectors in the odd nooks and crannies of your infrastructure,
+which if used tactfully, may open up new possibilities for
+your telemetry pipelines.
+
+Let's cover some of the trade-offs that each of these options provides.
+
+ -->
 
 ---
 
@@ -448,8 +474,56 @@ of `wasm` to compile to a wasm binary.
   <carbon-close-outline class="icon" />
   <span>Can't open ports</span>
   <carbon-application class="icon" />
-  <span>Uses: SDK, thick-client apps, heavy in-browser apps and electron apps</span>
+  <span>Uses: SDK processing supplement, Electron/thick-client apps</span>
 </div>
+
+<!-- 
+
+Running in the browser puts the Collector directly on your user's device.
+It doesn't get more on the edge than this.
+
+There's no filesystem access at this layer, and you can't open ports,
+but you can still make network calls to send or receive data.
+
+You can use this to supplement processing in your JS SDK if you're
+working with a JS-based webapp, or possibly for another language's
+SDK if you're running your app in Wasm!
+
+We think this will most likely find use in thick-client applications
+like Electron apps, where there applications are large and more likely
+to want to use the Collector for local processing.
+
+ -->
+
+---
+
+# Observability without borders: language plugin
+
+* Many languages have in-process Wasm runtimes.
+* Can call a Collector pipeline just like a function
+* Can be used for non-JS OTel SDK processing.
+* Note: likely has performance implications.
+
+<!-- 
+
+If you're not dealing with a JS-based web app, you still have options
+for running the Collector in-process.
+
+Most languages have an in-process Wasm runtime, meaning if you run a Collector
+built with receivers and exporters that export a Wasm interface, you can call
+a Collector pipeline just like a function call.
+
+This would be most useful for leveraging the Collector's processing capabilities
+(for example transform processor statements with OTTL), but could also be used
+for enrichment, Collector exporters, etc.
+
+This option is best when you're looking to simplify the number of deployed services
+you have; for network-based service architectures (like microservices), you
+should consider sticking with that unless you have a reason to switch. The fact
+that data has to be somehow shared with the Wasm runtime means there are performance
+implications that will need to be carefully considered with this model.
+
+ -->
 
 ---
 
@@ -459,10 +533,64 @@ of `wasm` to compile to a wasm binary.
   <carbon-wifi-off class="icon" />
   <span>Limited/no networking currently (Go only supports WASIp1)</span>
   <carbon-folder class="icon" />
-  <span>Filesystem access available if the host grants it</span>
-  <carbon-partnership class="icon" />
-  <span>Realistically should only be used alongside other WASM applications</span>
+  <span>Filesystem access is available if the host grants it</span>
+  <carbon-edge-node-alt class="icon" />
+  <span>For use alongside other WASM applications or in edge functions</span>
 </div>
+
+<!-- 
+
+Finally, the Collector can be run standalone within a Wasm runtime.
+
+It's important to note that as of today, Go only supports compiling
+to WASIp1, which doesn't incude networking capabilities. You can still
+read from the filesystem or export functions to be called from the Wasm
+runtime.
+
+This is going to be most useful if you include the Collector as part of
+a Wasm application composed of multiple modules, or for use in edge
+function runtimes.
+
+Further reading: https://go.dev/blog/wasmexport
+
+ -->
+
+---
+
+# Observability without borders: what it's not
+
+<div class="icon-grid">
+  <carbon-code class="icon" />
+  <span>Doesn't replace OTel SDKs.</span>
+  <carbon-container-software class="icon" />
+  <span>Unlikely to replace most existing Collector deployments.</span>
+  <carbon-floorplan class="icon" />
+  <span>Not a working solution, just a blueprint.</span>
+</div>
+
+<!-- 
+
+Since this is an advanced use case, we want to very clearly call out what
+this is NOT.
+
+First, you're not going to replace OTel SDKs with this, and in most cases
+should simplify and stick with an SDK and use SDK processors if possible.
+
+You're also not going to likely want to go and switch your Collector
+deployment architecture after seeing this presentation. We have tested
+ourselves and seen architectures used by users that are battle-tested
+in production environments that should be the default recommendations
+for most users. Think of this as a way to open possibilities for
+maximizing your telemetry pipeline's capabilities.
+
+Finally, nothing we've shown here is a working solution ready for
+production right now. While Wasm is currently used in production
+environments for large, established applications as we've shown,
+what we're showing you today is on the bleeding edge of what's
+possible. Again, there is official support for this, so we would
+love to get your ideas and contributions for what comes next!
+
+ -->
 
 ---
 
@@ -481,6 +609,13 @@ of `wasm` to compile to a wasm binary.
   <span>Contributions from YOU in the audience!</span>
 </div>
 
+<!-- 
+
+Looking ahead, here are some areas where we have seen active development,
+or where there needs to be active developments to take this further.
+
+ -->
+
 ---
 
 # Demo
@@ -492,6 +627,13 @@ of `wasm` to compile to a wasm binary.
   <span>It runs on any modern browser, so try it on your phone!</span>
   <QrArrow />
 </div>
+
+<!-- 
+
+To hopefully help demonstrate the cool factor of what's possible
+with Wasm, we created a small demo that runs right inside these slides.
+
+ -->
 
 ---
 
