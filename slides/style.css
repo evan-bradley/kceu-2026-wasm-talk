@@ -374,7 +374,7 @@ html:root {
   position: absolute;
   top: 50%;
   left: calc(100% + 0.3rem);
-  width: 1rem;
+  width: 1.5rem;
   border-top: 2px solid rgba(148, 163, 184, 0.9);
   transform: translateY(-50%);
 }
@@ -383,23 +383,34 @@ html:root {
   content: '';
   position: absolute;
   top: 50%;
-  left: calc(100% + 1.3rem);
+  left: calc(100% + 1.8rem);
   border: 5px solid transparent;
   border-left: 8px solid rgba(148, 163, 184, 0.9);
   transform: translateY(-50%);
 }
 
-.edge-fanin .arrow-flat::before,
-.edge-fanin .arrow-flat::after,
 .edge-fanin .arrow-down-soft::before,
+.edge-fanin .arrow-down-strong::before {
+  transform-origin: 0 50%;
+  transform: translateY(-50%) rotate(30deg);
+}
+
 .edge-fanin .arrow-down-soft::after,
-.edge-fanin .arrow-down-strong::before,
-.edge-fanin .arrow-down-strong::after,
+.edge-fanin .arrow-down-strong::after {
+  transform-origin: -1.5rem 50%;
+  transform: translateY(-50%) rotate(30deg);
+}
+
 .edge-fanin .arrow-up-soft::before,
+.edge-fanin .arrow-up-strong::before {
+  transform-origin: 0 50%;
+  transform: translateY(-50%) rotate(-30deg);
+}
+
 .edge-fanin .arrow-up-soft::after,
-.edge-fanin .arrow-up-strong::before,
 .edge-fanin .arrow-up-strong::after {
-  /* all arrows point straight right */
+  transform-origin: -1.5rem 50%;
+  transform: translateY(-50%) rotate(-30deg);
 }
 
 .edge-fanin .row-1 {
