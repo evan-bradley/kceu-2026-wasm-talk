@@ -41,12 +41,12 @@ We have added some links to interesting tidbits throughout the slides that you c
 <div class="speakers-grid">
   <div class="speaker">
     <img src="/pablo.jpeg" class="speaker-pic" />
-    <div class="speaker-name">Pablo Baeyens</div>
+    <div class="speaker-name"><a href="https://github.com/mx-psi">Pablo Baeyens</a></div>
     <div class="speaker-org">Datadog</div>
   </div>
   <div class="speaker">
     <img src="/evan.jpg" class="speaker-pic" />
-    <div class="speaker-name">Evan Bradley</div>
+    <div class="speaker-name"><a href="https://github.com/evan-bradley">Evan Bradley</a></div>
     <div class="speaker-org">Dynatrace</div>
   </div>
 </div>
@@ -57,23 +57,13 @@ I am Pablo and this is Evan, we are both maintainers in the Collector SIG.
 
 ---
 
-# What is the Collector?
-
-<img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
-
-<!-- PABLO: As most of you know OpenTelemetry is the open standard for telemetry.
-
-The Collector is a tool offered by OpenTelemetry that allows you to build telemetry pipelines to receive, process and export your telemetry from any source to any backend.-->
-
----
-
 # What we will cover
 
 <div class="icon-grid">
   <carbon-checkmark-outline class="icon" />
-  <span>Wasm is ready today for use in production.</span>
+  <span>Wasm is ready today for use in production, with caveats.</span>
   <carbon-checkmark class="icon" />
-  <span>The Collector already largely supports compilation to Wasm.</span>
+  <span>The Collector already has basic support for compilation to Wasm.</span>
   <carbon-idea class="icon" />
   <span>Upstream support means it's ready for your ideas.</span>
 </div>
@@ -97,7 +87,17 @@ Here are some key points to keep in mind as we go through the presentation:
 
 ---
 
-# Write once, run everywhere™
+# What is the OpenTelemetry Collector?
+
+<img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
+
+<!-- PABLO: As most of you know OpenTelemetry is the open standard for telemetry.
+
+The Collector is a tool offered by OpenTelemetry that allows you to build telemetry pipelines to receive, process and export your telemetry from any source to any backend.-->
+
+---
+
+# What is WebAssembly? Write once, run everywhere™
 
 <Timeline :items="[
   { year: '1972', desc: 'C specification prioritizes ease of writing compilers' },
@@ -121,7 +121,41 @@ But hopefully this offers a bit of context behind the goals of WebAssembly.
 
 ---
 
-# Why WebAssembly?
+# Wasm in production today
+
+<div class="icon-grid">
+  <carbon-scale class="icon" />
+  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> all use it for plugins.</span>
+  <carbon-pen-fountain class="icon" />
+  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> - Wasm cut load times by 3x for all document sizes.</span>
+  <carbon-image class="icon" />
+  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> - Acrobat, Photoshop, and Lightroom run in the browser.</span>
+  <carbon-logo-google class="icon" />
+  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> - Used for cross-platform code sharing.</span>
+</div>
+
+
+<!-- 
+
+  PABLO:
+
+  WebAssembly has already been in use for large thick-client apps for a long time now.
+
+  1. Some other cloud-native projects like Envoy, Istio and Kubernetes use it in a limited way to provide filters and plugins.
+  2. Figma is written in C++, and switched their C++ to JavaScript compilation target
+     from asm.js to WebAssembly and saw a significant gain in document loading speed.
+  3. Adobe also has long-standing software written for desktops and has leveraged
+     WebAssembly to support running some of their suite in the browser.
+  4. Google applications that require heavy processing also offload heavy computations
+     to WebAssembly modules to keep their applications performant.
+
+ Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
+
+
+
+---
+
+# Why WebAssembly + OTel Collector?
 
 <div class="icon-grid">
   <carbon-devices class="icon" />
@@ -156,7 +190,7 @@ in their thick client web apps with success as we'll discuss later.
 
 ---
 
-# Wasm and WASI
+# What is WebAssembly? Wasm and WASI
 
 WASI extends provides standardized interfaces for filesystem, networking...
 
@@ -197,39 +231,7 @@ WASI extends provides standardized interfaces for filesystem, networking...
 
 ---
 
-# Wasm in production today
-
-<div class="icon-grid">
-  <carbon-scale class="icon" />
-  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> all use it for plugins.</span>
-  <carbon-pen-fountain class="icon" />
-  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> - Wasm cut load times by 3x for all document sizes.</span>
-  <carbon-image class="icon" />
-  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> - Acrobat, Photoshop, and Lightroom run in the browser.</span>
-  <carbon-logo-google class="icon" />
-  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> - Used for cross-platform code sharing.</span>
-</div>
-
-
-<!-- 
-
-  PABLO:
-
-  WebAssembly has already been in use for large thick-client apps for a long time now.
-
-  1. Some other cloud-native projects like Envoy, Istio and Kubernetes use it in a limited way to provide filters and plugins.
-  2. Figma is written in C++, and switched their C++ to JavaScript compilation target
-     from asm.js to WebAssembly and saw a significant gain in document loading speed.
-  3. Adobe also has long-standing software written for desktops and has leveraged
-     WebAssembly to support running some of their suite in the browser.
-  4. Google applications that require heavy processing also offload heavy computations
-     to WebAssembly modules to keep their applications performant.
-
- Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
-
----
-
-# WASI previews
+# What is WebAssembly? WASI previews
 
 <Timeline :items="[
   { year: '~2020', desc: '<div class=tl-card-title>WASIp1</div><ul><li>Single API.</li><li>Limited Go support.</li></ul>' },
