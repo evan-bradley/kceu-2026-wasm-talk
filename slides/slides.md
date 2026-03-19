@@ -24,6 +24,8 @@ fonts:
 
 <img src="/kceu26.svg" class="kceu-logo" />
 
+<!-- PABLO -->
+
 ---
 
 # About us
@@ -41,7 +43,7 @@ fonts:
   </div>
 </div>
 
-<!-- Mention that we are both maintainers in the Collector SIG -->
+<!-- PABLO: Mention that we are both maintainers in the Collector SIG -->
 
 ---
 
@@ -49,7 +51,7 @@ fonts:
 
 <img src="/otel-diagram.svg" style="flex: 1; min-height: 0; max-width: 100%; object-fit: contain; display: block; margin: auto;" />
 
-<!-- Show of hands.
+<!-- PABLO: Show of hands.
 
 After that, mention pitch succintly: the Collector allows you to build telemetry pipelines to receiver, process and export your telemetry from any source to any backend.-->
 
@@ -67,6 +69,8 @@ After that, mention pitch succintly: the Collector allows you to build telemetry
 </div>
 
 <!-- 
+
+PABLO: 
 
 Some key points to keep in mind as we go through the presentation:
 
@@ -95,6 +99,8 @@ Some key points to keep in mind as we go through the presentation:
 
 <!-- 
 
+PABLO:
+
 Writing a program a single time and being able to run it on any machine has long been a
 goal. Starting in 1972 ... [slide content]
 
@@ -109,7 +115,7 @@ But hopefully this offers a bit of context behind the goals of WebAssembly.
 
 <div class="icon-grid">
   <carbon-devices class="icon" />
-  <span>Most likely format to run on a user device</span>
+  <span>Expands devices the Collector can run on, including user devices</span>
   <carbon-code class="icon" />
   <span>Compile from Go, Rust, C++ and many other languages</span>
   <carbon-flash class="icon" />
@@ -117,6 +123,8 @@ But hopefully this offers a bit of context behind the goals of WebAssembly.
 </div>
 
 <!-- 
+
+PABLO:
 
 WebAssembly has wide support, both in terms of runtime implementations
 and in programming language support. All major browsers have supported
@@ -165,6 +173,8 @@ WASI extends provides standardized interfaces for filesystem, networking...
 
 <!-- 
 
+  PABLO:
+
   As we mentioned, WebAssembly can also be run server-side and not just in the browser.
   This means its possible to do certain things (e.g. filesystem access) that aren't
   possible in the browser, which is where The WebAssembly System Interface, or WASI,
@@ -177,16 +187,20 @@ WASI extends provides standardized interfaces for filesystem, networking...
 # Wasm in production today
 
 <div class="icon-grid">
+  <carbon-scale class="icon" />
+  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> use it for plugins</span>
   <carbon-pen-fountain class="icon" />
-  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> — Wasm cut load times by 3× for all document sizes</span>
+  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> - Wasm cut load times by 3x for all document sizes</span>
   <carbon-image class="icon" />
-  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> — Acrobat, Photoshop, and Lightroom run in the browser and leverage Wasm</span>
+  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> - Acrobat, Photoshop, and Lightroom run in the browser</span>
   <carbon-logo-google class="icon" />
-  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> — Earth, Sheets, Photos and Meet, use Wasm for cross-platform code sharing</span>
+  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> - Used for cross-platform code sharing</span>
 </div>
 
 
 <!-- 
+
+  PABLO:
 
   WebAssembly has already been in use for large thick-client apps for a long time now.
 
@@ -197,9 +211,7 @@ WASI extends provides standardized interfaces for filesystem, networking...
   3. Google applications that require heavy processing also offload heavy computations
      to WebAssembly modules to keep their applications performant.
 
- -->
-
-<!-- Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
+ Source: https://leaddev.com/technical-direction/webassembly-still-waiting-its-moment -->
 
 ---
 
@@ -210,6 +222,8 @@ WASI extends provides standardized interfaces for filesystem, networking...
   { year: '2024', desc: '<div class=tl-card-title>WASIp2</div><ul><li>Component model</li><li>HTTP support</li><li>Only TinyGo support</li></ul>' },
   { year: '<i>2026?</i>', desc: '<div class=tl-card-title>WASIp3</div><ul><li>Async I/O</li><li>Concurrency support</li><li>Planned Go support</li></ul>' },
 ]" />
+
+<!-- PABLO -->
 
 ---
 transition: fade
@@ -242,6 +256,8 @@ transition: fade
   </div>
 </div>
 
+<!-- PABLO -->
+
 ---
 
 # Wasm plugins inside the Collector: the vision
@@ -257,6 +273,13 @@ transition: fade
   <span>Write your Collector components in any* language</span>
 </div>
 
+<!-- PABLO -->
+
+---
+
+# TODO slide goes here
+
+<!-- PABLO -->
 
 ---
 
@@ -275,12 +298,14 @@ transition: fade
   </div>
   <div class="arch-details">
     <ul>
-      <li><a href="https://ottl.run/">ottl.run</a></li>
       <li>Filtering, sampling and transforming in the browser</li>
       <li>Run it on your Wasm runtime for sandboxing</li>
+      <li>Run only some parts: <a href="https://ottl.run/">ottl.run</a></li>
     </ul>
   </div>
 </div>
+
+<!-- PABLO -->
 
 ---
 
@@ -315,18 +340,22 @@ The Collector supports a variety of compilation targets today:
   </div>
 </div>
 
+<!-- PABLO -->
+
 ---
 
 # Collector running in Wasm: Upstream developments
 
 <div class="icon-grid">
   <carbon-add-alt class="icon" />
-  <span><code>js/wasm</code> added as a Tier-3 platform (Feb 2026)</span>
+  <span><code>js/wasm</code> added as a <a href="https://github.com/open-telemetry/opentelemetry-collector/blob/main/docs/platform-support.md#tier-3---community-support">Tier-3 platform</a> (Feb 2026)</span>
   <carbon-cut class="icon" />
   <span>Custom telemetry provider to strip down binary. (Feb 2026)</span>
   <carbon-chart-bar class="icon" />
   <span>244 of 271 (~90%) Collector components already compile to <code>js/wasm</code></span>
 </div>
+
+<!-- PABLO -->
 
 
 ---
@@ -350,6 +379,9 @@ The Collector supports a variety of compilation targets today:
   <span>Limited TinyGo support: lack of complete stdlib.</span>
 </div>
 
+<!-- EVAN -->
+
+
 ---
 
 # Collector running in Wasm: <a href="https://www.datadoghq.com/blog/engineering/agent-go-binaries/">gsa</a> analysis
@@ -357,6 +389,8 @@ The Collector supports a variety of compilation targets today:
 <img src="/gsa.png" class="h-100 mx-auto" />
 
 <!--
+  EVAN
+
   Ref:
   https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#data-section
   https://blog.tangrs.id.au/2022/02/15/notes-on-go-binary-metadata/
@@ -390,6 +424,8 @@ conf_resolver:
 
 <!-- 
 
+  EVAN:
+
   Here's the build manifest used by the OpenTelemetry Collector Builder, which we call OCB.
   This is a slightly cut-down version of the manifest we use to build the Collector you'll
   see later in the slides.
@@ -420,6 +456,8 @@ conf_resolver:
 </div>
 
 <!-- 
+
+EVAN: 
 Cross-architecture compilation with Go is a breeze, so simply specify
 the GOOS environment variable for your desired Wasm target and a GOARCH
 of `wasm` to compile to a wasm binary.
@@ -458,6 +496,9 @@ of `wasm` to compile to a wasm binary.
     </div>
   </div>
 </div>
+
+<!-- EVAN -->
+
 
 ---
 transition: fade
@@ -508,7 +549,7 @@ transition: fade
       </div>
       <div class="edge-stage gateway-edge row-3 fan-arrow arrow-up-soft">
         <carbon-router class="stage-icon" />
-        <div class="stage-title">Middlware</div>
+        <div class="stage-title">Middleware</div>
       </div>
     </div>
     <div class="fanin-col core">
@@ -519,6 +560,8 @@ transition: fade
     </div>
   </div>
 </div>
+
+<!-- EVAN -->
 
 ---
 transition: fade
@@ -569,7 +612,7 @@ transition: fade
       </div>
       <div class="edge-stage gateway-edge row-3 fan-arrow arrow-up-soft">
         <carbon-router class="stage-icon" />
-        <div class="stage-title">Middlware</div>
+        <div class="stage-title">Middleware</div>
       </div>
     </div>
     <div class="fanin-col core">
@@ -580,6 +623,8 @@ transition: fade
     </div>
   </div>
 </div>
+
+<!-- EVAN -->
 
 ---
 transition: slide-left
@@ -630,7 +675,7 @@ transition: slide-left
       </div>
       <div class="edge-stage gateway-edge row-3 fan-arrow arrow-up-soft">
         <carbon-router class="stage-icon" />
-        <div class="stage-title">Middlware</div>
+        <div class="stage-title">Middleware</div>
       </div>
     </div>
     <div class="fanin-col core">
@@ -641,6 +686,8 @@ transition: slide-left
     </div>
   </div>
 </div>
+
+<!-- EVAN -->
 
 ---
 transition: slide-left
@@ -659,7 +706,7 @@ transition: slide-left
 
 <!-- 
 
-We've covered how the Collector and Wasm can work together, but
+EVAN: We've covered how the Collector and Wasm can work together, but
 where can you use this?
 
 1. The option we've found works the best out of the box right now,
@@ -698,7 +745,7 @@ Let's cover some of the trade-offs that each of these options provides.
 
 <!-- 
 
-Running in the browser puts the Collector directly on your user's device.
+EVAN: Running in the browser puts the Collector directly on your user's device.
 It doesn't get more on the edge than this.
 
 There's no filesystem access at this layer, and you can't open ports,
@@ -725,7 +772,7 @@ to want to use the Collector for local processing.
 
 <!-- 
 
-If you're not dealing with a JS-based web app, you still have options
+EVAN: If you're not dealing with a JS-based web app, you still have options
 for running the Collector in-process.
 
 Most languages have an in-process Wasm runtime, meaning if you run a Collector
@@ -759,7 +806,7 @@ implications that will need to be carefully considered with this model.
 
 <!-- 
 
-Finally, the Collector can be run standalone within a Wasm runtime.
+EVAN: Finally, the Collector can be run standalone within a Wasm runtime.
 
 It's important to note that as of today, Go only supports compiling
 to WASIp1, which doesn't incude networking capabilities. You can still
@@ -789,7 +836,7 @@ Further reading: https://go.dev/blog/wasmexport
 
 <!-- 
 
-Since this is an advanced use case, we want to very clearly call out what
+EVAN: Since this is an advanced use case, we want to very clearly call out what
 this is NOT.
 
 First, you're not going to replace OTel SDKs with this, and in most cases
@@ -823,14 +870,14 @@ love to get your ideas and contributions for what comes next!
   <carbon-package class="icon" />
   <span>Wider TinyGo stdlib support could allow for smaller binaries.</span>
   <carbon-microphone class="icon" />
-  <span>WASI OTel (talk happening at WasmCon).</span>
+  <span>WASI OTel (<a href="https://sched.co/2DY17">WasmCon talk earlier today</a>).</span>
   <carbon-group class="icon" />
   <span>Contributions from YOU in the audience!</span>
 </div>
 
 <!-- 
 
-Looking ahead, here are some areas where we have seen active development,
+EVAN: Looking ahead, here are some areas where we have seen active development,
 or where there needs to be active developments to take this further.
 
  -->
@@ -849,7 +896,7 @@ or where there needs to be active developments to take this further.
 
 <!-- 
 
-To hopefully help demonstrate the cool factor of what's possible
+BOTH: To hopefully help demonstrate the cool factor of what's possible
 with Wasm, we created a small demo that runs right inside these slides.
 
  -->
@@ -889,9 +936,13 @@ with Wasm, we created a small demo that runs right inside these slides.
   </div>
 </div>
 
+<!-- BOTH -->
+
 ---
 
 <WasmDemo />
+
+<!-- BOTH -->
 
 ---
 layout: center
@@ -902,3 +953,5 @@ layout: center
 <QrArrow />
 
 <img src="/kceu26.svg" class="kceu-logo" />
+
+<!-- BOTH -->
