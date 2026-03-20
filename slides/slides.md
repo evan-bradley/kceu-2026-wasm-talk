@@ -574,7 +574,7 @@ of `wasm` to compile to a wasm binary.
   <span>Limited TinyGo support: lack of complete stdlib.</span>
   <carbon-settings class="icon" />
   <!-- Source: https://webassembly.org/features/ -->
-  <span>Limited Go support: no network (in WASI), parallelism, or Wasm GC.</span>
+  <span>Limited Go support: no network (in WASI), concurrency, or Wasm GC.</span>
 </div>
 
 <!-- 
@@ -875,7 +875,7 @@ Let's cover some of the trade-offs that each of these options provides.
   <carbon-close-outline class="icon" />
   <span>Can't open ports.</span>
   <carbon-application class="icon" />
-  <span>Uses: SDK processing supplement, Electron/thick-client apps.</span>
+  <span>Uses: JS SDK processing supplement, Electron/thick-client apps.</span>
 </div>
 
 <!-- 
@@ -981,8 +981,6 @@ love to get your ideas and contributions for what comes next!
 <div class="icon-grid">
   <carbon-in-progress class="icon" />
   <span>Go WASIp3 support still under active discussion.</span>
-  <carbon-flow class="icon" />
-  <span>Better concurrency support, Wasm GC, and WASI 1.0.</span>
   <carbon-package class="icon" />
   <span>Wider TinyGo stdlib support could allow for smaller binaries.</span>
   <carbon-microphone class="icon" />
