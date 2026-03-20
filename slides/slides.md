@@ -574,7 +574,7 @@ of `wasm` to compile to a wasm binary.
   <span>Limited TinyGo support: lack of complete stdlib.</span>
   <carbon-settings class="icon" />
   <!-- Source: https://webassembly.org/features/ -->
-  <span>Limited Go support: no network (in WASI), parallelism, components, or Wasm GC.</span>
+  <span>Limited Go support: no network (in WASI), parallelism, or Wasm GC.</span>
 </div>
 
 <!-- 
@@ -834,11 +834,9 @@ transition: slide-left
 
 <div class="icon-grid">
   <carbon-application-web class="icon" />
-  <span>Running in a browser.</span>
-  <carbon-plug class="icon" />
-  <span>Running as a language plugin.</span>
+  <span>Running in a browser (Wasm).</span>
   <carbon-container-software class="icon" />
-  <span>Running in Wasm runtimes.</span>
+  <span>Running in Wasm runtimes (WASI).</span>
 </div>
 
 <!-- 
@@ -900,42 +898,6 @@ to want to use the Collector for local processing.
 
 ---
 
-# Observability without borders: language plugin
-
-<div class="icon-grid">
-  <carbon-code class="icon" />
-  <span>Many languages have in-process Wasm runtimes.</span>
-  <carbon-function class="icon" />
-  <span>Can call a Collector pipeline just like a function.</span>
-  <carbon-plug class="icon" />
-  <span>Can be used for non-JS OTel SDK processing.</span>
-  <carbon-warning-alt class="icon" />
-  <span>Likely has performance implications.</span>
-</div>
-
-<!-- 
-
-EVAN: If you're not dealing with a JS-based web app, you still have options
-for running the Collector in-process.
-
-Most languages have an in-process Wasm runtime, meaning if you run a Collector
-built with receivers and exporters that export a Wasm interface, you can call
-a Collector pipeline just like a function call.
-
-This would be most useful for leveraging the Collector's processing capabilities
-(for example transform processor statements with OTTL), but could also be used
-for enrichment, Collector exporters, etc.
-
-This option is best when you're looking to simplify the number of deployed services
-you have; for network-based service architectures (like microservices), you
-should consider sticking with that unless you have a reason to switch. The fact
-that data has to be somehow shared with the Wasm runtime means there are performance
-implications that will need to be carefully considered with this model.
-
- -->
-
----
-
 # Observability without borders: Wasm runtime
 
 <div class="icon-grid">
@@ -945,20 +907,31 @@ implications that will need to be carefully considered with this model.
   <span>Filesystem access is available if the host grants it.</span>
   <carbon-edge-node-alt class="icon" />
   <span>For use alongside other Wasm applications or in edge functions.</span>
+  <carbon-code class="icon" />
+  <span>Also can use in an in-process Wasm runtime.</span>
 </div>
 
 <!-- 
 
-EVAN: Finally, the Collector can be run standalone within a Wasm runtime.
+EVAN
+
+The Collector can be run inside a non-browser Wasm runtime.
 
 It's important to note that as of today, Go only supports compiling
 to WASIp1, which doesn't incude networking capabilities. You can still
-read from the filesystem or export functions to be called from the Wasm
+read from the filesystem or export functions to be called from a Wasm
 runtime.
 
 This is going to be most useful if you include the Collector as part of
 a Wasm application composed of multiple modules, or for use in edge
 function runtimes.
+
+You can also use it for in-process processing as part of another
+application. Many languages, including Java and Rust, have libraries
+that are Wasm runtimes, and can let you call a Collector pipeline
+like you would a function. This is an advanced use case, but could
+be used for a custom telemetry pipeline application or to supplement
+an SDK like we've shown for the JS SDK.
 
 Further reading: https://go.dev/blog/wasmexport
 
@@ -1009,7 +982,7 @@ love to get your ideas and contributions for what comes next!
   <carbon-in-progress class="icon" />
   <span>Go WASIp3 support still under active discussion.</span>
   <carbon-flow class="icon" />
-  <span>Concurrency support in the Component Model and WASI 1.0.</span>
+  <span>Better concurrency support, Wasm GC, and WASI 1.0.</span>
   <carbon-package class="icon" />
   <span>Wider TinyGo stdlib support could allow for smaller binaries.</span>
   <carbon-microphone class="icon" />
