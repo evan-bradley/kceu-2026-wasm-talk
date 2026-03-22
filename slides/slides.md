@@ -53,37 +53,9 @@ We have added some links to interesting tidbits throughout the slides that you c
 
 <!-- PABLO: 
 I am Pablo and this is Evan, we are both maintainers in the Collector SIG.
+
+We are going to talk today about the OpenTelemetry Collector, WebAssembly, and how you can mix the two together.
 -->
-
----
-
-# What we will cover
-
-<div class="icon-grid">
-  <carbon-checkmark-outline class="icon" />
-  <span>Wasm is ready today for use in production, with caveats.</span>
-  <carbon-checkmark class="icon" />
-  <span>The Collector already has basic support for compilation to Wasm.</span>
-  <carbon-idea class="icon" />
-  <span>Upstream support means it's ready for your ideas.</span>
-</div>
-
-<!-- 
-
-PABLO: 
-
-Here are some key points to keep in mind as we go through the presentation:
-
-1. Wasm was introduced around 9 years ago now, and has wide browser and server-side support.
-   There's still a lot that needs to be done, but it has been used in production and can
-   live up to its promises if you're deliberate with where you use it and are willing to use non-standard extensions.
-2. With just a few tweaks to make things work, the Collector already has some basic
-   compatibility with WebAssembly. We'll be covering more about what does and doesn't
-   work today.
-3. We've added limited official support for WebAssembly, but as its an advanced use case,
-   haven't done any significant development. We'd love your ideas and contributions!
-
- -->
 
 ---
 
@@ -93,7 +65,7 @@ Here are some key points to keep in mind as we go through the presentation:
 
 <!-- PABLO: As most of you know OpenTelemetry is the open standard for telemetry.
 
-The Collector is a tool offered by OpenTelemetry that allows you to build telemetry pipelines to receive, process and export your telemetry from any source to any backend.-->
+The Collector is an OpenTelemetry tool written in Go that allows you to build telemetry pipelines to receive, process and export your telemetry from any source to any backend.-->
 
 ---
 
