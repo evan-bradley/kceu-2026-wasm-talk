@@ -107,11 +107,11 @@ The Collector is an OpenTelemetry tool written in Go that allows you to build te
 
 <div class="icon-grid">
   <carbon-devices class="icon" />
-  <span>Expands devices the Collector can run on, including user devices.</span>
+  <span>Wasm expands devices the Collector can run on, including user devices.</span>
   <carbon-code class="icon" />
-  <span>Compile from Go, Rust, C++ and many other languages.</span>
+  <span>You can compile to Wasm from Go, Rust, C++ and many other languages.</span>
   <carbon-flash class="icon" />
-  <span>Performance for computationally-intensive workloads.</span>
+  <span>Wasm provides performance for computationally-intensive workloads.</span>
 </div>
 
 <!-- 
@@ -244,7 +244,7 @@ do this including the wasmprocessor or OTTL custom functions, although there is 
   <carbon-api class="icon" />
   <span>Dynamically load components distributed as OCI artifacts.</span>
   <carbon-settings class="icon" />
-  <span>Don't be constrained by your vendor distro.</span>
+  <span>Don't be constrained by your distro's component offering.</span>
   <carbon-security class="icon" />
   <span>Sandboxed execution with controlled access to networking or filesystem.</span>
   <carbon-plug class="icon" />
@@ -268,7 +268,7 @@ General support for using Wasm for plugins could look like this in the future:
 <div class="arch-slide">
 <div class="arch-details">
 
-* <a href="https://github.com/otelwasm/otelwasm">otelwasm</a> has Wasm components.
+* <a href="https://github.com/otelwasm/otelwasm">otelwasm</a> allows you to run existing components in Wasm.
 * It relies on the <a href="https://github.com/WasmEdge/WasmEdge">WasmEdge</a> to provide HTTP support.
 * Limited by WASM features today, e.g. no support for true parallelism.
 
