@@ -469,21 +469,21 @@ We can also happily report that about 90% of Collector components already compil
 
 ```yaml{all|1-2,6-8|1,3-4,10-12|14-16|18-19}
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.147.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.148.0
   - gomod: github.com/evan-bradley/kceu-2026-wasm-talk/jsexporter v0.0.0
     path: ../jsexporter
 
 processors:
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v0.147.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.147.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v0.148.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.148.0
 
 receivers:
   - gomod: github.com/evan-bradley/kceu-2026-wasm-talk/jsreceiver v0.0.0
     path: ../jsreceiver
 
 providers:
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.53.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.53.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.54.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.54.0
 
 conf_resolver:
   default_uri_scheme: http

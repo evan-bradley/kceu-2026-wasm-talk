@@ -5,14 +5,14 @@ dist:
   output_path: ./bin/
 
 exporters:
-  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.147.0
-  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.147.0
+  - gomod: go.opentelemetry.io/collector/exporter/debugexporter v0.148.0
+  - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.148.0
   - gomod: github.com/evan-bradley/kceu-2026-wasm-talk/jsexporter v0.0.0
     path: ../jsexporter
 
 processors:
-  - gomod:  github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v0.147.0
-  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.147.0
+  - gomod:  github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v0.148.0
+  - gomod: github.com/open-telemetry/opentelemetry-collector-contrib/processor/transformprocessor v0.148.0
 
 
 receivers:
@@ -20,8 +20,8 @@ receivers:
     path: ../jsreceiver
 
 providers:
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.53.0
-  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.53.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.54.0
+  - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.54.0
 
 conf_resolver:
   default_uri_scheme: http
