@@ -97,41 +97,17 @@ The Collector is a tool offered by OpenTelemetry that allows you to build teleme
 
 ---
 
-# What is WebAssembly? Write once, run everywhere™
-
-<Timeline :items="[
-  { year: '1972', desc: 'C specification prioritizes ease of writing compilers' },
-  { year: '1995', desc: 'Java promises &quot;write once, run everywhere&quot;' },
-  { year: '2007', desc: 'HTML5 paves the way to replace browser plugins' },
-  { year: '2017', desc: 'WebAssembly MVP declared ready' },
-  { year: '2026', desc: 'An upstream OTel Collector runs in a browser', highlight: true },
-]" />
-
-<!-- 
-
-PABLO:
-
-Writing a program a single time and being able to run it on any machine has long been a
-goal. Starting in 1972 ... [slide content]
-
-This list is by no means exhaustive, there are multiple items we had to leave out.
-But hopefully this offers a bit of context behind the goals of WebAssembly.
-
- -->
-
----
-
-# Wasm in production today
+# What is WebAssembly?
 
 <div class="icon-grid">
+  <carbon-code class="icon" />
+  <span>Portable compilation target available since 2017, 3.0 in 2025.</span>
+  <carbon-devices class="icon" />
+  <span>Can be run on browsers, embeddable and standalone runtimes.</span>
   <carbon-scale class="icon" />
-  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> all use it for plugins.</span>
+  <span><a href="https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/advanced/wasm">Envoy</a>, <a href="https://istio.io/latest/docs/reference/config/proxy_extensions/wasm-plugin/">Istio</a>, <a href="https://www.openpolicyagent.org/docs/wasm">OPA</a> and <a href="https://github.com/kubernetes-sigs/kube-scheduler-wasm-extension/tree/main">k8s</a> all use it for plugins.</span>
   <carbon-pen-fountain class="icon" />
-  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a> - Wasm cut load times by 3x for all document sizes.</span>
-  <carbon-image class="icon" />
-  <span><a href="https://youtu.be/48ORmla7mak">Adobe</a> - Acrobat, Photoshop, and Lightroom run in the browser.</span>
-  <carbon-logo-google class="icon" />
-  <span><a href="https://youtu.be/2En8cj6xlv4">Google</a> - Used for cross-platform code sharing.</span>
+  <span><a href="https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/">Figma</a>, <a href="https://youtu.be/48ORmla7mak">Adobe</a>  and <a href="https://youtu.be/2En8cj6xlv4">Google</a> use it for thick-client apps and cross-platform code sharing.</span>
 </div>
 
 
@@ -141,7 +117,7 @@ But hopefully this offers a bit of context behind the goals of WebAssembly.
 
   WebAssembly has already been in use for large thick-client apps for a long time now.
 
-  1. Some other cloud-native projects like Envoy, Istio and Kubernetes use it in a limited way to provide filters and plugins.
+  1. Some other cloud-native projects like Envoy, Istio, OPA and Kubernetes use it in a limited way to provide filters and plugins.
   2. Figma is written in C++, and switched their C++ to JavaScript compilation target
      from asm.js to WebAssembly and saw a significant gain in document loading speed.
   3. Adobe also has long-standing software written for desktops and has leveraged
@@ -315,14 +291,14 @@ General support for using Wasm for plugins could look like this in the future:
 
 ---
 
-# Wasm plugins inside the Collector: Reality today
+# Wasm plugins inside the Collector: PoC today
 
 <div class="arch-slide">
 <div class="arch-details">
 
 * <a href="https://github.com/otelwasm/otelwasm">otelwasm</a> has Wasm components.
 * It relies on the <a href="https://github.com/WasmEdge/WasmEdge">WasmEdge</a> to provide HTTP support.
-* No support for true parallelism.
+* Limited by WASM features today, e.g. no support for true parallelism.
 
 </div>
 <div>
