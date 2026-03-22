@@ -443,7 +443,7 @@ We can also happily report that about 90% of Collector components already compil
 
 # Collector running in Wasm: OCB manifest
 
-```yaml{all|1-2,6-8|1,3-4,10-12|14-16|18-19}
+```yaml{all|1-2,6-8|1,3-4,10-12|14-16}
 exporters:
   - gomod: go.opentelemetry.io/collector/exporter/otlphttpexporter v0.148.0
   - gomod: github.com/evan-bradley/kceu-2026-wasm-talk/jsexporter v0.0.0
@@ -460,9 +460,6 @@ receivers:
 providers:
   - gomod: go.opentelemetry.io/collector/confmap/provider/httpprovider v1.54.0
   - gomod: go.opentelemetry.io/collector/confmap/provider/httpsprovider v1.54.0
-
-conf_resolver:
-  default_uri_scheme: http
 ```
 
 <!-- 
