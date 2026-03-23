@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, computed, onMounted, watch, nextTick } from 'vue'
-import { metrics } from '@opentelemetry/api'
+import { ref, reactive, computed, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import {
   MeterProvider,
   PeriodicExportingMetricReader,
@@ -26,9 +25,6 @@ const totalClicks = ref(0)
 const chartLabels = reactive<string[]>([])
 const chartValues = reactive<number[]>([])
 const logsEl = ref<HTMLElement | null>(null)
-let go: any = null
-let mod: any = null
-let inst: any = null
 let startTime: number | null = null
 
 const chartData = computed(() => ({
@@ -85,23 +81,35 @@ watch(() => collectorLogs.length, async () => {
   }
 })
 
-// Set up the OTel metrics SDK with our custom exporter
-const exporter = new WasmCollectorExporter()
-const reader = new PeriodicExportingMetricReader({
-  exporter,
-  exportIntervalMillis: 60_000, // long interval; we flush manually on click
-})
-const meterProvider = new MeterProvider({ readers: [reader] })
-metrics.setGlobalMeterProvider(meterProvider)
-const meter = metrics.getMeter('wasm-demo')
-const clickCounter = meter.createCounter('click.count', {
-  description: 'Number of button clicks',
-})
+// Singleton OTel SDK and WASM state, shared across all mounts of this component
+const g = globalThis as any
+if (!g.__wasmDemoState) {
+  const exporter = new WasmCollectorExporter()
+  const reader = new PeriodicExportingMetricReader({
+    exporter,
+    exportIntervalMillis: 60_000, // long interval; we flush manually on click
+  })
+  const meterProvider = new MeterProvider({ readers: [reader] })
+  const meter = meterProvider.getMeter('wasm-demo')
+  const clickCounter = meter.createCounter('click.count', {
+    description: 'Number of button clicks',
+  })
+  g.__wasmDemoState = {
+    reader,
+    clickCounter,
+    wasmInitStarted: false,
+    go: null,
+    mod: null,
+    inst: null,
+    exportListeners: new Set<(obj: any) => void>(),
+  }
+}
+const demoState = g.__wasmDemoState
 
 async function sendClick() {
   if (!wasmReady.value) return
-  clickCounter.add(1)
-  await reader.forceFlush()
+  demoState.clickCounter.add(1)
+  await demoState.reader.forceFlush()
 }
 
 function addChartPoint(value: number) {
@@ -117,7 +125,7 @@ function addChartPoint(value: number) {
   }
 }
 
-function updateTable(obj: any) {
+function updateChartData(obj: any) {
   // Walk the OTLP JSON structure to find click.rate and use the value directly
   for (const rm of obj?.resourceMetrics ?? []) {
     for (const sm of rm?.scopeMetrics ?? []) {
@@ -134,6 +142,12 @@ function updateTable(obj: any) {
   }
 }
 
+// Register this instance's handler and clean up on unmount
+demoState.exportListeners.add(updateChartData)
+onUnmounted(() => {
+  demoState.exportListeners.delete(updateChartData)
+})
+
 // The Wasm file is pre-compressed when uploaded to Cloudflare,
 // and as a result must be manually decompressed here.
 async function decompressGzip(response: Response) {
@@ -149,6 +163,13 @@ async function decompressGzip(response: Response) {
 }
 
 onMounted(async () => {
+  // If WASM is already running from another mount, just sync the ready state
+  if (demoState.wasmInitStarted) {
+    if (demoState.inst) wasmReady.value = true
+    return
+  }
+  demoState.wasmInitStarted = true
+
   const script = document.createElement('script')
   script.src = '/wasm_exec.js'
   script.onload = async () => {
@@ -160,7 +181,7 @@ onMounted(async () => {
     }
 
     // @ts-ignore
-    go = new Go()
+    demoState.go = new Go()
 
     // Intercept stderr (fd 2) from the Go WASM runtime to capture collector logs
     const origWriteSync = globalThis.fs.writeSync.bind(globalThis.fs)
@@ -183,12 +204,15 @@ onMounted(async () => {
 
     // Set up a callback for the JS exporter to send telemetry data
     // from the Go Wasm runtime to JavaScript via js.CopyBytesToJS.
+    // Broadcasts to all mounted component instances.
     const decoder = new TextDecoder('utf-8')
     globalThis.__otelExportCallback = (uint8Array: Uint8Array) => {
       const json = decoder.decode(uint8Array)
       try {
         const obj = JSON.parse(json)
-        updateTable(obj)
+        for (const listener of demoState.exportListeners) {
+          listener(obj)
+        }
       } catch (e) {
         console.error('Failed to parse exported telemetry:', e)
       }
@@ -198,10 +222,10 @@ onMounted(async () => {
       const result = await WebAssembly.instantiateStreaming(
         fetch("/otelwasmcol.wasm.gz")
         .then(decompressGzip),
-        go.importObject
+        demoState.go.importObject
       )
-      mod = result.module
-      inst = result.instance
+      demoState.mod = result.module
+      demoState.inst = result.instance
       wasmReady.value = true
       runWasm()
     } catch (err) {
@@ -212,16 +236,16 @@ onMounted(async () => {
 })
 
 async function runWasm() {
-  if (!go || !inst || !mod) return
+  if (!demoState.go || !demoState.inst || !demoState.mod) return
 
   totalClicks.value = 0
   chartLabels.length = 0
   chartValues.length = 0
   startTime = null
   const configUrl = `${window.location.origin}/otelcol-config.yaml`
-  go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`]
-  await go.run(inst)
-  inst = await WebAssembly.instantiate(mod, go.importObject)
+  demoState.go.argv = ["otelwasmcol.wasm", `--config=${configUrl}`]
+  await demoState.go.run(demoState.inst)
+  demoState.inst = await WebAssembly.instantiate(demoState.mod, demoState.go.importObject)
 }
 </script>
 
