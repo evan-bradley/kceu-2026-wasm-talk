@@ -114,6 +114,13 @@ async function sendClick() {
 
 function addChartPoint(value: number) {
   const maxPoints = 8
+
+  // Sometimes the deltatorate processor may emit a very large value (1000)
+  // for the first point. If this happens (or any other unusually large value)
+  // then just set it to 0.
+  if (value > 100) {
+    value = 0
+  }
   
   if (startTime === null) startTime = Date.now()
   const elapsed = ((Date.now() - startTime) / 1000).toFixed(1)
