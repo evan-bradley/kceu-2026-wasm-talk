@@ -171,7 +171,7 @@ onMounted(async () => {
   demoState.wasmInitStarted = true
 
   const script = document.createElement('script')
-  script.src = '/wasm_exec.js'
+  script.src = import.meta.env.BASE_URL + 'wasm_exec.js'
   script.onload = async () => {
     if (!WebAssembly.instantiateStreaming) {
       WebAssembly.instantiateStreaming = async (resp: any, importObject: any) => {
@@ -220,7 +220,7 @@ onMounted(async () => {
 
     try {
       const result = await WebAssembly.instantiateStreaming(
-        fetch("/otelwasmcol.wasm.gz")
+        fetch(import.meta.env.BASE_URL + "otelwasmcol.wasm.gz")
         .then(decompressGzip),
         demoState.go.importObject
       )
