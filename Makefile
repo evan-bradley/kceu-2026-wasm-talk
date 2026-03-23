@@ -10,7 +10,7 @@ slides/node_modules: slides/package.json slides/package-lock.json slides/pnpm-lo
 slides/dist/index.html: otelwasmcol slides/slides.md slides/style.css slides/vite.config.ts slides/package.json slides/node_modules
 	cp otelwasmcol/bin/main.wasm slides/public/otelwasmcol.wasm
 	gzip -f slides/public/otelwasmcol.wasm
-	cd slides && npx pnpm build
+	cd slides && npx pnpm build $(ARGS)
 
 build: slides/dist/index.html
 
