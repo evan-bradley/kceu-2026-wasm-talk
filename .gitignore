@@ -1,6 +1,9 @@
 otelwasmcol/bin
 slides/node_modules/
 slides/dist/
-*.wasm
 local
-slides/public/*.wasm.gz
+
+*.wasm.gz
+*.wasm
+*.pdf
+.DS_Store
