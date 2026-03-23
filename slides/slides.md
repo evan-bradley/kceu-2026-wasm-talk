@@ -775,43 +775,6 @@ transition: slide-left
 transition: slide-left
 ---
 
-# Observability without borders
-
-<div class="icon-grid">
-  <carbon-application-web class="icon" />
-  <span>Running in a browser (Wasm).</span>
-  <carbon-container-software class="icon" />
-  <span>Running in Wasm runtimes (WASI).</span>
-</div>
-
-<!-- 
-
-EVAN: We've covered how the Collector and Wasm can work together, but
-where can you use this?
-
-1. The option we've found works the best out of the box right now,
-   and probably the most unexpected one, is running it in the browser.
-   This has the most restrictions, but allows you to run Collectors
-   on a user's machine.
-2. There are also a number of server-side Wasm runtimes available
-   that boast low startup times and effective sandboxing without
-   container technology like Docker. These can allow you to run
-   apps in unusual places like edge functions (e.g. Cloudflare workers)
-3. You can also use the Collecotr in-process in one of your applications
-   using a Wasm runtime built for that language.
-
-
-The point of all of this is that you can leverage Wasm to run your
-Collectors in the odd nooks and crannies of your infrastructure,
-which if used tactfully, may open up new possibilities for
-your telemetry pipelines.
-
-Let's cover some of the trade-offs that each of these options provides.
-
- -->
-
----
-
 # Observability without borders: browser
 
 <div class="icon-grid">
